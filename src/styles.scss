@@ -1,0 +1,210 @@
+/* Define Color Palette */
+$color-primary: #5cb338;
+$color-secondary: #ece852;
+$color-accent: #ffc145;
+$color-danger: #fb4141;
+$color-background: rgb(252, 199, 55);
+$color-highlight: #7e1891;
+$color-hover: #e73879;
+
+/* Global Styles */
+// General reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Body styling
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: linear-gradient(
+    90deg,
+    $color-primary,
+    $color-secondary
+  ); /* Gradient using color pattern */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  .logo h1 {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+  }
+
+  nav ul li {
+    margin: 0 15px;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+  }
+
+  nav ul li a:hover {
+    color: $color-hover; /* Hover color */
+    border-bottom: 2px solid $color-hover; /* Border color on hover */
+  }
+}
+
+/* Main Content Styles */
+main {
+  text-align: center;
+}
+
+.section {
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  text-align: center;
+  background-color: $color-background; /* Section background color */
+}
+
+.profile {
+  img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  h2 {
+    margin-top: 20px;
+    font-size: 2rem;
+    color: $color-highlight; /* Profile section heading color */
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: $color-highlight; /* Profile section subheading color */
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* Skills Section Styles */
+.skills {
+  padding: 20px;
+  background-color: $color-secondary; /* Skills section background color */
+
+  .skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .skill-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+      background-color: $color-hover; /* Hover background color for skill cards */
+    }
+
+    .skill-icon i {
+      font-size: 3rem;
+      color: $color-highlight; /* Skill icon color */
+      margin-bottom: 10px;
+    }
+
+    .skill-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: $color-highlight; /* Skill card heading color */
+    }
+
+    .skill-info p {
+      font-size: 1rem;
+      color: #555;
+    }
+  }
+
+  .no-details {
+    font-style: italic;
+    color: #aaa;
+  }
+}
+
+/* Footer Styles */
+footer {
+  padding: 30px 20px;
+  background: $color-highlight; /* Footer background color */
+  color: #fff;
+  text-align: center;
+
+  .social-links {
+    margin-bottom: 20px;
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      margin: 0 15px;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $color-primary; /* Social links hover color */
+      }
+    }
+  }
+
+  .footer-text p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+}

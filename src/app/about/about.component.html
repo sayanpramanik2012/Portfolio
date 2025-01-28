@@ -1,0 +1,15 @@
+<section id="skills" class="skills">
+  <h2>My Skills</h2>
+  <div class="skills-container">
+    <div class="skill-card" *ngFor="let skill of skills">
+      <div class="skill-icon">
+        <i [class]="skill.icon" *ngIf="skill.icon"></i>
+      </div>
+      <div class="skill-info">
+        <h3>{{ skill.name }}</h3>
+        <p *ngIf="skill.details">{{ skill.details }}</p>
+        <p *ngIf="!skill.details" class="no-details">Details not provided.</p>
+      </div>
+    </div>
+  </div>
+</section>
