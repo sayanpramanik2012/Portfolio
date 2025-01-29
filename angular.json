@@ -106,6 +106,15 @@
             "styles": ["src/styles.scss"],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://sayanpramanik2012.github.io/Portfolio/",
+            "repo": "https://github.com/sayanpramanik2012/Portfolio.git",
+            "name": "sayanpramanik2012",
+            "email": "sayanpramanik2012@gmail.com"
+          }
         }
       }
     }
