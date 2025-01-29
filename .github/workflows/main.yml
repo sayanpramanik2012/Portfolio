@@ -17,18 +17,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
+
+      - name: Clone Repo
+        run: git clone https://github.com/sayanpramanik2012/Portfolio.git -b main
 
       - name: Install dependencies
-        run: npm ci --force
-
-      - name: Build Angular Project
-        run: npm run build -- --base-href="/Portfolio/"
-
-      - name: Create .nojekyll file
-        run: touch dist/Portfolio/.nojekyll
-
+        run: npm i --force
+        
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/Portfolio --no-silent
+        run: ng deploy
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
