@@ -22,6 +22,9 @@ jobs:
       - name: Clone Repo
         run: git clone https://github.com/sayanpramanik2012/Portfolio.git -b main
 
+      - name: Install Angular
+        run: npm install -g angular-cli
+
       - name: Install dependencies
         run: npm i --force
         
