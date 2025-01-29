@@ -1,0 +1,52 @@
+[
+  {
+    "name": "HTML",
+    "icon": "fab fa-html5",
+    "details": "I have honed my skills in HTML, the fundamental language of web development. With a keen eye for detail and a deep understanding of semantic markup, I excel at crafting clean, well-structured HTML code. I have a strong command over HTML5, ensuring that my websites are built using the latest standards and best practices. From creating responsive layouts to optimizing web pages for search engines, I am proficient in leveraging HTML to deliver visually appealing and user-friendly websites. With my expertise in HTML, I am able to bring ideas to life and create engaging online experiences for users."
+  },
+  {
+    "name": "CSS",
+    "icon": "fab fa-css3",
+    "details": "I possess a strong command of CSS and SCSS, the essential languages for styling and enhancing web pages. With a meticulous approach to design and a deep understanding of CSS selectors, properties, and values, I excel at creating visually appealing and responsive layouts. I am skilled in leveraging CSS frameworks, such as Bootstrap, to streamline development and ensure cross-browser compatibility. Additionally, my proficiency in SCSS allows me to write modular and maintainable CSS code, utilizing variables, mixins, and nesting to improve code organization and reusability. I stay up-to-date with the latest CSS features and trends, enabling me to deliver modern and stylish websites that captivate users. With my expertise in CSS and SCSS, I am able to bring creativity and innovation to the forefront of web development projects."
+  },
+  {
+    "name": "TypeScript",
+    "icon": "fab fa-js",
+    "details": "I am equipped with the skills to leverage this powerful superset of JavaScript for developing robust and scalable web applications. I have a solid understanding of TypeScript's static typing, which enhances code reliability and enables early error detection. With my knowledge of TypeScript's features like interfaces, classes, and modules, I am able to write cleaner and more maintainable code. While I am still in the process of expanding my expertise, I am enthusiastic about the potential TypeScript brings to modern web development. I am eager to continue deepening my knowledge and incorporating TypeScript into my projects, as it offers improved code organization, enhanced developer productivity, and better tooling support."
+  },
+  {
+    "name": "C++",
+    "icon": "fab fa-cuttlefish",
+    "details": " I am enthusiastic about the C++ programming language and its versatility in building powerful and efficient software solutions. I have a solid foundation in C++ and understand its core concepts, such as object-oriented programming, data structures, and algorithms. Through my coursework and personal projects, I have gained experience in writing clean and structured C++ code, utilizing features like classes, templates, and inheritance to create modular and reusable solutions. I am familiar with memory management and understand the importance of avoiding memory leaks and optimizing code performance. As a dedicated learner, I continuously explore advanced topics in C++ and strive to enhance my skills to deliver high-quality, optimized software solutions. I am eager to apply my knowledge of C++ to tackle challenging programming tasks and contribute to innovative projects"
+  },
+  {
+    "name": "Python",
+    "icon": "fab fa-python",
+    "details": "my primary programming skill lies in Python, a versatile and widely-used language known for its simplicity and readability. I have a strong understanding of Python's syntax, data structures, and control flow, allowing me to write clean and efficient code. Through personal projects and coursework, I have gained experience in developing applications, automating tasks, and working with various libraries and frameworks in the Python ecosystem. I am proficient in utilizing Python for data analysis and manipulation, web development, and scripting. As an avid learner, I stay updated with the latest Python trends and best practices, constantly expanding my knowledge to deliver innovative and scalable solutions. With my proficiency in Python, I am eager to contribute my skills to projects that require rapid development, code efficiency, and problem-solving capabilities."
+  },
+  {
+    "name": "C",
+    "icon": "fas fa-code",
+    "details": "I possess solid programming skills in the C language, a powerful and widely-used language known for its efficiency and low-level control. I have a strong grasp of C's syntax, data types, and memory management concepts, allowing me to write concise and performant code. Through my coursework and practical projects, I have gained experience in developing algorithms, implementing data structures, and solving problems using C. I am familiar with the intricacies of pointer manipulation and understand the importance of memory allocation and deallocation. With a keen eye for optimization, I strive to write clean and efficient C code, considering factors such as time complexity and resource utilization. As a dedicated learner, I continuously explore advanced topics in C programming and aim to enhance my skills to deliver robust and efficient software solutions. I am eager to apply my knowledge of C to contribute to projects that require low-level programming, system development, and embedded systems."
+  },
+  {
+    "name": "Angular",
+    "icon": "fab fa-angular",
+    "details": "I have valuable experience working with Angular, a popular and powerful JavaScript framework for building dynamic and scalable web applications. I have gained practical knowledge and expertise in Angular through my experience at NIQ, where I had the opportunity to work on Angular projects. I have successfully developed a website using Angular, leveraging its robust features such as components, modules, and services to create a responsive and user-friendly interface. I am proficient in utilizing Angular's powerful data binding and routing capabilities to create seamless navigation and interactive user experiences. Additionally, I am well-versed in Angular CLI for efficient project setup and management. With a strong understanding of Angular's architectural concepts and best practices, I am confident in my ability to contribute to Angular projects and deliver high-quality, maintainable code."
+  },
+  {
+    "name": "Linux",
+    "icon": "",
+    "details": ""
+  },
+  {
+    "name": "Teamwork",
+    "icon": "",
+    "details": ""
+  },
+  {
+    "name": "Github",
+    "icon": "",
+    "details": ""
+  }
+]
