@@ -26,7 +26,7 @@ jobs:
         run: npm run build -- --base-href="/Portfolio/"
 
       - name: Create .nojekyll file
-        run: touch dist/<your-project-name>/.nojekyll
+        run: touch dist/Portfolio/.nojekyll
 
       - name: Deploy to GitHub Pages
         run: npx angular-cli-ghpages --dir=dist/Portfolio --no-silent
