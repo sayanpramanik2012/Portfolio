@@ -1,34 +1,27 @@
-name: Deploy Angular to GitHub Pages
+name: Deploy Angular App to GitHub Pages
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
-
+  workflow-dispatch:
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.13.0
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 22.13.0  # Use the same Node.js version as your local environment
 
-      - name: Clone Repo
-        run: git clone https://github.com/sayanpramanik2012/Portfolio.git -b main
+    - name: Install dependencies
+      run: npm install
 
-      - name: Install Angular
-        run: npm install -g angular-cli
-
-      - name: Install dependencies
-        run: npm i --force
-        
-      - name: Deploy to GitHub Pages
-        run: ng deploy
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    - name: Deploy to GitHub Pages
+      run: npx ng deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
