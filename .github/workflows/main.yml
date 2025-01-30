@@ -21,6 +21,11 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Set Git user and email
+      run: |
+         git config --global user.name "github-actions[bot]"
+         git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
     - name: Deploy to GitHub Pages
       run: npx ng deploy
       env:
