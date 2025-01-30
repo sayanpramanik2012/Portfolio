@@ -1,1 +1,23 @@
-<p>work works!</p>
+<section id="projects" class="projects">
+  <h2 style="margin-bottom: 10px">Projects</h2>
+  <div class="projects-container">
+    <a
+      *ngFor="let project of projects"
+      [href]="project.show_project ? project.link : null"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="project-card"
+      [class.clickable]="project.show_project"
+    >
+      <h3 class="project-title">{{ project.title }}</h3>
+      <p class="project-duration">{{ project.duration }}</p>
+      <p class="project-description">{{ project.description }}</p>
+      <ul class="project-skills">
+        <li *ngFor="let skill of project.skills" class="skill">{{ skill }}</li>
+      </ul>
+      <p *ngIf="project.achievement" class="project-achievement">
+        🏆 {{ project.achievement }}
+      </p>
+    </a>
+  </div>
+</section>

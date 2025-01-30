@@ -9,11 +9,14 @@ import { DatapullerService } from '../service/datapuller.service';
 })
 export class AboutComponent {
   skills: any[] = [];
+  educations: any[] = [];
+  achivements: any[] = [];
 
   constructor(private Datapullerservice: DatapullerService) {}
 
   ngOnInit(): void {
     this.skills = this.Datapullerservice.getSkills();
-    console.log(this.skills);
+    this.educations = this.Datapullerservice.getEducations();
+    this.achivements = this.Datapullerservice.getAchievements();
   }
 }

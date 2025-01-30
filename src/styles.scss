@@ -1,25 +1,25 @@
 /* Define Color Palette */
-$color-primary: #5cb338;
-$color-secondary: #ece852;
-$color-accent: #ffc145;
-$color-danger: #fb4141;
-$color-background: rgb(252, 199, 55);
-$color-highlight: #7e1891;
-$color-hover: #e73879;
+$color-primary: #0081fa; /* Modern purple */
+$color-secondary: #f5f5f5; /* Light gray background */
+$color-accent: #ffab40; /* Vibrant orange */
+$color-danger: #ff5252; /* Bright red */
+$color-background: #ffffff; /* White background */
+$color-highlight: #424242; /* Dark gray for contrast */
+$color-hover: #00b0ff; /* Cyan hover effect */
+$color-text: #333333; /* Dark text for readability */
 
 /* Global Styles */
-// General reset
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-// Body styling
 body {
-  font-family: "Arial", sans-serif;
-  background-color: #f4f4f9;
-  color: #333;
+  font-family: "Roboto", "Arial", sans-serif;
+  background-color: $color-background;
+  color: $color-text;
+  line-height: 1.6;
 }
 
 html {
@@ -35,15 +35,18 @@ header {
   background: linear-gradient(
     90deg,
     $color-primary,
-    $color-secondary
-  ); /* Gradient using color pattern */
+    darken($color-primary, 10%)
+  );
   position: sticky;
   top: 0;
   z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
   .logo h1 {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
   }
 
   nav ul {
@@ -60,11 +63,13 @@ header {
     color: #fff;
     font-size: 1.1rem;
     transition: all 0.3s ease;
-  }
+    padding: 5px 10px;
+    border-radius: 4px;
 
-  nav ul li a:hover {
-    color: $color-hover; /* Hover color */
-    border-bottom: 2px solid $color-hover; /* Border color on hover */
+    &:hover {
+      color: $color-hover;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
   }
 }
 
@@ -74,14 +79,15 @@ main {
 }
 
 .section {
-  min-height: 100vh; /* Full viewport height */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 50px 20px;
   text-align: center;
-  background-color: $color-background; /* Section background color */
+  background-color: $color-secondary;
+  color: $color-text;
 }
 
 .profile {
@@ -90,32 +96,90 @@ main {
     width: 200px;
     height: 200px;
     object-fit: cover;
+    border: 4px solid $color-primary;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
   h2 {
     margin-top: 20px;
-    font-size: 2rem;
-    color: $color-highlight; /* Profile section heading color */
+    font-size: 2.5rem;
+    color: $color-primary;
+    font-weight: 700;
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin: 10px 0;
-    color: $color-highlight; /* Profile section subheading color */
+    color: $color-accent;
+    font-weight: 500;
   }
 
   p {
     font-size: 1.2rem;
-    color: #666;
+    color: $color-text;
     max-width: 600px;
     margin: 0 auto;
+    line-height: 1.8;
   }
 }
 
-/* Skills Section Styles */
+/* Education Section */
+.education {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: $color-background;
+  color: $color-text;
+
+  .education-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .education-card {
+    background: white;
+    border-left: 5px solid $color-primary;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    h3 {
+      color: $color-primary;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 5px 0;
+      font-size: 1rem;
+      color: $color-text;
+    }
+
+    .percentage {
+      font-weight: bold;
+      color: $color-accent;
+    }
+  }
+}
+
+/* Skills Section */
 .skills {
-  padding: 20px;
-  background-color: $color-secondary; /* Skills section background color */
+  padding: 50px 20px;
+  background-color: $color-secondary;
+  color: $color-text;
 
   .skills-container {
     display: flex;
@@ -125,49 +189,174 @@ main {
   }
 
   .skill-card {
-    background: #fff;
-    border: 1px solid #ddd;
+    background: white;
+    border: 1px solid lighten($color-highlight, 30%);
     border-radius: 8px;
-    padding: 15px;
+    padding: 20px;
     width: 300px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
 
     &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-      background-color: $color-hover; /* Hover background color for skill cards */
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      background-color: $color-hover;
+      color: white;
+
+      .skill-icon i {
+        color: white;
+      }
+
+      .skill-info h3,
+      .skill-info p {
+        color: white;
+      }
     }
 
     .skill-icon i {
       font-size: 3rem;
-      color: $color-highlight; /* Skill icon color */
+      color: $color-primary;
       margin-bottom: 10px;
+      transition: color 0.3s;
     }
 
     .skill-info h3 {
       font-size: 1.5rem;
       margin-bottom: 10px;
-      color: $color-highlight; /* Skill card heading color */
+      color: $color-text;
+      font-weight: 600;
     }
 
     .skill-info p {
       font-size: 1rem;
-      color: #555;
+      color: $color-text;
     }
   }
+}
 
-  .no-details {
-    font-style: italic;
-    color: #aaa;
+/* Achievements Section */
+.achievements {
+  padding: 50px 20px;
+  background-color: $color-background;
+  color: $color-text;
+  text-align: center;
+
+  .achievements-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .achievement-card {
+    background: white;
+    border: 1px solid lighten($color-highlight, 30%);
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      background-color: $color-hover;
+      color: white;
+
+      h3,
+      .achievement-rank {
+        color: white;
+      }
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: $color-text;
+      font-weight: 600;
+    }
+
+    .achievement-rank {
+      font-size: 1rem;
+      font-weight: bold;
+      color: $color-text;
+    }
   }
 }
+
+/* Projects Section */
+.projects {
+  padding: 50px 20px;
+  background-color: $color-secondary;
+  color: $color-text;
+  text-align: center;
+
+  .projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .project-card {
+    background: white;
+    border-left: 5px solid $color-primary;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    h3 {
+      color: $color-primary;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .duration {
+      font-size: 0.9rem;
+      color: $color-text;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 1rem;
+      color: $color-text;
+      margin-bottom: 10px;
+    }
+
+    .skills {
+      font-size: 0.9rem;
+      color: $color-accent;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .achievement {
+      font-size: 0.9rem;
+      color: $color-danger;
+      font-weight: bold;
+    }
+  }
+}
+/*message section*/
 
 /* Footer Styles */
 footer {
   padding: 30px 20px;
-  background: $color-highlight; /* Footer background color */
+  background: $color-highlight;
   color: #fff;
   text-align: center;
 
@@ -182,7 +371,7 @@ footer {
       transition: all 0.3s ease;
 
       &:hover {
-        color: $color-primary; /* Social links hover color */
+        color: $color-primary;
       }
     }
   }
@@ -206,5 +395,14 @@ footer {
 
   nav ul li {
     margin: 10px 0;
+  }
+
+  .projects-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-card {
+    width: 90%;
   }
 }

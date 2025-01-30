@@ -1,5 +1,26 @@
+<section id="education" class="education">
+  <h2 style="margin-bottom: 10px">My Education</h2>
+  <div class="education-container">
+    <a
+      *ngFor="let edu of educations"
+      [href]="edu.assetPath"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="education-card"
+      [class.clickable]="edu.assetPath"
+    >
+      <h3>{{ edu.degree }}</h3>
+      <p>
+        <strong>{{ edu.institution }}</strong>
+      </p>
+      <p>{{ edu.duration }}</p>
+      <p class="percentage">Score: {{ edu.percentage }}</p>
+    </a>
+  </div>
+</section>
+
 <section id="skills" class="skills">
-  <h2>My Skills</h2>
+  <h2 style="margin-bottom: 10px">My Skills</h2>
   <div class="skills-container">
     <div class="skill-card" *ngFor="let skill of skills">
       <div class="skill-icon">
@@ -10,6 +31,16 @@
         <p *ngIf="skill.details">{{ skill.details }}</p>
         <p *ngIf="!skill.details" class="no-details">Details not provided.</p>
       </div>
+    </div>
+  </div>
+</section>
+<section id="achievements" class="achievements">
+  <h2 style="margin-bottom: 10px">My Achivements</h2>
+  <div class="achievements-container">
+    <div class="achievement-card" *ngFor="let achivement of achivements">
+      <h3>{{ achivement.name }}</h3>
+      <p>{{ achivement.duration }}</p>
+      <p class="achievement-rank">{{ achivement.details }}</p>
     </div>
   </div>
 </section>
