@@ -33,6 +33,6 @@ jobs:
 
     - name: Deploy to GitHub Pages
       run: |
-        npx ng deploy
+        ng deploy
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
