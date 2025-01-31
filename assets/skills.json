@@ -2,41 +2,55 @@
   {
     "name": "HTML",
     "icon": "fab fa-html5",
-    "details": "Proficient in HTML5, ensuring clean, semantic markup for responsive and SEO-friendly websites."
+    "details": "Expert in HTML5, crafting clean, semantic, and accessible markup to build responsive, SEO-optimized websites.",
+    "progress": "90"
   },
   {
     "name": "CSS",
     "icon": "fab fa-css3",
-    "details": "Skilled in CSS, SCSS, and frameworks like Bootstrap, creating visually appealing, modern, and responsive designs."
+    "details": "Proficient in CSS, SCSS, and modern frameworks like Bootstrap, delivering visually stunning and responsive user interfaces.",
+    "progress": "80"
   },
   {
     "name": "TypeScript",
     "icon": "fab fa-js",
-    "details": "Strong understanding of TypeScript for scalable, maintainable web applications with static typing and OOP principles."
+    "details": "Skilled in TypeScript, leveraging static typing and OOP principles to develop scalable, maintainable, and robust web applications.",
+    "progress": "75"
   },
   {
     "name": "C++",
     "icon": "fab fa-cuttlefish",
-    "details": "Experienced in C++ OOP, data structures, and algorithms and focusing on performance"
+    "details": "Experienced in C++ programming, with a strong focus on object-oriented design, data structures, and high-performance algorithms.",
+    "progress": "55"
   },
   {
     "name": "Python",
     "icon": "fab fa-python",
-    "details": "Proficient in Python for automation, data analysis, and web development, leveraging libraries and frameworks efficiently."
+    "details": "Proficient in Python, utilizing its versatility for automation, data analysis, and web development with popular libraries and frameworks.",
+    "progress": "50"
   },
   {
     "name": "Angular",
     "icon": "fab fa-angular",
-    "details": "Hands-on experience with Angular, building dynamic, scalable web applications with components, services, and routing."
+    "details": "Experienced in Angular, building dynamic, single-page applications with modular components, services, and efficient routing.",
+    "progress": "50"
   },
   {
     "name": "Linux",
     "icon": "fab fa-linux",
-    "details": "Familiar with Linux for development, scripting, and system management."
+    "details": "Highly skilled in Linux environments, proficient in system administration, scripting, and development workflows.",
+    "progress": "90"
   },
   {
-    "name": "Github",
+    "name": "GitHub",
     "icon": "fab fa-github",
-    "details": "Proficient in GitHub for version control, branching, and collaborative development."
+    "details": "Expert in GitHub, managing version control, collaborative workflows, and CI/CD pipelines for seamless project development.",
+    "progress": "100"
+  },
+  {
+    "name": "Angular",
+    "icon": "fab fa-angular",
+    "details": "Experienced in Angular, building dynamic, single-page applications with modular components, services, and efficient routing.",
+    "progress": "80"
   }
 ]
