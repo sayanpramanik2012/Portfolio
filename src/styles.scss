@@ -66,43 +66,91 @@ header {
     font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: 1px;
-  }
-
-  nav ul {
-    display: flex;
-    list-style: none;
 
     @include mobile {
-      flex-direction: column;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: $color-primary;
-      width: 100%;
-      padding: 10px;
-      text-align: center;
+      font-size: 1.5rem; /* Smaller font size for mobile */
     }
   }
 
-  nav ul li {
-    margin: 0 15px;
-
+  nav {
     @include mobile {
-      margin: 10px 0;
+      display: none; /* Hide the navigation by default on mobile */
+    }
+
+    ul {
+      display: flex;
+      list-style: none;
+
+      @include mobile {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: $color-primary;
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+      }
+    }
+
+    ul li {
+      margin: 0 15px;
+
+      @include mobile {
+        margin: 10px 0;
+      }
+    }
+
+    ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      padding: 5px 10px;
+      border-radius: 4px;
+
+      &:hover {
+        color: $color-hover;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
     }
   }
 
-  nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    padding: 5px 10px;
-    border-radius: 4px;
+  /* Hamburger Menu for Mobile */
+  .hamburger {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    cursor: pointer;
 
-    &:hover {
-      color: $color-hover;
-      background-color: rgba(255, 255, 255, 0.1);
+    @include mobile {
+      display: flex; /* Show hamburger on mobile */
+    }
+
+    .line {
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+  }
+
+  /* Active state for hamburger menu */
+  &.active {
+    nav {
+      display: block; /* Show navigation when hamburger is clicked */
+    }
+
+    .hamburger .line:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger .line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger .line:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
     }
   }
 }

@@ -1,15 +1,31 @@
-<header>
+<header [class.active]="isMenuOpen">
   <div class="logo">
     <h1>My Portfolio</h1>
   </div>
   <nav>
     <ul>
-      <li><a href="#home" id="home-tab">Home</a></li>
-      <li><a href="#about" id="about-tab">About</a></li>
-      <li><a href="#work" id="work-tab">Work</a></li>
-      <!-- <li><a href="#contact" id="contact-tab">Contact</a></li> -->
+      <li>
+        <a href="#home" id="home-tab" (click)="closeMenu()" id="home-tab"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a href="#about" id="about-tab" (click)="closeMenu()" id="about-tab"
+          >About</a
+        >
+      </li>
+      <li>
+        <a href="#work" id="work-tab" (click)="closeMenu()" id="work-tab"
+          >Work</a
+        >
+      </li>
     </ul>
   </nav>
+  <div class="hamburger" (click)="toggleMenu()">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
 </header>
 
 <main>

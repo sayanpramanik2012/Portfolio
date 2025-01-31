@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
   templateUrl: './header-footer.component.html',
   styleUrl: './header-footer.component.scss',
 })
-export class HeaderFooterComponent {}
+export class HeaderFooterComponent {
+  isMenuOpen = false; // Track the state of the menu
+
+  // Method to toggle the menu
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
+}
