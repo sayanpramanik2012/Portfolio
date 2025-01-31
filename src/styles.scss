@@ -26,6 +26,25 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Responsive Mixins */
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1025px) {
+    @content;
+  }
+}
+
 /* Header Styles */
 header {
   display: flex;
@@ -52,10 +71,25 @@ header {
   nav ul {
     display: flex;
     list-style: none;
+
+    @include mobile {
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: $color-primary;
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+    }
   }
 
   nav ul li {
     margin: 0 15px;
+
+    @include mobile {
+      margin: 10px 0;
+    }
   }
 
   nav ul li a {
@@ -88,6 +122,10 @@ main {
   text-align: center;
   background-color: $color-secondary;
   color: $color-text;
+
+  @include mobile {
+    padding: 30px 10px;
+  }
 }
 
 .profile {
@@ -105,6 +143,10 @@ main {
     font-size: 2.5rem;
     color: $color-primary;
     font-weight: 700;
+
+    @include mobile {
+      font-size: 2rem;
+    }
   }
 
   h3 {
@@ -112,6 +154,10 @@ main {
     margin: 10px 0;
     color: $color-accent;
     font-weight: 500;
+
+    @include mobile {
+      font-size: 1.5rem;
+    }
   }
 
   p {
@@ -120,6 +166,10 @@ main {
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.8;
+
+    @include mobile {
+      font-size: 1rem;
+    }
   }
 }
 
@@ -136,6 +186,11 @@ main {
     align-items: flex-start;
     overflow-x: auto;
     padding: 20px 0;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+    }
 
     .timeline-item {
       flex: 0 0 auto;
@@ -194,92 +249,50 @@ main {
     margin: 0 auto;
     padding: 20px;
 
-    .skill-item {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      }
-
-      .skill-icon i {
-        font-size: 2.5rem;
-        color: $color-primary;
-        margin-bottom: 10px;
-      }
-
-      .skill-info {
-        h3 {
-          font-size: 1.2rem;
-          color: $color-text;
-          margin-bottom: 10px;
-        }
-
-        .skill-progress {
-          background: lighten($color-primary, 40%);
-          height: 10px;
-          border-radius: 5px;
-          overflow: hidden;
-
-          .progress-bar {
-            background: $color-primary;
-            height: 100%;
-            border-radius: 5px;
-            transition: width 0.5s ease;
-          }
-        }
-      }
+    @include mobile {
+      grid-template-columns: 1fr;
     }
   }
-}
 
-.skill-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-
-  .popup-content {
+  .skill-item {
     background: white;
     padding: 20px;
     border-radius: 8px;
-    max-width: 400px;
-    width: 100%;
-    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: $color-primary;
-
-      &:hover {
-        color: $color-danger;
-      }
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
-    h3 {
+    .skill-icon i {
+      font-size: 2.5rem;
       color: $color-primary;
       margin-bottom: 10px;
     }
 
-    p {
-      color: $color-text;
+    .skill-info {
+      h3 {
+        font-size: 1.2rem;
+        color: $color-text;
+        margin-bottom: 10px;
+      }
+
+      .skill-progress {
+        background: lighten($color-primary, 40%);
+        height: 10px;
+        border-radius: 5px;
+        overflow: hidden;
+
+        .progress-bar {
+          background: $color-primary;
+          height: 100%;
+          border-radius: 5px;
+          transition: width 0.5s ease;
+        }
+      }
     }
   }
 }
@@ -299,34 +312,38 @@ main {
     margin: 0 auto;
     padding: 20px;
 
-    .achievement-item {
-      background: white;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
 
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      }
+  .achievement-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-      h3 {
-        color: $color-primary;
-        margin-bottom: 10px;
-        font-size: 1.2rem;
-      }
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
 
-      p {
-        margin: 5px 0;
-        color: $color-text;
-        font-size: 0.9rem;
-      }
+    h3 {
+      color: $color-primary;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
 
-      .achievement-rank {
-        font-weight: bold;
-        color: $color-accent;
-      }
+    p {
+      margin: 5px 0;
+      color: $color-text;
+      font-size: 0.9rem;
+    }
+
+    .achievement-rank {
+      font-weight: bold;
+      color: $color-accent;
     }
   }
 }
@@ -346,161 +363,58 @@ main {
     margin: 0 auto;
     padding: 20px;
 
-    .project-card {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      }
-
-      h3 {
-        color: $color-primary;
-        margin-bottom: 10px;
-      }
-
-      .project-duration {
-        font-size: 0.9rem;
-        color: $color-text;
-      }
-
-      .project-description {
-        font-size: 1rem;
-        color: $color-text;
-      }
-
-      .project-skills {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-
-        .skill {
-          background: lighten($color-primary, 40%);
-          padding: 5px 10px;
-          border-radius: 4px;
-          font-size: 0.9rem;
-        }
-      }
-
-      .project-achievement {
-        font-size: 0.9rem;
-        color: $color-danger;
-        font-weight: bold;
-      }
+    @include mobile {
+      grid-template-columns: 1fr;
     }
   }
-}
 
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-
-  .popup-content {
+  .project-card {
     background: white;
     padding: 20px;
     border-radius: 8px;
-    max-width: 300px;
-    width: 100%;
-    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 
-    p {
-      margin-bottom: 20px;
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    h3 {
+      color: $color-primary;
+      margin-bottom: 10px;
+    }
+
+    .project-duration {
+      font-size: 0.9rem;
       color: $color-text;
     }
 
-    button {
-      background: $color-primary;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
+    .project-description {
       font-size: 1rem;
+      color: $color-text;
+    }
 
-      &:hover {
-        background: darken($color-primary, 10%);
+    .project-skills {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+
+      .skill {
+        background: lighten($color-primary, 40%);
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 0.9rem;
       }
     }
-  }
-}
 
-/* Experiences Section */
-.experiences {
-  padding: 50px 20px;
-  background-color: $color-secondary;
-  color: $color-text;
-  text-align: center;
-
-  .experiences-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-
-    .experience-card {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      }
-
-      h3 {
-        color: $color-primary;
-        margin-bottom: 10px;
-      }
-
-      .experience-duration {
-        font-size: 0.9rem;
-        color: $color-text;
-      }
-
-      .experience-description {
-        font-size: 1rem;
-        color: $color-text;
-      }
-
-      .experience-skills {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-
-        .skill {
-          background: lighten($color-primary, 40%);
-          padding: 5px 10px;
-          border-radius: 4px;
-          font-size: 0.9rem;
-        }
-      }
-
-      .experience-achievement {
-        font-size: 0.9rem;
-        color: $color-danger;
-        font-weight: bold;
-      }
+    .project-achievement {
+      font-size: 0.9rem;
+      color: $color-danger;
+      font-weight: bold;
     }
   }
 }
@@ -530,76 +444,5 @@ footer {
 
   .footer-text p {
     font-size: 0.9rem;
-  }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  nav ul {
-    flex-direction: column;
-    margin-top: 20px;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-  }
-
-  .projects-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .project-card {
-    width: 90%;
-  }
-
-  .education {
-    .timeline {
-      flex-direction: column;
-      align-items: center;
-
-      .timeline-item {
-        width: 90%;
-        margin: 15px 0;
-      }
-    }
-  }
-
-  .skills-grid,
-  .achievements-grid,
-  .projects-grid,
-  .experiences-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .profile img {
-    width: 150px;
-    height: 150px;
-  }
-
-  .profile h2 {
-    font-size: 2rem;
-  }
-
-  .profile h3 {
-    font-size: 1.5rem;
-  }
-
-  .profile p {
-    font-size: 1rem;
-  }
-
-  .skills-grid,
-  .achievements-grid,
-  .projects-grid,
-  .experiences-grid {
-    grid-template-columns: 1fr;
   }
 }
