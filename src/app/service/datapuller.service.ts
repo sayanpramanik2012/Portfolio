@@ -4,6 +4,7 @@ import * as skillsData from '../../../public/assets/skills.json';
 import * as educationsData from '../../../public/assets/educations.json';
 import * as achivementsData from '../../../public/assets/achivements.json';
 import * as projectsData from '../../../public/assets/projects.json';
+import * as experiencesData from '../../../public/assets/experiences.json';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class DatapullerService {
   private educations: any = (educationsData as any).default;
   private achivements: any = (achivementsData as any).default;
   private projects: any = (projectsData as any).default;
+  private experiences: any = (experiencesData as any).default;
 
   constructor(private http: HttpClient) {}
   getSkills(): any[] {
@@ -27,5 +29,8 @@ export class DatapullerService {
   }
   getProjects(): any[] {
     return this.projects;
+  }
+  getExperiences(): any[] {
+    return this.experiences;
   }
 }

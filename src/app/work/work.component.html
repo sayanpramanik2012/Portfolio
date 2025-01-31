@@ -1,13 +1,28 @@
+<section id="experiences" class="experiences">
+  <h2 style="margin-bottom: 10px">Experiences</h2>
+  <div class="experiences-grid">
+    <div *ngFor="let experience of experiences" class="experience-card">
+      <h3>{{ experience.title }}</h3>
+      <p class="experience-duration">{{ experience.duration }}</p>
+      <p class="experience-description">{{ experience.description }}</p>
+      <ul class="experience-skills">
+        <li *ngFor="let skill of experience.skills" class="skill">
+          {{ skill }}
+        </li>
+      </ul>
+      <p *ngIf="experience.achievement" class="experience-achievement">
+        🏆 {{ experience.achievement }}
+      </p>
+    </div>
+  </div>
+</section>
 <section id="projects" class="projects">
   <h2 style="margin-bottom: 10px">Projects</h2>
-  <div class="projects-container">
-    <a
+  <div class="projects-grid">
+    <div
       *ngFor="let project of projects"
-      [href]="project.show_project ? project.link : null"
-      target="_blank"
-      rel="noopener noreferrer"
       class="project-card"
-      [class.clickable]="project.show_project"
+      (click)="handleProjectClick(project)"
     >
       <h3 class="project-title">{{ project.title }}</h3>
       <p class="project-duration">{{ project.duration }}</p>
@@ -18,6 +33,14 @@
       <p *ngIf="project.achievement" class="project-achievement">
         🏆 {{ project.achievement }}
       </p>
-    </a>
+    </div>
   </div>
 </section>
+
+<!-- Popup for Empty Link -->
+<div class="popup" *ngIf="showPopup">
+  <div class="popup-content">
+    <p>This project does not have a link available.</p>
+    <button (click)="closePopup()">Close</button>
+  </div>
+</div>

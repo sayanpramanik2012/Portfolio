@@ -1,46 +1,56 @@
 <section id="education" class="education">
-  <h2 style="margin-bottom: 10px">My Education</h2>
-  <div class="education-container">
-    <a
-      *ngFor="let edu of educations"
-      [href]="edu.assetPath"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="education-card"
-      [class.clickable]="edu.assetPath"
-    >
-      <h3>{{ edu.degree }}</h3>
-      <p>
-        <strong>{{ edu.institution }}</strong>
-      </p>
-      <p>{{ edu.duration }}</p>
-      <p class="percentage">Score: {{ edu.percentage }}</p>
-    </a>
+  <h2 style="margin-bottom: 10px">Education</h2>
+  <div class="timeline">
+    <div *ngFor="let edu of educations" class="timeline-item">
+      <div class="timeline-content">
+        <h3>{{ edu.degree }}</h3>
+        <p>
+          <strong>{{ edu.institution }}</strong>
+        </p>
+        <p>{{ edu.duration }}</p>
+        <p class="percentage">Score: {{ edu.percentage }}</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="skills" class="skills">
-  <h2 style="margin-bottom: 10px">My Skills</h2>
-  <div class="skills-container">
-    <div class="skill-card" *ngFor="let skill of skills">
+  <h2 style="margin-bottom: 10px">Skills</h2>
+  <div class="skills-grid">
+    <div
+      *ngFor="let skill of skills"
+      class="skill-item"
+      (click)="openSkillPopup(skill)"
+    >
       <div class="skill-icon">
         <i [class]="skill.icon" *ngIf="skill.icon"></i>
       </div>
       <div class="skill-info">
         <h3>{{ skill.name }}</h3>
-        <p *ngIf="skill.details">{{ skill.details }}</p>
-        <p *ngIf="!skill.details" class="no-details">Details not provided.</p>
+        <div class="skill-progress">
+          <div class="progress-bar" [style.width]="skill.progress + '%'"></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Skill Popup -->
+<div class="skill-popup" *ngIf="selectedSkill">
+  <div class="popup-content">
+    <button class="close-btn" (click)="closeSkillPopup()">&times;</button>
+    <h3>{{ selectedSkill.name }}</h3>
+    <p>{{ selectedSkill.details }}</p>
+  </div>
+</div>
+
 <section id="achievements" class="achievements">
-  <h2 style="margin-bottom: 10px">My Achivements</h2>
-  <div class="achievements-container">
-    <div class="achievement-card" *ngFor="let achivement of achivements">
-      <h3>{{ achivement.name }}</h3>
-      <p>{{ achivement.duration }}</p>
-      <p class="achievement-rank">{{ achivement.details }}</p>
+  <h2 style="margin-bottom: 10px">Achievements</h2>
+  <div class="achievements-grid">
+    <div *ngFor="let achievement of achievements" class="achievement-item">
+      <h3>{{ achievement.name }}</h3>
+      <p>{{ achievement.duration }}</p>
+      <p class="achievement-rank">{{ achievement.details }}</p>
     </div>
   </div>
 </section>

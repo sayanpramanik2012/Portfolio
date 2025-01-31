@@ -1,11 +1,11 @@
 /* Define Color Palette */
-$color-primary: #0081fa; /* Modern purple */
-$color-secondary: #f5f5f5; /* Light gray background */
-$color-accent: #ffab40; /* Vibrant orange */
+$color-primary: #16404d; /* Deep teal */
+$color-secondary: #fbf5dd; /* Light beige */
+$color-accent: #dda853; /* Warm gold */
 $color-danger: #ff5252; /* Bright red */
-$color-background: #ffffff; /* White background */
+$color-background: #f8ebb6; /* White background */
 $color-highlight: #424242; /* Dark gray for contrast */
-$color-hover: #00b0ff; /* Cyan hover effect */
+$color-hover: #a6cdc6; /* Soft cyan hover effect */
 $color-text: #333333; /* Dark text for readability */
 
 /* Global Styles */
@@ -123,54 +123,59 @@ main {
   }
 }
 
-/* Education Section */
+/* Timeline Section */
 .education {
   padding: 50px 20px;
-  text-align: center;
   background-color: $color-background;
   color: $color-text;
+  text-align: center;
 
-  .education-container {
+  .timeline {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-  }
+    align-items: flex-start;
+    overflow-x: auto;
+    padding: 20px 0;
 
-  .education-card {
-    background: white;
-    border-left: 5px solid $color-primary;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .timeline-item {
+      flex: 0 0 auto;
+      width: 300px;
+      margin: 0 15px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: left;
 
-    &:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
 
-    h3 {
-      color: $color-primary;
-      margin-bottom: 10px;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
+      .timeline-content {
+        h3 {
+          font-size: 1.5rem;
+          color: $color-primary;
+          margin-bottom: 10px;
+        }
 
-    p {
-      margin: 5px 0;
-      font-size: 1rem;
-      color: $color-text;
-    }
+        p {
+          font-size: 1rem;
+          color: $color-text;
+          margin-bottom: 10px;
 
-    .percentage {
-      font-weight: bold;
-      color: $color-accent;
+          strong {
+            color: $color-accent;
+          }
+        }
+
+        .percentage {
+          font-size: 0.9rem;
+          color: $color-danger;
+          font-weight: bold;
+        }
+      }
     }
   }
 }
@@ -181,55 +186,99 @@ main {
   background-color: $color-secondary;
   color: $color-text;
 
-  .skills-container {
-    display: flex;
-    flex-wrap: wrap;
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    justify-content: center;
-  }
-
-  .skill-card {
-    background: white;
-    border: 1px solid lighten($color-highlight, 30%);
-    border-radius: 8px;
+    max-width: 1000px;
+    margin: 0 auto;
     padding: 20px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
 
-    &:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      background-color: $color-hover;
-      color: white;
+    .skill-item {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
 
       .skill-icon i {
-        color: white;
+        font-size: 2.5rem;
+        color: $color-primary;
+        margin-bottom: 10px;
       }
 
-      .skill-info h3,
-      .skill-info p {
-        color: white;
+      .skill-info {
+        h3 {
+          font-size: 1.2rem;
+          color: $color-text;
+          margin-bottom: 10px;
+        }
+
+        .skill-progress {
+          background: lighten($color-primary, 40%);
+          height: 10px;
+          border-radius: 5px;
+          overflow: hidden;
+
+          .progress-bar {
+            background: $color-primary;
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+          }
+        }
+      }
+    }
+  }
+}
+
+.skill-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: $color-primary;
+
+      &:hover {
+        color: $color-danger;
       }
     }
 
-    .skill-icon i {
-      font-size: 3rem;
+    h3 {
       color: $color-primary;
       margin-bottom: 10px;
-      transition: color 0.3s;
     }
 
-    .skill-info h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: $color-text;
-      font-weight: 600;
-    }
-
-    .skill-info p {
-      font-size: 1rem;
+    p {
       color: $color-text;
     }
   }
@@ -242,46 +291,42 @@ main {
   color: $color-text;
   text-align: center;
 
-  .achievements-container {
-    display: flex;
-    flex-wrap: wrap;
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    justify-content: center;
-  }
-
-  .achievement-card {
-    background: white;
-    border: 1px solid lighten($color-highlight, 30%);
-    border-radius: 8px;
+    max-width: 1000px;
+    margin: 0 auto;
     padding: 20px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
 
-    &:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      background-color: $color-hover;
-      color: white;
+    .achievement-item {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-      h3,
-      .achievement-rank {
-        color: white;
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
       }
-    }
 
-    h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: $color-text;
-      font-weight: 600;
-    }
+      h3 {
+        color: $color-primary;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
 
-    .achievement-rank {
-      font-size: 1rem;
-      font-weight: bold;
-      color: $color-text;
+      p {
+        margin: 5px 0;
+        color: $color-text;
+        font-size: 0.9rem;
+      }
+
+      .achievement-rank {
+        font-weight: bold;
+        color: $color-accent;
+      }
     }
   }
 }
@@ -289,69 +334,176 @@ main {
 /* Projects Section */
 .projects {
   padding: 50px 20px;
+  background-color: $color-background;
+  color: $color-text;
+  text-align: center;
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+
+    .project-card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      h3 {
+        color: $color-primary;
+        margin-bottom: 10px;
+      }
+
+      .project-duration {
+        font-size: 0.9rem;
+        color: $color-text;
+      }
+
+      .project-description {
+        font-size: 1rem;
+        color: $color-text;
+      }
+
+      .project-skills {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+
+        .skill {
+          background: lighten($color-primary, 40%);
+          padding: 5px 10px;
+          border-radius: 4px;
+          font-size: 0.9rem;
+        }
+      }
+
+      .project-achievement {
+        font-size: 0.9rem;
+        color: $color-danger;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 300px;
+    width: 100%;
+    text-align: center;
+
+    p {
+      margin-bottom: 20px;
+      color: $color-text;
+    }
+
+    button {
+      background: $color-primary;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+
+      &:hover {
+        background: darken($color-primary, 10%);
+      }
+    }
+  }
+}
+
+/* Experiences Section */
+.experiences {
+  padding: 50px 20px;
   background-color: $color-secondary;
   color: $color-text;
   text-align: center;
 
-  .projects-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  .experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-  }
-
-  .project-card {
-    background: white;
-    border-left: 5px solid $color-primary;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none;
-    color: inherit;
-    display: block;
 
-    &:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
+    .experience-card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-    h3 {
-      color: $color-primary;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
 
-    .duration {
-      font-size: 0.9rem;
-      color: $color-text;
-      margin-bottom: 10px;
-    }
+      h3 {
+        color: $color-primary;
+        margin-bottom: 10px;
+      }
 
-    .description {
-      font-size: 1rem;
-      color: $color-text;
-      margin-bottom: 10px;
-    }
+      .experience-duration {
+        font-size: 0.9rem;
+        color: $color-text;
+      }
 
-    .skills {
-      font-size: 0.9rem;
-      color: $color-accent;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+      .experience-description {
+        font-size: 1rem;
+        color: $color-text;
+      }
 
-    .achievement {
-      font-size: 0.9rem;
-      color: $color-danger;
-      font-weight: bold;
+      .experience-skills {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+
+        .skill {
+          background: lighten($color-primary, 40%);
+          padding: 5px 10px;
+          border-radius: 4px;
+          font-size: 0.9rem;
+        }
+      }
+
+      .experience-achievement {
+        font-size: 0.9rem;
+        color: $color-danger;
+        font-weight: bold;
+      }
     }
   }
 }
-/*message section*/
 
 /* Footer Styles */
 footer {
@@ -404,5 +556,50 @@ footer {
 
   .project-card {
     width: 90%;
+  }
+
+  .education {
+    .timeline {
+      flex-direction: column;
+      align-items: center;
+
+      .timeline-item {
+        width: 90%;
+        margin: 15px 0;
+      }
+    }
+  }
+
+  .skills-grid,
+  .achievements-grid,
+  .projects-grid,
+  .experiences-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .profile img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile h2 {
+    font-size: 2rem;
+  }
+
+  .profile h3 {
+    font-size: 1.5rem;
+  }
+
+  .profile p {
+    font-size: 1rem;
+  }
+
+  .skills-grid,
+  .achievements-grid,
+  .projects-grid,
+  .experiences-grid {
+    grid-template-columns: 1fr;
   }
 }

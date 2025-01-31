@@ -9,10 +9,26 @@ import { DatapullerService } from '../service/datapuller.service';
 })
 export class WorkComponent {
   projects: any[] = [];
+  experiences: any[] = [];
 
   constructor(private Datapullerservice: DatapullerService) {}
 
   ngOnInit(): void {
     this.projects = this.Datapullerservice.getProjects();
+    this.experiences = this.Datapullerservice.getExperiences();
+  }
+
+  showPopup: boolean = false;
+
+  handleProjectClick(project: any) {
+    if (project.link) {
+      window.open(project.link, '_blank'); // Open link in new tab
+    } else {
+      this.showPopup = true; // Show popup if link is empty
+    }
+  }
+
+  closePopup() {
+    this.showPopup = false;
   }
 }

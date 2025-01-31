@@ -2,7 +2,7 @@
   {
     "title": "Buff Discord Music Bot",
     "duration": "Aug 2024 - Dec 2024",
-    "description": "A Discord Music Bot with a lot of features like play, pause, resume, skip, queue and loop. It also supports YouTube, Spotify",
+    "description": "Developed a feature-rich Discord music bot with advanced playback controls, including play, pause, resume, skip, queue, and loop functionalities. Integrated support for YouTube and Spotify, enabling users to stream music seamlessly.",
     "skills": ["Python", "Docker", "Discord API", "FFmpeg", "YouTube API"],
     "show_project": true,
     "link": "https://github.com/sayanpramanik2012/Buff-Discord-MusicPlayer"
@@ -10,7 +10,7 @@
   {
     "title": "Microsoft Rewards Automation",
     "duration": "Jan 2024 - Feb 2024",
-    "description": "A Python script to automate the daily tasks of Microsoft Rewards.",
+    "description": "Created a Python-based automation script to streamline daily Microsoft Rewards tasks. The script leverages Selenium for web automation, saving time and effort for users.",
     "skills": ["Python", "Selenium", "Web Automation"],
     "show_project": true,
     "link": "https://github.com/sayanpramanik2012/Microsoft-rewards-Automation"
@@ -18,7 +18,7 @@
   {
     "title": "RP Server Development",
     "duration": "Jun 2022 - Feb 2023",
-    "description": " A Roleplay server for GTA V with a lot of features like jobs, houses, vehicles, etc.",
+    "description": "Designed and developed a comprehensive Roleplay (RP) server for GTA V, featuring jobs, housing, vehicles, and other immersive gameplay elements. Built with a focus on scalability and user engagement.",
     "skills": [
       "Database",
       "RAGE Multiplayer",
@@ -27,22 +27,22 @@
       "JavaScript",
       "C#"
     ],
-    "achievement": "Got nominated as Best project",
+    "achievement": "Nominated as Best Project",
     "show_project": false,
     "link": ""
   },
   {
-    "title": "WEB based Multiplayer game",
+    "title": "WEB-based Multiplayer Game",
     "duration": "Mar 2022 - Apr 2022",
-    "description": "Project done during HCL internship.",
-    "skills": ["HTML", "CSS", "JavaScript", "Node.js", "Networking 2 Players"],
+    "description": "Developed a multiplayer web-based game during an HCL internship. The project involved creating a real-time gaming experience using modern web technologies and networking concepts.",
+    "skills": ["HTML", "CSS", "JavaScript", "Node.js", "Networking"],
     "show_project": true,
     "link": "https://github.com/sayanpramanik2012/WEB-based-Multiplayer-snake-game"
   },
   {
     "title": "Multiplayer Turtle Game",
     "duration": "Feb 2022 - Feb 2022",
-    "description": " A Multiplayer game using turtle graphics in 1 system.",
+    "description": "Built a multiplayer game using Python's Turtle graphics library, allowing multiple players to interact on a single system. The project showcased creativity and problem-solving in game development.",
     "skills": ["Python", "Tkinter"],
     "show_project": true,
     "link": "https://github.com/sayanpramanik2012/Turtle-Multiplayer-game"
@@ -50,7 +50,7 @@
   {
     "title": "Medicine Reminder",
     "duration": "Nov 2021 - Dec 2021",
-    "description": "App add medicine and time to take medicine to windows.",
+    "description": "Developed a Windows application to help users manage their medication schedules. The app allows users to add medicines and set reminders, ensuring timely intake.",
     "skills": ["Python", "Tkinter"],
     "show_project": true,
     "link": "https://github.com/sayanpramanik2012/Medicine-Reminder"
