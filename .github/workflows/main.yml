@@ -33,6 +33,6 @@ jobs:
 
     - name: Deploy to GitHub Pages
       run: |
-        npx ng deploy --base-href=https://sayanpramanik2012.github.io/Portfolio/ --no-silent
+        npx ng deploy
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
