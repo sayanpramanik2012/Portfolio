@@ -17,4 +17,13 @@ export class HeaderFooterComponent {
   closeMenu() {
     this.isMenuOpen = false;
   }
+  showContactPopup: boolean = false;
+
+  openContactPopup() {
+    this.showContactPopup = true;
+  }
+
+  closeContactPopup() {
+    this.showContactPopup = false;
+  }
 }

@@ -58,10 +58,14 @@
       >LinkedIn</a
     >
     <a href="https://github.com/sayanpramanik2012" target="_blank">GitHub</a>
-    <a href="mailto:sayanpramanik2012@gmail.com">Email</a>
-    <a>Request a message back</a>
+    <a (click)="openContactPopup()">Contact me</a>
   </div>
   <div class="footer-text">
     <p>&copy; 2025 Sayan Pramanik. All rights reserved.</p>
   </div>
 </footer>
+<!-- Contact Popup -->
+<app-contact
+  *ngIf="showContactPopup"
+  (close)="closeContactPopup()"
+></app-contact>

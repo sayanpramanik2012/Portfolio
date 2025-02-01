@@ -634,6 +634,120 @@ main {
   }
 }
 
+.contact-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px; /* Wider for landscape orientation */
+    width: 90%; /* Responsive width */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: $color-primary;
+
+      &:hover {
+        color: $color-danger;
+      }
+    }
+
+    h2 {
+      color: $color-primary;
+      margin-bottom: 20px;
+    }
+
+    form {
+      width: 100%;
+      max-width: 500px; /* Limit form width for better readability */
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+      }
+
+      textarea {
+        resize: vertical; /* Allow vertical resizing */
+        min-height: 100px; /* Minimum height for textarea */
+      }
+    }
+
+    .submit-btn {
+      background: $color-primary;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      width: 100%; /* Full-width button */
+      margin-top: 10px;
+
+      &:hover {
+        background: darken($color-primary, 10%);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-popup {
+    .popup-content {
+      max-width: 90%; /* Full width on smaller screens */
+      padding: 15px;
+
+      h2 {
+        font-size: 1.5rem; /* Smaller heading on mobile */
+      }
+
+      .form-group {
+        input,
+        textarea {
+          font-size: 0.9rem; /* Smaller font size for inputs */
+        }
+      }
+
+      .submit-btn {
+        font-size: 0.9rem; /* Smaller button text */
+      }
+    }
+  }
+}
+
 /* Footer Styles */
 footer {
   padding: 30px 20px;
