@@ -2,7 +2,8 @@
   <h2 style="margin-bottom: 10px">Experiences</h2>
   <div class="experiences-grid">
     <div *ngFor="let experience of experiences" class="experience-card">
-      <h3>{{ experience.title }}</h3>
+      <h3 class="company-name">{{ experience.company }}</h3>
+      <h4 class="experience-title">{{ experience.title }}</h4>
       <p class="experience-duration">{{ experience.duration }}</p>
       <p class="experience-description">{{ experience.description }}</p>
       <ul class="experience-skills">
@@ -16,6 +17,7 @@
     </div>
   </div>
 </section>
+
 <section id="projects" class="projects">
   <h2 style="margin-bottom: 10px">Projects</h2>
   <div class="projects-grid">

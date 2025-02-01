@@ -9,13 +9,7 @@
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          [(ngModel)]="email"
-          name="email"
-          required
-        />
+        <input type="email" id="email" formControlName="email" required />
       </div>
       <div class="form-group">
         <label for="message">Message:</label>
@@ -28,5 +22,36 @@
       </div>
       <button type="submit" class="submit-btn">Send</button>
     </form>
+  </div>
+</div>
+
+<!-- Notification Popups -->
+<div class="popupcontact" *ngIf="notsend" style="z-index: 1000">
+  <div class="popup-content warning">
+    <i class="fas fa-exclamation-circle"></i>
+    <h3>Notification Not Sent</h3>
+    <p>Please ensure all required fields are filled out correctly.</p>
+    <button (click)="closePopup()">Close</button>
+  </div>
+</div>
+
+<div class="popupcontact" *ngIf="notsendTechicalIssue" style="z-index: 1000">
+  <div class="popup-content error">
+    <i class="fas fa-times-circle"></i>
+    <h3>Technical Issue</h3>
+    <p>
+      We encountered a technical difficulty while sending your notification.
+      Please try again later.
+    </p>
+    <button (click)="closePopup()">Close</button>
+  </div>
+</div>
+
+<div class="popupcontact" *ngIf="notifisent" style="z-index: 1000">
+  <div class="popup-content success">
+    <i class="fas fa-check-circle"></i>
+    <h3>Notification Sent Successfully!</h3>
+    <p>Your notification has been sent. We'll get back to you soon.</p>
+    <button (click)="closePopup()">Close</button>
   </div>
 </div>

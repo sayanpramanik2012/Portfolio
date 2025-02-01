@@ -1,5 +1,6 @@
 /* Define Color Palette */
 $color-primary: #16404d; /* Deep teal */
+$color-primary1: #084a5e; /* Light beige */
 $color-secondary: #fbf5dd; /* Light beige */
 $color-accent: #dda853; /* Warm gold */
 $color-danger: #ff5252; /* Bright red */
@@ -268,8 +269,8 @@ main {
 /* Timeline Section */
 .education {
   padding: 50px 20px;
-  background-color: $color-background;
   color: $color-text;
+  background-color: $color-background;
   text-align: center;
 
   .timeline {
@@ -443,7 +444,6 @@ main {
 /* Achievements Section */
 .achievements {
   padding: 50px 20px;
-  background-color: $color-background;
   color: $color-text;
   text-align: center;
 
@@ -494,7 +494,7 @@ main {
 /* Projects Section */
 .projects {
   padding: 50px 20px;
-  background-color: $color-background;
+  background-color: $color-secondary;
   color: $color-text;
   text-align: center;
 
@@ -611,13 +611,13 @@ main {
 /* Experiences Section */
 .experiences {
   padding: 50px 20px;
-  background-color: $color-secondary;
+  background-color: $color-background;
   color: $color-text;
   text-align: center;
 
   .experiences-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
@@ -631,28 +631,40 @@ main {
   .experience-card {
     background: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
 
     &:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
-    h3 {
-      color: $color-primary;
-      margin-bottom: 10px;
+    .company-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: $color-primary1;
+      margin-bottom: 5px;
+    }
+
+    .experience-title {
+      font-size: 1.1rem;
+      color: darken($color-primary, 10%);
+      margin-bottom: 5px;
     }
 
     .experience-duration {
       font-size: 0.9rem;
       color: $color-text;
+      font-weight: bold;
+      margin-bottom: 10px;
     }
 
     .experience-description {
       font-size: 1rem;
       color: $color-text;
+      margin-bottom: 10px;
     }
 
     .experience-skills {
@@ -661,6 +673,7 @@ main {
       display: flex;
       flex-wrap: wrap;
       gap: 5px;
+      margin-bottom: 10px;
 
       .skill {
         background: lighten($color-primary, 40%);
@@ -765,6 +778,104 @@ main {
         background: darken($color-primary, 10%);
       }
     }
+  }
+}
+
+/* Popup Styles */
+.popupcontact {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in;
+
+  .popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    animation: scaleIn 0.3s ease-in;
+
+    i {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #16404d; // Primary color
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: darken(#16404d, 10%);
+      }
+    }
+  }
+
+  /* Success Popup */
+  .success {
+    i {
+      color: #4caf50; // Green for success
+    }
+  }
+
+  /* Warning Popup */
+  .warning {
+    i {
+      color: #ff9800; // Orange for warning
+    }
+  }
+
+  /* Error Popup */
+  .error {
+    i {
+      color: #f44336; // Red for error
+    }
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 

@@ -14,6 +14,9 @@ export class ContactComponent {
   name: string = '';
   email: string = '';
   message: string = '';
+  notsend: boolean = false;
+  notsendTechicalIssue: boolean = false;
+  notifisent: boolean = false;
 
   // onSubmit() {
   //   // Handle form submission (e.g., send data to an API)
@@ -26,30 +29,30 @@ export class ContactComponent {
   // }
 
   onSubmit() {
-    const serviceID = 'service_4hj0lcs'; // Replace with your EmailJS service ID
-    const templateID = 'template_lhjotkf'; // Replace with your EmailJS template ID
-    const userID = '1Lu8_ljivTRipUC7P'; // Replace with your EmailJS user ID
+    if (this.name !== '' && this.email !== '' && this.message !== '') {
+      const serviceID = 'service_4hj0lcs'; // Replace with your EmailJS service ID
+      const templateID = 'template_lhjotkf'; // Replace with your EmailJS template ID
+      const userID = '1Lu8_ljivTRipUC7P'; // Replace with your EmailJS user ID
 
-    const templateParams = {
-      from_name: this.name,
-      from_email: this.email,
-      message: this.message,
-    };
+      const templateParams = {
+        from_name: this.name,
+        from_email: this.email,
+        message: this.message,
+      };
 
-    emailjs
-      .send(serviceID, templateID, templateParams, userID)
-      .then((response) => {
-        console.log('Email sent successfully!', response);
-
-        this.closePopup();
-        alert('Your message has been sent!');
-      })
-      .catch((error) => {
-        console.error('Error sending email:', error);
-
-        this.closePopup();
-        alert('Failed to send message. Please try again.');
-      });
+      emailjs
+        .send(serviceID, templateID, templateParams, userID)
+        .then((response) => {
+          console.log('Email sent successfully!', response);
+          this.notifisent = true;
+        })
+        .catch((error) => {
+          console.error('Error sending email:', error);
+          this.notsendTechicalIssue = true;
+        });
+    } else {
+      this.notsend = true;
+    }
   }
 
   closePopup() {
