@@ -33,7 +33,7 @@
     "name": "Angular",
     "icon": "fab fa-angular",
     "details": "Experienced in Angular, building dynamic, single-page applications with modular components, services, and efficient routing.",
-    "progress": "50"
+    "progress": "80"
   },
   {
     "name": "Linux",
@@ -48,9 +48,15 @@
     "progress": "100"
   },
   {
-    "name": "Angular",
-    "icon": "fab fa-angular",
-    "details": "Experienced in Angular, building dynamic, single-page applications with modular components, services, and efficient routing.",
+    "name": "MongoDB",
+    "icon": "fas fa-database",
+    "details": "Proficient in MongoDB, designing scalable NoSQL databases, optimizing queries, and integrating with backend services for efficient data management.",
     "progress": "80"
+  },
+  {
+    "name": "MySQL",
+    "icon": "fas fa-database",
+    "details": "Experienced in MySQL, designing relational database schemas, writing efficient queries, and managing large datasets for web applications.",
+    "progress": "90"
   }
 ]
