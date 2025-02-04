@@ -15,7 +15,6 @@ import { WorkComponent } from './work/work.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { CommonModule } from '@angular/common';
-import { MessageCardComponent } from './message-card/message-card.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import { MessageCardComponent } from './message-card/message-card.component';
     WorkComponent,
     AboutComponent,
     ContactComponent,
-    MessageCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, CommonModule, FormsModule],
   providers: [provideClientHydration(withEventReplay()), provideHttpClient()],
