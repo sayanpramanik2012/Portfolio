@@ -68,3 +68,42 @@
     <button (click)="closePopup()">Close</button>
   </div>
 </div>
+
+<!-- Certificate/Experience Letter Popup -->
+<div class="certificate-popup" *ngIf="showCertificatePopup">
+  <div class="certificate-popup-content">
+    <div class="certificate-header">
+      <h3>{{ certificateTitle }}</h3>
+      <h4>{{ certificateType }}</h4>
+      <button class="close-btn" (click)="closeCertificatePopup()">×</button>
+    </div>
+    <div class="certificate-body">
+      <!-- If it's an image or direct content URL -->
+      <img
+        *ngIf="
+          certificateUrl &&
+          (certificateUrl.toString().endsWith('.jpg') ||
+            certificateUrl.toString().endsWith('.png') ||
+            certificateUrl.toString().endsWith('.jpeg'))
+        "
+        [src]="certificateUrl"
+        alt="Certificate or Letter"
+      />
+
+      <!-- If it's a PDF or other document type, use iframe -->
+      <iframe
+        *ngIf="
+          certificateUrl &&
+          !certificateUrl.toString().endsWith('.jpg') &&
+          !certificateUrl.toString().endsWith('.png') &&
+          !certificateUrl.toString().endsWith('.jpeg')
+        "
+        [src]="certificateUrl"
+        frameborder="0"
+        width="100%"
+        height="500px"
+      >
+      </iframe>
+    </div>
+  </div>
+</div>
