@@ -31,4 +31,14 @@ export class WorkComponent {
   closePopup() {
     this.showPopup = false;
   }
+
+  viewCertificate(event: MouseEvent, project: any) {
+    event.stopPropagation(); // Prevent the parent card click handler from firing
+    if (project.certificateLink) {
+      window.open(project.certificateLink, '_blank'); // Open certificate link in new tab
+    } else {
+      // Optionally handle the case where there's no certificate link
+      console.log('No certificate link available for', project.title);
+    }
+  }
 }

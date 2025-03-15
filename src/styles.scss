@@ -37,6 +37,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body.hide-scroll-indicator::after {
+  display: none;
+}
+
 body::after {
   content: "";
   position: fixed;
@@ -688,6 +692,73 @@ main {
       font-size: 0.9rem;
       color: $color-danger;
       font-weight: bold;
+    }
+  }
+}
+
+/* Certificate and header styles */
+.project-header,
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.certificate-badge {
+  display: flex;
+  align-items: center;
+  background-color: lighten($color-primary, 55%);
+  padding: 4px 8px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid lighten($color-primary, 45%);
+
+  &:hover {
+    background-color: lighten($color-primary, 50%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .certificate-icon {
+    font-size: 1.1rem;
+    margin-right: 4px;
+    font-style: normal;
+  }
+
+  .badge-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: darken($color-primary, 10%);
+  }
+
+  /* Special styling for project certificates */
+  .projects & {
+    background-color: lighten($color-accent, 30%);
+    border-color: lighten($color-accent, 20%);
+
+    &:hover {
+      background-color: lighten($color-accent, 25%);
+    }
+
+    .badge-text {
+      color: darken($color-accent, 20%);
+    }
+  }
+
+  /* Special styling for experience letters */
+  .experiences & {
+    background-color: lighten($color-primary, 55%);
+
+    &:hover {
+      background-color: lighten($color-primary, 50%);
     }
   }
 }

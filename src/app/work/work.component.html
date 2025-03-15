@@ -2,7 +2,18 @@
   <h2 style="margin-bottom: 10px">Experiences</h2>
   <div class="experiences-grid">
     <div *ngFor="let experience of experiences" class="experience-card">
-      <h3 class="company-name">{{ experience.company }}</h3>
+      <div class="experience-header">
+        <h3 class="company-name">{{ experience.company }}</h3>
+        <div
+          class="certificate-badge"
+          *ngIf="experience.hasCertificate"
+          (click)="viewCertificate($event, experience)"
+          title="View Experience Letter"
+        >
+          <i class="certificate-icon">📄</i>
+          <span class="badge-text">View Letter</span>
+        </div>
+      </div>
       <h4 class="experience-title">{{ experience.title }}</h4>
       <p class="experience-duration">{{ experience.duration }}</p>
       <p class="experience-description">{{ experience.description }}</p>
@@ -26,7 +37,18 @@
       class="project-card"
       (click)="handleProjectClick(project)"
     >
-      <h3 class="project-title">{{ project.title }}</h3>
+      <div class="project-header">
+        <h3 class="project-title">{{ project.title }}</h3>
+        <div
+          class="certificate-badge"
+          *ngIf="project.hasCertificate"
+          (click)="viewCertificate($event, project)"
+          title="View Project Certificate"
+        >
+          <i class="certificate-icon">🏆</i>
+          <span class="badge-text">Certificate</span>
+        </div>
+      </div>
       <p class="project-duration">{{ project.duration }}</p>
       <p class="project-description">{{ project.description }}</p>
       <ul class="project-skills">
