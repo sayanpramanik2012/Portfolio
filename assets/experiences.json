@@ -3,12 +3,18 @@
     "title": "Software Engineer",
     "company": "Innoart Technologies",
     "duration": "08/2023 - Present",
-    "description": "Drive seamless user experiences by integrating APIs into complex Angular projects. Successfully completed 2 full-scale builds. Collaborate on API development within a Swagger environment, ensuring robust backend-frontend communication."
+    "description": "Drive seamless user experiences by integrating APIs into complex Angular projects. Successfully completed 2 full-scale builds. Collaborate on API development within a Swagger environment, ensuring robust backend-frontend communication.",
+    "hasCertificate": false,
+    "certificateLink": "/certificates/innoart-experience-certificate.pdf",
+    "skills": ["Angular", "TypeScript", "REST APIs", "Swagger"]
   },
   {
     "title": "Front-End Developer (Internship)",
     "company": "NielsenIQ (NIQ)",
     "duration": "02/2023 - 05/2023",
-    "description": "Worked in TS, HTML, SCSS, and Angular."
+    "description": "Worked in TS, HTML, SCSS, and Angular.",
+    "hasCertificate": true,
+    "certificateLink": "https://media.licdn.com/dms/image/v2/D562DAQH_qVn6SAaL-A/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1688626368359?e=1742634000&v=beta&t=MkdpUFeAlfOdA2LERnpHHVzcQjaNgAoq85uNjHTCgGQ",
+    "skills": ["TypeScript", "HTML", "SCSS", "Angular"]
   }
 ]
