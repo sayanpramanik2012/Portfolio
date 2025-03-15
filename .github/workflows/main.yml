@@ -43,11 +43,25 @@ jobs:
           npm install -g @angular/cli
           ng build --configuration production --base-href "https://${{ github.repository_owner }}.github.io/Portfolio/"
 
+      - name: Check build output directory
+        run: |
+          echo "Available directories in dist:"
+          ls -la dist/
+          echo "Setting BUILD_DIR variable"
+          BUILD_DIR=$(ls -la dist/ | grep '^d' | awk '{print $9}' | grep -v '^\.' | head -n 1)
+          if [ -n "$BUILD_DIR" ]; then
+            echo "Found directory: dist/$BUILD_DIR"
+            echo "BUILD_DIR=dist/$BUILD_DIR" >> $GITHUB_ENV
+          else
+            echo "Using default: dist"
+            echo "BUILD_DIR=dist" >> $GITHUB_ENV
+          fi
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.PAT_TOKEN }} # Use PAT for deployment
-          folder: dist/Portfolio # Make sure this path matches your Angular output folder
+          folder: ${{ env.BUILD_DIR }} # Use detected build directory
           branch: gh-pages # The branch the action should deploy to
           clean: true # Automatically remove deleted files
           commit-message: "Deploy: ${{ github.event.head_commit.message || 'Update site' }}"
