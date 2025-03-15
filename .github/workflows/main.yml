@@ -14,26 +14,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }} # Use PAT for checkout in private repo
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 22.13.0  # Use the same Node.js version as your local environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Using a stable LTS version of Node.js
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Set Git user and email
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}
+      - name: Build and Deploy
+        run: |
+          npm install -g @angular/cli
+          ng build --configuration production --base-href "https://${{ github.repository_owner }}.github.io/Portfolio/"
 
-    - name: Deploy to GitHub Pages
-      run: |
-        npm install -g @angular/cli
-        ng deploy
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }} # Use PAT for deployment
+          folder: dist/portfolio # The folder the action should deploy (adjust if your output path is different)
+          branch: gh-pages # The branch the action should deploy to
+          repository-name: ${{ github.repository }} # Explicitly set the repository
+          silent: false # Show deployment logs for troubleshooting
