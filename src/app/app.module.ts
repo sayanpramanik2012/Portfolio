@@ -4,7 +4,7 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,7 +26,10 @@ import { CommonModule } from '@angular/common';
     ContactComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, CommonModule, FormsModule],
-  providers: [provideClientHydration(withEventReplay()), provideHttpClient()],
+  providers: [
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(withFetch()),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

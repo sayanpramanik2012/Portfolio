@@ -782,286 +782,350 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1100; /* Higher than other popups */
   animation: fadeIn 0.3s ease;
+  overflow: hidden; /* Prevent any overflow at the outer container */
+
+  /* Hide scroll indicator when popup is open */
+  & ~ body::after,
+  & ~ html body::after {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    animation: none !important;
+  }
+
+  /* When in fullscreen mode */
+  &.fullscreen-mode {
+    background: black; /* Solid black in fullscreen for better viewing */
+
+    .certificate-popup-content {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      border-radius: 0;
+      box-shadow: none;
+      margin: 0;
+      padding: 0;
+
+      .certificate-header {
+        padding: 8px 15px;
+        min-height: 50px;
+      }
+
+      .certificate-body {
+        height: calc(100vh - 50px) !important;
+        max-height: calc(100vh - 50px) !important;
+
+        /* Improved scrolling for mobile */
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+
+        iframe.zoomable-iframe {
+          height: 100% !important;
+          min-height: calc(100vh - 60px) !important;
+        }
+
+        img.zoomable-image {
+          max-height: calc(100vh - 60px);
+        }
+      }
+    }
+  }
 
   .certificate-popup-content {
     background: white;
     border-radius: 8px;
     width: 90%;
-    max-width: 800px;
+    max-width: 900px;
     max-height: 90vh;
     display: flex;
     flex-direction: column;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     animation: scaleIn 0.3s ease;
+    position: relative;
+    transform-origin: center;
+    transition: all 0.3s ease;
 
     .certificate-header {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 20px;
+      padding: 12px 20px;
       background-color: $color-primary;
       color: white;
       position: relative;
+      z-index: 10; /* Higher z-index for header */
+      min-height: 60px;
 
       h3 {
         margin: 0;
         font-size: 1.4rem;
         font-weight: 600;
-        flex: 1;
+        flex: 2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       h4 {
-        margin: 0 20px 0 0;
+        margin: 0;
         font-size: 1rem;
         font-weight: 400;
         opacity: 0.9;
+        flex: 1;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      .close-btn {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 0;
-        line-height: 1;
-        transition: all 0.2s;
-        width: 30px;
-        height: 30px;
+      .certificate-controls {
         display: flex;
         align-items: center;
-        justify-content: center;
-        border-radius: 50%;
+        gap: 8px;
+        flex: 1;
+        justify-content: flex-end;
 
-        &:hover {
-          background: rgba(255, 255, 255, 0.2);
+        .control-btn {
+          background: none;
+          border: none;
+          color: white;
+          font-size: 18px;
+          cursor: pointer;
+          padding: 0;
+          line-height: 1;
+          transition: all 0.2s;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          outline: none; /* Remove focus outline */
+
+          &:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.2);
+          }
+
+          &:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+          }
+
+          &:focus {
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+          }
+
+          &.fullscreen-btn {
+            color: #fff;
+            font-weight: bold;
+          }
+
+          i {
+            font-style: normal;
+          }
+        }
+
+        .zoom-level {
+          font-size: 12px;
+          min-width: 40px;
+          text-align: center;
         }
       }
     }
 
     .certificate-body {
       padding: 0;
-      overflow: auto;
+      overflow: auto; /* Always allow scrolling */
       max-height: calc(90vh - 60px);
       background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Changed to flex-start for better document viewing */
+      position: relative;
+      z-index: 5;
+      touch-action: pan-x pan-y; /* Allow panning on touch devices */
+      flex: 1;
+      transition: all 0.3s ease;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+      overscroll-behavior: contain; /* Prevent scroll chaining */
 
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
-        max-height: calc(90vh - 60px);
-        object-fit: contain;
+      /* Improve scrollbar appearance */
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+
+      &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
       }
 
-      iframe {
+      &::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        border: 2px solid rgba(0, 0, 0, 0.1);
+      }
+
+      &.image-container {
+        position: relative;
+        align-items: center; /* Keep images centered */
+        scroll-behavior: smooth;
+
+        /* Ensure consistent overflow behavior */
+        overflow: auto;
+
+        /* For portrait images (taller than wide) */
+        &.portrait {
+          overflow-x: hidden; /* Hide horizontal scrollbar for portrait images */
+          overflow-y: auto; /* Keep vertical scrollbar */
+        }
+      }
+
+      img.zoomable-image {
+        max-width: 100%;
+        max-height: calc(90vh - 70px);
+        display: block;
+        object-fit: contain;
+        transition: transform 0.2s ease;
+        transform-origin: center center;
+        cursor: move;
+        touch-action: pan-x pan-y; /* Enable touch panning */
+        -webkit-user-drag: none; /* Prevent image dragging */
+        user-select: none; /* Prevent text selection */
+        will-change: transform; /* Optimize for transformations */
+      }
+
+      /* Container for iframe to allow proper scrolling */
+      .iframe-container {
+        width: 100%;
+        height: 600px;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        background-color: #fff;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        position: relative;
+
+        /* Improve touch scrolling and prevent scroll issues */
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+
+        /* Smoother scrolling */
+        scroll-behavior: smooth;
+
+        /* Prevent unwanted touch actions */
+        touch-action: pan-x pan-y;
+
+        /* Prevent scroll chaining within iframe */
+        isolation: isolate;
+
+        /* Improved scrollbars */
+        &::-webkit-scrollbar {
+          width: 10px;
+          height: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.3);
+          border-radius: 10px;
+          border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        @include mobile {
+          height: 500px;
+        }
+
+        /* Special styling for portrait documents (taller than wide) */
+        &.portrait-document {
+          overflow-x: hidden; /* Hide horizontal scrollbar for portrait documents */
+          overflow-y: auto; /* Keep vertical scrollbar */
+        }
+
+        /* Fix for iOS scroll bounce */
+        &::before {
+          content: "";
+          position: absolute;
+          top: -1px;
+          left: -1px;
+          right: -1px;
+          bottom: -1px;
+          pointer-events: none;
+          z-index: -1;
+        }
+      }
+
+      iframe.zoomable-iframe {
         border: none;
         width: 100%;
-        height: calc(90vh - 60px);
+        height: 600px; /* Fixed initial height */
         display: block;
+        min-height: 500px;
+        background-color: white;
+        transform-origin: top left;
+        will-change: transform; /* Optimize for animations */
+        transition: transform 0.15s ease-out; /* Smoother zoom transition */
+
+        /* Ensure iframe scroll doesn't conflict with container */
+        &:focus {
+          outline: none;
+        }
       }
     }
   }
 
-  @include mobile {
-    .certificate-popup-content {
-      width: 95%;
-      max-height: 95vh;
-
-      .certificate-header {
-        padding: 10px 15px;
-
-        h3 {
-          font-size: 1.2rem;
-        }
-
-        h4 {
-          font-size: 0.9rem;
-        }
-      }
-
-      .certificate-body {
-        max-height: calc(95vh - 50px);
-
-        iframe {
-          height: calc(95vh - 50px);
-        }
-      }
-    }
+  /* Prevent scrolling of background when popup is open */
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
   }
 }
 
-.contact-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-
-  .popup-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 600px; /* Wider for landscape orientation */
-    width: 90%; /* Responsive width */
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: $color-primary;
-
-      &:hover {
-        color: $color-danger;
-      }
-    }
-
-    h2 {
-      color: $color-primary;
-      margin-bottom: 20px;
-    }
-
-    form {
-      width: 100%;
-      max-width: 500px; /* Limit form width for better readability */
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-
-      label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: 500;
-      }
-
-      input,
-      textarea {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 1rem;
-      }
-
-      textarea {
-        resize: vertical; /* Allow vertical resizing */
-        min-height: 100px; /* Minimum height for textarea */
-      }
-    }
-
-    .submit-btn {
-      background: $color-primary;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-      width: 100%; /* Full-width button */
-      margin-top: 10px;
-
-      &:hover {
-        background: darken($color-primary, 10%);
-      }
-    }
-  }
-}
-
-/* Popup Styles */
+/* Hide global scroll indicator whenever any popup is visible */
+.certificate-popup,
+.popup,
+.skill-popup,
+.contact-popup,
 .popupcontact {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease-in;
-
-  .popup-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    animation: scaleIn 0.3s ease-in;
-
-    i {
-      font-size: 3rem;
-      margin-bottom: 15px;
-    }
-
-    h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1rem;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    button {
-      background: #16404d; // Primary color
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s ease;
-
-      &:hover {
-        background: darken(#16404d, 10%);
-      }
-    }
+  & ~ body::after,
+  & ~ html body::after {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    animation: none !important;
   }
+}
 
-  /* Success Popup */
-  .success {
-    i {
-      color: #4caf50; // Green for success
-    }
-  }
-
-  /* Warning Popup */
-  .warning {
-    i {
-      color: #ff9800; // Orange for warning
-    }
-  }
-
-  /* Error Popup */
-  .error {
-    i {
-      color: #f44336; // Red for error
-    }
-  }
+/* Ensure body doesn't scroll when popups are open */
+body:has(.certificate-popup),
+body:has(.popup),
+body:has(.skill-popup),
+body:has(.contact-popup),
+body:has(.popupcontact) {
+  overflow: hidden !important;
 }
 
 /* Animations */

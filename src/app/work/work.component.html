@@ -70,40 +70,102 @@
 </div>
 
 <!-- Certificate/Experience Letter Popup -->
-<div class="certificate-popup" *ngIf="showCertificatePopup">
+<div
+  class="certificate-popup"
+  *ngIf="showCertificatePopup"
+  [class.fullscreen-mode]="isFullscreen"
+>
   <div class="certificate-popup-content">
     <div class="certificate-header">
       <h3>{{ certificateTitle }}</h3>
       <h4>{{ certificateType }}</h4>
-      <button class="close-btn" (click)="closeCertificatePopup()">×</button>
+      <div class="certificate-controls">
+        <!-- Download button -->
+        <button
+          class="control-btn download-btn"
+          title="Download"
+          (click)="downloadCertificate()"
+        >
+          <i>📥</i>
+        </button>
+        <!-- Zoom controls - available for both images and documents -->
+        <button
+          class="control-btn zoom-btn"
+          title="Zoom Out"
+          [disabled]="
+            (isImage && zoomLevel <= 1) || (!isImage && iframeZoomLevel <= 0.5)
+          "
+          (click)="zoomOut()"
+        >
+          <i>➖</i>
+        </button>
+        <span class="zoom-level"
+          >{{
+            (isImage ? zoomLevel : iframeZoomLevel) * 100 | number : "1.0-0"
+          }}%</span
+        >
+        <button
+          class="control-btn zoom-btn"
+          title="Zoom In"
+          [disabled]="
+            (isImage && zoomLevel >= 3) || (!isImage && iframeZoomLevel >= 3)
+          "
+          (click)="zoomIn()"
+        >
+          <i>➕</i>
+        </button>
+        <!-- Reset button - available when zoomed -->
+        <button
+          *ngIf="
+            (isImage && zoomLevel !== 1) || (!isImage && iframeZoomLevel !== 1)
+          "
+          class="control-btn reset-btn"
+          title="Reset Zoom"
+          (click)="resetZoom()"
+        >
+          <i>🔄</i>
+        </button>
+        <!-- Fullscreen button -->
+        <button
+          class="control-btn fullscreen-btn"
+          [title]="isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'"
+          (click)="toggleFullscreen()"
+        >
+          <i>{{ isFullscreen ? "⏹" : "⛶" }}</i>
+        </button>
+        <!-- Close button -->
+        <button
+          class="control-btn close-btn"
+          title="Close"
+          (click)="closeCertificatePopup()"
+        >
+          <i>✖</i>
+        </button>
+      </div>
     </div>
-    <div class="certificate-body">
-      <!-- If it's an image or direct content URL -->
+
+    <!-- Improved certificate body with better scrolling support -->
+    <div class="certificate-body" [class.image-container]="isImage">
+      <!-- Image content with zoom -->
       <img
-        *ngIf="
-          certificateUrl &&
-          (certificateUrl.toString().endsWith('.jpg') ||
-            certificateUrl.toString().endsWith('.png') ||
-            certificateUrl.toString().endsWith('.jpeg'))
-        "
+        *ngIf="isImage && certificateUrl"
         [src]="certificateUrl"
-        alt="Certificate or Letter"
+        class="zoomable-image"
+        [style.transform]="'scale(' + zoomLevel + ')'"
+        (click)="handleImageClick($event)"
+        alt="Certificate"
       />
 
-      <!-- If it's a PDF or other document type, use iframe -->
-      <iframe
-        *ngIf="
-          certificateUrl &&
-          !certificateUrl.toString().endsWith('.jpg') &&
-          !certificateUrl.toString().endsWith('.png') &&
-          !certificateUrl.toString().endsWith('.jpeg')
-        "
-        [src]="certificateUrl"
-        frameborder="0"
-        width="100%"
-        height="500px"
-      >
-      </iframe>
+      <!-- Iframe content with zoom -->
+      <div *ngIf="!isImage && certificateUrl" class="iframe-container">
+        <iframe
+          [src]="certificateUrl"
+          class="zoomable-iframe"
+          [style.transform]="'scale(' + iframeZoomLevel + ')'"
+          (load)="onIframeLoad($event)"
+        >
+        </iframe>
+      </div>
     </div>
   </div>
 </div>
