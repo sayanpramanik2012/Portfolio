@@ -757,7 +757,7 @@ export class WorkComponent implements OnInit, OnDestroy {
   }
 
   viewCertificate(event: MouseEvent, item: any) {
-    event.stopPropagation(); // Prevent the parent card click handler from firing
+    event.stopPropagation();
 
     if (item.certificateLink) {
       // Determine if this is a project or experience
@@ -768,50 +768,21 @@ export class WorkComponent implements OnInit, OnDestroy {
       this.certificateType = isProject
         ? 'Project Certificate'
         : 'Experience Letter';
+      this.isImage = true;
 
-      // Store raw URL for download functionality
-      this.rawCertificateUrl = item.certificateLink;
+      // Update certificate URL handling
+      // In viewCertificate() method
+      const fullPath = `${window.location.origin}/assets/${item.certificateLink
+        .split('/')
+        .pop()}`;
+      this.rawCertificateUrl = fullPath;
+      this.certificateUrl =
+        this.sanitizer.bypassSecurityTrustResourceUrl(fullPath);
 
-      // Check if it's an image or document
-      const url = item.certificateLink.toLowerCase();
-      this.isImage =
-        url.endsWith('.jpg') ||
-        url.endsWith('.jpeg') ||
-        url.endsWith('.png') ||
-        url.endsWith('.gif');
-
-      // Reset zoom level and fullscreen state
       this.resetZoom();
       this.isFullscreen = false;
-
-      // Sanitize the URL to prevent XSS attacks
-      this.certificateUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-        item.certificateLink
-      );
-
-      // Show the certificate popup
       this.showCertificatePopup = true;
-
-      // Ensure the scroll indicator is hidden
-      this.hideScrollIndicator();
-
-      // Check image orientation if this is an image
-      if (this.isImage) {
-        this.checkImageOrientation();
-      }
-
-      // Make sure mobile touch handling works correctly
-      if (this.isBrowser) {
-        setTimeout(() => {
-          const container = document.querySelector(
-            '.certificate-body'
-          ) as HTMLElement;
-          if (container) {
-            container.style.overflow = 'auto';
-            container.style.touchAction = 'pan-x pan-y';
-          }
-        }, 200);
-      }
+      this.checkImageOrientation();
     } else {
       // Optionally handle the case where there's no certificate link
       console.log(
@@ -837,26 +808,17 @@ export class WorkComponent implements OnInit, OnDestroy {
   downloadCertificate() {
     if (!this.isBrowser || !this.rawCertificateUrl) return;
 
-    try {
-      // Create a temporary anchor to trigger download
-      const link = document.createElement('a');
-      link.href = this.rawCertificateUrl;
+    // Create a temporary anchor element
+    const link = document.createElement('a');
+    link.href = this.rawCertificateUrl;
 
-      // Extract filename from URL or use a default
-      let filename =
-        this.rawCertificateUrl.split('/').pop() ||
-        `${this.certificateTitle.replace(/\s+/g, '_')}.pdf`;
-      link.download = filename;
+    // Extract filename from the asset path
+    const filename =
+      this.rawCertificateUrl.split('/').pop() || 'certificate.jpg';
+    link.download = filename;
 
-      // Trigger download
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (e) {
-      console.warn('Download failed:', e);
-
-      // Fallback to opening in new tab
-      window.open(this.rawCertificateUrl, '_blank');
-    }
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 }
