@@ -4,23 +4,29 @@
     <h2>Contact Me</h2>
     <form (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" [(ngModel)]="name" name="name" required />
+        <label for="contact-name">Name:</label>
+        <input
+          type="text"
+          id="contact-name"
+          [(ngModel)]="name"
+          name="name"
+          required
+        />
       </div>
       <div class="form-group">
-        <label for="email">Email:</label>
+        <label for="contact-email">Email:</label>
         <input
           type="email"
-          id="email"
+          id="contact-email"
           [(ngModel)]="email"
           name="email"
           required
         />
       </div>
       <div class="form-group">
-        <label for="message">Message:</label>
+        <label for="contact-message">Message:</label>
         <textarea
-          id="message"
+          id="contact-message"
           [(ngModel)]="message"
           name="message"
           required
@@ -32,16 +38,16 @@
 </div>
 
 <!-- Notification Popups -->
-<div class="popupcontact" *ngIf="notsend" style="z-index: 1000">
+<div class="notification-popup" *ngIf="notsend">
   <div class="popup-content warning">
     <i class="fas fa-exclamation-circle"></i>
     <h3>Notification Not Sent</h3>
     <p>Please ensure all required fields are filled out correctly.</p>
-    <button (click)="closePopup()">Close</button>
+    <button (click)="notsend = false">Close</button>
   </div>
 </div>
 
-<div class="popupcontact" *ngIf="notsendTechicalIssue" style="z-index: 1000">
+<div class="notification-popup" *ngIf="notsendTechicalIssue">
   <div class="popup-content error">
     <i class="fas fa-times-circle"></i>
     <h3>Technical Issue</h3>
@@ -49,15 +55,15 @@
       We encountered a technical difficulty while sending your notification.
       Please try again later.
     </p>
-    <button (click)="closePopup()">Close</button>
+    <button (click)="notsendTechicalIssue = false">Close</button>
   </div>
 </div>
 
-<div class="popupcontact" *ngIf="notifisent" style="z-index: 1000">
+<div class="notification-popup" *ngIf="notifisent">
   <div class="popup-content success">
     <i class="fas fa-check-circle"></i>
     <h3>Notification Sent Successfully!</h3>
     <p>Your notification has been sent. We'll get back to you soon.</p>
-    <button (click)="closePopup()">Close</button>
+    <button (click)="notifisent = false">Close</button>
   </div>
 </div>
