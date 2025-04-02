@@ -17,6 +17,7 @@ export class ContactComponent {
   notsend: boolean = false;
   notsendTechicalIssue: boolean = false;
   notifisent: boolean = false;
+  isLoading: boolean = false;
 
   // onSubmit() {
   //   // Handle form submission (e.g., send data to an API)
@@ -29,6 +30,7 @@ export class ContactComponent {
   // }
 
   onSubmit() {
+    this.isLoading = true;
     if (this.name !== '' && this.email !== '' && this.message !== '') {
       const serviceID = 'service_4hj0lcs'; // Replace with your EmailJS service ID
       const templateID = 'template_lhjotkf'; // Replace with your EmailJS template ID
@@ -49,9 +51,13 @@ export class ContactComponent {
         .catch((error) => {
           console.error('Error sending email:', error);
           this.notsendTechicalIssue = true;
+        })
+        .finally(() => {
+          this.isLoading = false;
         });
     } else {
       this.notsend = true;
+      this.isLoading = false;
     }
   }
 

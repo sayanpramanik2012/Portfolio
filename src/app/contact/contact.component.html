@@ -37,6 +37,14 @@
   </div>
 </div>
 
+<!-- Loading Overlay -->
+<div class="loading-overlay" *ngIf="isLoading">
+  <div class="spinner">
+    <div class="orbit"></div>
+    <div class="core"></div>
+  </div>
+  <div class="processing-text">Crafting your message...</div>
+</div>
 <!-- Notification Popups -->
 <div class="notification-popup" *ngIf="notsend">
   <div class="popup-content warning">
