@@ -760,7 +760,6 @@ export class WorkComponent implements OnInit, OnDestroy {
     event.stopPropagation();
 
     if (item.certificateLink) {
-      // Determine if this is a project or experience
       const isProject = 'title' in item && !('company' in item);
 
       // Set certificate information
@@ -768,14 +767,14 @@ export class WorkComponent implements OnInit, OnDestroy {
       this.certificateType = isProject
         ? 'Project Certificate'
         : 'Experience Letter';
-      this.isImage = true;
 
-      // Update certificate URL handling
-      // In viewCertificate() method
-      const fullPath = `${window.location.origin}/assets/${item.certificateLink
-        .split('/')
-        .pop()}`;
-      this.rawCertificateUrl = fullPath;
+      const basePath = 'assets/';
+      const filename = item.certificateLink;
+      const fullPath = `${basePath}${filename}`;
+
+      // Update certificate handling
+      this.isImage = true;
+      this.rawCertificateUrl = `${window.location.origin}/${fullPath}`;
       this.certificateUrl =
         this.sanitizer.bypassSecurityTrustResourceUrl(fullPath);
 
@@ -784,7 +783,6 @@ export class WorkComponent implements OnInit, OnDestroy {
       this.showCertificatePopup = true;
       this.checkImageOrientation();
     } else {
-      // Optionally handle the case where there's no certificate link
       console.log(
         'No certificate link available for',
         item.title || item.company
@@ -792,9 +790,6 @@ export class WorkComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Listen for escape key to exit fullscreen
-   */
   @HostListener('document:keydown.escape', ['$event'])
   handleEscapeKey(event: KeyboardEvent) {
     if (this.isBrowser && this.isFullscreen) {
@@ -808,13 +803,14 @@ export class WorkComponent implements OnInit, OnDestroy {
   downloadCertificate() {
     if (!this.isBrowser || !this.rawCertificateUrl) return;
 
-    // Create a temporary anchor element
-    const link = document.createElement('a');
-    link.href = this.rawCertificateUrl;
-
-    // Extract filename from the asset path
+    const basePath = 'assets/';
     const filename =
       this.rawCertificateUrl.split('/').pop() || 'certificate.jpg';
+    const fullPath = `${basePath}${filename}`;
+
+    // Create download link
+    const link = document.createElement('a');
+    link.href = fullPath;
     link.download = filename;
 
     document.body.appendChild(link);
