@@ -14,7 +14,7 @@
     "duration": "02/2023 - 05/2023",
     "description": "Worked in TS, HTML, SCSS, and Angular.",
     "hasCertificate": true,
-    "certificateLink": "assets/NIQ-Letter.jpg",
+    "certificateLink": "/assets/NIQ-Letter.jpg",
     "skills": ["TypeScript", "HTML", "SCSS", "Angular"]
   }
 ]
