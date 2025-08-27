@@ -7,33 +7,51 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch full history for proper versioning
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: 22.13.0  # Use the same Node.js version as your local environment
+        node-version: '22.13.0'
+        cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
+
+    - name: Install Angular CLI globally
+      run: npm install -g @angular/cli
+
+    - name: Install angular-cli-ghpages
+      run: npm install --save-dev angular-cli-ghpages
 
     - name: Set Git user and email
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}
+
+    - name: Setup Git remote with token
+      run: |
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+    - name: Build Angular app
+      run: ng build --configuration production --output-path dist/portfolio/browser
 
     - name: Deploy to GitHub Pages
-      run: |
-        npm install -g @angular/cli
-        ng deploy
+      run: ng deploy --no-build --dir=dist/portfolio/browser
       env:
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

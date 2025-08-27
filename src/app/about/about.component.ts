@@ -14,7 +14,7 @@ export class AboutComponent implements OnInit {
   selectedSkill: any = null;
 
   leetcodeUsername = 'sayanpramanik2012'; // Replace with your LeetCode username
-  URLleetcode = 'https://alfa-leetcode-api.onrender.com'; // || 'https://alfa-leetcode-api.onrender.com'
+  URLleetcode = 'https://leetcode.projoracle1.duckdns.org'; // || 'https://alfa-leetcode-api.onrender.com'
   leetcodeData: any = null;
   leetcodeCalendar: any[] = [];
   isLoadingLeetCode = false;
