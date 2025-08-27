@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-header-footer',
@@ -8,16 +8,46 @@ import { Component } from '@angular/core';
   styleUrl: './header-footer.component.scss',
 })
 export class HeaderFooterComponent {
-  isMenuOpen = false; // Track the state of the menu
+  activeTab = 'home';
+  isMenuOpen = false;
+  isScrolled = false;
+  showScrollToTop = false;
+  showContactPopup = false;
 
-  // Method to toggle the menu
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.pageYOffset > 50;
+    this.showScrollToTop = window.pageYOffset > 300;
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
+
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
+
   closeMenu() {
     this.isMenuOpen = false;
   }
-  showContactPopup: boolean = false;
+
+  toggleTheme() {
+    // Implement theme toggle logic
+    document.body.classList.toggle('dark-theme');
+  }
+
+  downloadResume() {
+    // Implement resume download
+    const link = document.createElement('a');
+    link.href = 'assets/SayanPramanik_2406001.pdf';
+    link.download = 'SayanPramanik_2406001.pdf';
+    link.click();
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   openContactPopup() {
     this.showContactPopup = true;

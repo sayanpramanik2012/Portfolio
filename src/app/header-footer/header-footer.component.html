@@ -1,30 +1,79 @@
-<header [class.active]="isMenuOpen">
-  <div class="logo">
-    <h1>My Portfolio</h1>
-  </div>
-  <nav>
-    <ul>
-      <li>
-        <a href="#home" id="home-tab" (click)="closeMenu()" id="home-tab"
-          >Home</a
-        >
-      </li>
-      <li>
-        <a href="#work" id="work-tab" (click)="closeMenu()" id="work-tab"
-          >Work</a
-        >
-      </li>
-      <li>
-        <a href="#about" id="about-tab" (click)="closeMenu()" id="about-tab"
-          >About</a
-        >
-      </li>
-    </ul>
-  </nav>
-  <div class="hamburger" (click)="toggleMenu()">
-    <div class="line"></div>
-    <div class="line"></div>
-    <div class="line"></div>
+<header [class.active]="isMenuOpen" [class.scrolled]="isScrolled">
+  <div class="header-container">
+    <div class="logo">
+      <h1>
+        <img
+          class="logo-icon"
+          src="assets/profile.png"
+          alt="Sayan Pramanik - Web and Software Developer"
+        />
+        <span class="logo-text">Sayan Pramanik</span>
+      </h1>
+      <span class="logo-subtitle"
+        >Full-Stack Developer | Server Management</span
+      >
+    </div>
+
+    <nav class="main-nav">
+      <ul>
+        <li>
+          <a
+            href="#home"
+            (click)="closeMenu(); setActiveTab('home')"
+            [class.active]="activeTab === 'home'"
+          >
+            <i class="nav-icon">🏠</i>
+            <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#work"
+            (click)="closeMenu(); setActiveTab('work')"
+            [class.active]="activeTab === 'work'"
+          >
+            <i class="nav-icon">💼</i>
+            <span>Work</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#about"
+            (click)="closeMenu(); setActiveTab('about')"
+            [class.active]="activeTab === 'about'"
+          >
+            <i class="nav-icon">👤</i>
+            <span>About</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="#contact"
+            (click)="closeMenu(); setActiveTab('contact'); openContactPopup()"
+            [class.active]="activeTab === 'contact'"
+          >
+            <i class="nav-icon">📧</i>
+            <span>Contact</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <!-- <button class="theme-toggle" (click)="toggleTheme()" title="Toggle Theme">
+        <i class="theme-icon">🌙</i>
+      </button> -->
+      <button class="cta-button" (click)="downloadResume()">
+        <i class="download-icon">📄</i>
+        <span>Resume</span>
+      </button>
+    </div>
+
+    <div class="hamburger" (click)="toggleMenu()">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </div>
   </div>
 </header>
 
@@ -51,19 +100,101 @@
 </main>
 
 <footer>
-  <div class="social-links">
-    <a
-      href="https://www.linkedin.com/in/sayan-pramanik-084358178/"
-      target="_blank"
-      >LinkedIn</a
-    >
-    <a href="https://github.com/sayanpramanik2012" target="_blank">GitHub</a>
-    <a (click)="openContactPopup()">Contact me</a>
+  <div class="footer-container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Sayan Pramanik</h3>
+        <p>Full-Stack Developer & Software Engineer</p>
+        <p class="footer-description">
+          Passionate about creating innovative solutions and building scalable
+          applications.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#home" (click)="setActiveTab('home')">Home</a></li>
+            <li><a href="#work" (click)="setActiveTab('work')">Work</a></li>
+            <li><a href="#about" (click)="setActiveTab('about')">About</a></li>
+            <li><a href="#contact" (click)="openContactPopup()">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Skills</h4>
+          <ul>
+            <li><span class="skill-tag">MEAN Stack</span></li>
+            <li><span class="skill-tag">Python</span></li>
+            <li><span class="skill-tag">TypeScript</span></li>
+            <li><span class="skill-tag">Docker</span></li>
+            <li><span class="skill-tag">Server Management</span></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Connect</h4>
+          <div class="social-links">
+            <a
+              href="https://www.linkedin.com/in/sayan-pramanik-084358178/"
+              target="_blank"
+              class="social-link linkedin"
+              title="LinkedIn"
+            >
+              <i class="social-icon">💼</i>
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href="https://github.com/sayanpramanik2012"
+              target="_blank"
+              class="social-link github"
+              title="GitHub"
+            >
+              <i class="social-icon">📁</i>
+              <span>GitHub</span>
+            </a>
+            <a
+              (click)="openContactPopup()"
+              class="social-link contact"
+              title="Contact Me"
+            >
+              <i class="social-icon">📧</i>
+              <span>Contact</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-divider"></div>
+      <div class="footer-bottom-content">
+        <div class="footer-copyright">
+          <p>&copy; 2025 Sayan Pramanik. All rights reserved.</p>
+        </div>
+        <div class="footer-meta">
+          <span class="footer-location">📍 Chennai, Tamil Nadu, India</span>
+          <span class="footer-status">
+            <span class="status-indicator"></span>
+            Available for opportunities
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="footer-text">
-    <p>&copy; 2025 Sayan Pramanik. All rights reserved.</p>
-  </div>
+
+  <!-- Scroll to top button -->
+  <button
+    class="scroll-to-top"
+    [class.visible]="showScrollToTop"
+    (click)="scrollToTop()"
+    title="Back to top"
+  >
+    <i class="scroll-icon">↑</i>
+  </button>
 </footer>
+
 <!-- Contact Popup -->
 <app-contact
   *ngIf="showContactPopup"

@@ -15,6 +15,7 @@ import { WorkComponent } from './work/work.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,13 @@ import { CommonModule } from '@angular/common';
     AboutComponent,
     ContactComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, CommonModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+  ],
   providers: [
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
