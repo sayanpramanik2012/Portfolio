@@ -54,3 +54,66 @@
     </div>
   </div>
 </section>
+
+<section id="leetcode" class="leetcode-section">
+  <div class="leetcode-header">
+    <h2>LeetCode Stats</h2>
+    <button
+      class="refresh-btn"
+      (click)="refreshLeetCodeData()"
+      [disabled]="isLoadingLeetCode"
+    >
+      <span class="icon" [class.spin]="isLoadingLeetCode">&#8635;</span>
+    </button>
+  </div>
+
+  <div
+    class="leetcode-content"
+    *ngIf="!isLoadingLeetCode && leetcodeData; else loading"
+  >
+    <div class="leetcode-cards">
+      <div class="leetcode-card solved">
+        <span class="card-title">Total Solved</span>
+        <span class="card-value">{{ leetcodeData.totalSolved || 0 }}</span>
+      </div>
+      <div class="leetcode-card ranking">
+        <span class="card-title">Global Ranking</span>
+        <span class="card-value">{{ leetcodeData.ranking || "N/A" }}</span>
+      </div>
+    </div>
+    <div class="leetcode-calendar-title">Submission Calendar</div>
+    <div class="leetcode-calendar">
+      <div class="calendar-grid">
+        <div
+          *ngFor="let day of leetcodeCalendar"
+          class="calendar-day"
+          [ngClass]="getActivityLevel(day.count)"
+          [title]="day.date + ': ' + day.count + ' submissions'"
+        ></div>
+      </div>
+      <div class="calendar-legend">
+        <span>Less</span>
+        <div class="legend-bar">
+          <span class="calendar-day level-0"></span>
+          <span class="calendar-day level-1"></span>
+          <span class="calendar-day level-2"></span>
+          <span class="calendar-day level-3"></span>
+          <span class="calendar-day level-4"></span>
+        </div>
+        <span>More</span>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="leetcode-loading">
+      <span class="icon spin">&#8635;</span>
+      <span>Loading LeetCode data...</span>
+    </div>
+  </ng-template>
+  <div class="leetcode-error" *ngIf="leetcodeError">
+    <span class="icon">&#9888;</span>
+    <span>{{ leetcodeError }}</span>
+    <button class="retry-btn" (click)="refreshLeetCodeData()">Retry</button>
+  </div>
+</section>
