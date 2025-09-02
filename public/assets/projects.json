@@ -1,5 +1,15 @@
 [
   {
+    "title": "Market Data Portfolio",
+    "duration": "July 2025 - Present",
+    "description": "Developed a comprehensive stock portfolio management web application with real-time market data integration. Features include dynamic portfolio tracking, transaction management, balance calculator, customizable data tables with sorting/filtering, responsive design, and automated data refresh. Built with Angular for the frontend and includes advanced UI components with sticky headers, modal dialogs, and mobile-optimized interfaces.",
+    "skills": ["Angular", "TypeScript", "RxJS", "SCSS", "HTML5", "REST API Integration", "Responsive Web Design", "UI/UX Design", "State Management", "Web Animations"],
+    "show_project": true,
+    "link": "https://market.projmain.duckdns.org/",
+    "hasCertificate": false,
+    "certificateLink": ""
+  },
+  {
     "title": "Buff Discord Music Bot",
     "duration": "Aug 2024 - Dec 2024",
     "description": "Developed a feature-rich Discord music bot with advanced playback controls, including play, pause, resume, skip, queue, and loop functionalities. Integrated support for YouTube and Spotify, enabling users to stream music seamlessly.",
