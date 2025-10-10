@@ -2,7 +2,7 @@
   {
     "title": "Market Data Portfolio",
     "duration": "July 2025 - Present",
-    "description": "Developed a comprehensive stock portfolio management web application with real-time market data integration. Features include dynamic portfolio tracking, transaction management, balance calculator, customizable data tables with sorting/filtering, responsive design, and automated data refresh. Built with Angular for the frontend and includes advanced UI components with sticky headers, modal dialogs, and mobile-optimized interfaces.",
+    "description": "Built a production-grade stock portfolio web application with real-time market data, dynamic holdings tracking, and transaction journaling. Implemented a balance calculator, customizable data grids with sorting and filtering, and automated refresh to keep views current. Delivered a responsive Angular UI with sticky headers, modal workflows, and mobile-first layouts.",
     "skills": ["Angular", "TypeScript", "RxJS", "SCSS", "HTML5", "REST API Integration", "Responsive Web Design", "UI/UX Design", "State Management", "Web Animations"],
     "show_project": true,
     "link": "https://market.projmain.duckdns.org/",
@@ -12,7 +12,7 @@
   {
     "title": "Buff Discord Music Bot",
     "duration": "Aug 2024 - Dec 2024",
-    "description": "Developed a feature-rich Discord music bot with advanced playback controls, including play, pause, resume, skip, queue, and loop functionalities. Integrated support for YouTube and Spotify, enabling users to stream music seamlessly.",
+    "description": "Developed a feature-rich Discord music bot with queue management, loop modes, and granular playback controls. Integrated YouTube and Spotify sources with FFmpeg-based streaming to enable stable, low-latency playback. Containerized with Docker for reproducible deployments and simplified operations.",
     "skills": ["Python", "Docker", "Discord API", "FFmpeg", "YouTube API"],
     "show_project": true,
     "link": "https://github.com/sayanpramanik2012/Buff-Discord-MusicPlayer",
@@ -22,7 +22,7 @@
   {
     "title": "Microsoft Rewards Automation",
     "duration": "Jan 2024 - Feb 2024",
-    "description": "Created a Python-based automation script to streamline daily Microsoft Rewards tasks. The script leverages Selenium for web automation, saving time and effort for users.",
+    "description": "Authored a Python automation utility to complete daily Microsoft Rewards tasks using Selenium-driven browser flows. Added configurable delays, error handling, and structured logging to improve reliability and repeatability. Reduced manual effort while ensuring consistent task completion.",
     "skills": ["Python", "Selenium", "Web Automation"],
     "show_project": true,
     "link": "https://github.com/sayanpramanik2012/Microsoft-rewards-Automation",
@@ -32,15 +32,8 @@
   {
     "title": "RP Server Development",
     "duration": "Jun 2022 - Feb 2023",
-    "description": "Designed and developed a comprehensive Roleplay (RP) server for GTA V, featuring jobs, housing, vehicles, and other immersive gameplay elements. Built with a focus on scalability and user engagement.",
-    "skills": [
-      "Database",
-      "RAGE Multiplayer",
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "C#"
-    ],
+    "description": "Architected and developed a GTA V roleplay server on RAGE Multiplayer featuring jobs, housing, vehicles, and economy systems. Emphasized scalable server logic, persistent data models, and engaging gameplay loops. Implemented modular features to simplify ongoing updates and community-driven expansions.",
+    "skills": ["Database", "RAGE Multiplayer", "HTML", "CSS", "JavaScript", "C#"],
     "achievement": "Nominated as Best Project",
     "show_project": false,
     "link": "",
@@ -50,7 +43,7 @@
   {
     "title": "Calendar Event Manager",
     "duration": "Jun 2022 - Jul 2022",
-    "description": "Developed a user-friendly application to manage Google Calendar events, featuring secure integration and an intuitive interface.",
+    "description": "Built a desktop application to create, update, and manage Google Calendar events with secure account integration. Designed an intuitive interface with clear event forms, date pickers, and actionable status feedback. Streamlined routine scheduling to reduce friction and user error.",
     "skills": ["Python", "Tkinter"],
     "show_project": true,
     "link": "https://sayanpramanik2012.github.io/Calendar-Manager/",
@@ -60,7 +53,7 @@
   {
     "title": "WEB-based Multiplayer Game",
     "duration": "Mar 2022 - Apr 2022",
-    "description": "Developed a multiplayer web-based game during an HCL internship. The project involved creating a real-time gaming experience using modern web technologies and networking concepts.",
+    "description": "Developed a real-time multiplayer browser game during an HCL internship using modern web technologies and networking concepts. Implemented server–client messaging, session handling, and responsive inputs to maintain smooth gameplay. Focused on lightweight assets and efficient update loops for consistent performance.",
     "skills": ["HTML", "CSS", "JavaScript", "Node.js", "Networking"],
     "show_project": true,
     "link": "https://github.com/sayanpramanik2012/WEB-based-Multiplayer-snake-game",
@@ -70,7 +63,7 @@
   {
     "title": "Multiplayer Turtle Game",
     "duration": "Feb 2022 - Feb 2022",
-    "description": "Built a multiplayer game using Python's Turtle graphics library, allowing multiple players to interact on a single system. The project showcased creativity and problem-solving in game development.",
+    "description": "Created a local multiplayer game using Python’s Turtle graphics to enable multiple players on a single system. Implemented collision detection, turn logic, and scorekeeping to provide a complete gameplay loop. Structured the codebase for readability and easy experimentation.",
     "skills": ["Python", "Tkinter"],
     "show_project": true,
     "link": "https://github.com/sayanpramanik2012/Turtle-Multiplayer-game",
@@ -80,7 +73,7 @@
   {
     "title": "Medicine Reminder",
     "duration": "Nov 2021 - Dec 2021",
-    "description": "Developed a Windows application to help users manage their medication schedules. The app allows users to add medicines and set reminders, ensuring timely intake.",
+    "description": "Developed a Windows desktop application to manage medication schedules with configurable reminders. Added medicine catalogs, scheduling workflows, and system notifications to support timely adherence. Focused on a clean, accessible UI to minimize user friction.",
     "skills": ["Python", "Tkinter"],
     "show_project": true,
     "link": "https://github.com/sayanpramanik2012/Medicine-Reminder",
