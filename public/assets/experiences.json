@@ -1,9 +1,18 @@
 [
   {
+    "title": "ServiceNow Developer",
+    "company": "CubeSimple",
+    "duration": "09/2023 - Present",
+    "description": "Implemented Now Assist AI to streamline incident and request submission. Designed and deployed Virtual Agent conversations and Flow Designer automations to accelerate ticket resolution across Microsoft Teams and the Service Portal, improving self-service adoption and user experience.",
+    "hasCertificate": true,
+    "certificateLink": "ServiceNowCIS.jpeg",
+    "skills": ["JavaScript", "NowAgent", "Scripting"]
+  },
+  {
     "title": "Software Engineer",
     "company": "Innoart Technologies",
     "duration": "08/2023 - 06/2025",
-    "description": "Drive seamless user experiences by integrating APIs into complex Angular projects. Successfully completed 2 full-scale builds. Collaborate on API development within a Swagger environment, ensuring robust backend-frontend communication.",
+    "description": "Delivered two end-to-end Angular applications, integrating RESTful APIs to provide performant and consistent user experiences. Collaborated with backend teams to define and document API contracts in Swagger/OpenAPI, ensuring reliable, testable, and maintainable client–server communication.",
     "hasCertificate": false,
     "certificateLink": "",
     "skills": ["Angular", "TypeScript", "REST APIs", "Swagger"]
@@ -12,7 +21,7 @@
     "title": "Front-End Developer (Internship)",
     "company": "NielsenIQ (NIQ)",
     "duration": "02/2023 - 05/2023",
-    "description": "Worked in TS, HTML, SCSS, and Angular.",
+    "description": "Developed responsive Angular components using TypeScript, HTML, and SCSS, contributing to UI quality and maintainability. Supported debugging, refactoring, and styling efforts to align with design guidelines and improve usability.",
     "hasCertificate": true,
     "certificateLink": "NIQ-Letter.jpg",
     "skills": ["TypeScript", "HTML", "SCSS", "Angular"]
