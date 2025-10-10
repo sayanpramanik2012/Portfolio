@@ -2,61 +2,145 @@
   {
     "name": "HTML",
     "icon": "fab fa-html5",
-    "details": "Expert in HTML5, crafting clean, semantic, and accessible markup to build responsive, SEO-optimized websites.",
+    "details": "Semantic, accessible HTML5 for production UIs, including sticky headers, modals, and mobile-first layouts in SPA/front-end projects.",
     "progress": "90"
   },
   {
-    "name": "CSS",
+    "name": "CSS / SCSS",
     "icon": "fab fa-css3",
-    "details": "Proficient in CSS, SCSS, and modern frameworks like Bootstrap, delivering visually stunning and responsive user interfaces.",
-    "progress": "80"
+    "details": "SCSS architecture, responsive grids, and component-level styling for Angular apps; emphasis on consistency, theming, and animations.",
+    "progress": "85"
   },
   {
     "name": "TypeScript",
     "icon": "fab fa-js",
-    "details": "Skilled in TypeScript, leveraging static typing and OOP principles to develop scalable, maintainable, and robust web applications.",
-    "progress": "75"
-  },
-  {
-    "name": "C++",
-    "icon": "fab fa-cuttlefish",
-    "details": "Experienced in C++ programming, with a strong focus on object-oriented design, data structures, and high-performance algorithms.",
-    "progress": "55"
-  },
-  {
-    "name": "Python",
-    "icon": "fab fa-python",
-    "details": "Proficient in Python, utilizing its versatility for automation, data analysis, and web development with popular libraries and frameworks.",
-    "progress": "50"
+    "details": "Typed application architecture, interfaces, generics, and modular patterns across Angular SPAs and reusable services.",
+    "progress": "85"
   },
   {
     "name": "Angular",
     "icon": "fab fa-angular",
-    "details": "Experienced in Angular, building dynamic, single-page applications with modular components, services, and efficient routing.",
+    "details": "SPA development with components, services, routing, forms, and performance optimizations for real-time portfolio dashboards.",
+    "progress": "95"
+  },
+  {
+    "name": "RxJS",
+    "icon": "fas fa-stream",
+    "details": "Reactive streams, subjects, and operators for live data updates, auto-refresh, and stateful UI flows.",
+    "progress": "70"
+  },
+  {
+    "name": "UI/UX Design",
+    "icon": "fas fa-palette",
+    "details": "Usability-focused layouts, data tables with sort/filter, and clear interaction patterns for high-signal, low-friction interfaces.",
+    "progress": "75"
+  },
+  {
+    "name": "Responsive Design",
+    "icon": "fas fa-mobile-alt",
+    "details": "Mobile-first breakpoints, fluid layouts, and touch-friendly components optimized for varying device sizes.",
+    "progress": "85"
+  },
+  {
+    "name": "REST APIs",
+    "icon": "fas fa-plug",
+    "details": "Integration, error handling, and pagination; API contract collaboration and documentation with Swagger/OpenAPI.",
+    "progress": "82"
+  },
+  {
+    "name": "Node.js",
+    "icon": "fab fa-node-js",
+    "details": "Real-time backends and tooling; server–client messaging foundations used in multiplayer and integration tasks.",
+    "progress": "68"
+  },
+  {
+    "name": "Python",
+    "icon": "fab fa-python",
+    "details": "Automation utilities, Discord bot features, and Selenium-driven browser workflows with structured logging.",
     "progress": "80"
+  },
+  {
+    "name": "Selenium",
+    "icon": "fas fa-vial",
+    "details": "Web automation with robust selectors, waits, error handling, and configurable task runs for daily workflows.",
+    "progress": "70"
+  },
+  {
+    "name": "Discord API",
+    "icon": "fab fa-discord",
+    "details": "Slash commands, queues, and event handling for music playback, moderation of states, and resilient operations.",
+    "progress": "75"
+  },
+  {
+    "name": "FFmpeg",
+    "icon": "fas fa-music",
+    "details": "Stream handling and transcoding pipeline integration enabling stable, low-latency audio playback.",
+    "progress": "60"
+  },
+  {
+    "name": "Docker",
+    "icon": "fab fa-docker",
+    "details": "Containerized services for reproducible deployments, environment parity, and simplified operations.",
+    "progress": "95"
+  },
+  {
+    "name": "Git & GitHub",
+    "icon": "fab fa-github",
+    "details": "Branching strategies, PR reviews, issue tracking, and release workflows supporting collaborative delivery.",
+    "progress": "90"
   },
   {
     "name": "Linux",
     "icon": "fab fa-linux",
-    "details": "Highly skilled in Linux environments, proficient in system administration, scripting, and development workflows.",
+    "details": "Dev tooling, shell scripting, and service management for local and server environments.",
     "progress": "90"
-  },
-  {
-    "name": "GitHub",
-    "icon": "fab fa-github",
-    "details": "Expert in GitHub, managing version control, collaborative workflows, and CI/CD pipelines for seamless project development.",
-    "progress": "100"
-  },
-  {
-    "name": "MongoDB",
-    "icon": "fas fa-database",
-    "details": "Proficient in MongoDB, designing scalable NoSQL databases, optimizing queries, and integrating with backend services for efficient data management.",
-    "progress": "80"
   },
   {
     "name": "MySQL",
     "icon": "fas fa-database",
-    "details": "Experienced in MySQL, designing relational database schemas, writing efficient queries, and managing large datasets for web applications.",
-    "progress": "90"
+    "details": "Relational schema design, indexing, and query tuning for application data models.",
+    "progress": "75"
+  },
+  {
+    "name": "MongoDB",
+    "icon": "fas fa-database",
+    "details": "Document modeling and aggregation basics for flexible, schema-light use cases.",
+    "progress": "80"
+  },
+  {
+    "name": "WebSockets / Socket.io",
+    "icon": "fas fa-bolt",
+    "details": "Real-time messaging and session flow for multiplayer and live-update features.",
+    "progress": "70"
+  },
+  {
+    "name": "OAuth 2.0 & Google APIs",
+    "icon": "fas fa-key",
+    "details": "Secure auth flows and Calendar integration for event management and scheduling.",
+    "progress": "70"
+  },
+  {
+    "name": "C#",
+    "icon": "fas fa-code",
+    "details": "Server logic and gameplay systems for GTA V roleplay servers on RAGE Multiplayer.",
+    "progress": "50"
+  },
+  {
+    "name": "ServiceNow Platform",
+    "icon": "fas fa-cloud",
+    "details": "Now Assist AI enablement, Service Portal configurations, and Teams-channel experiences for self-service.",
+    "progress": "70"
+  },
+  {
+    "name": "Virtual Agent",
+    "icon": "fas fa-comments",
+    "details": "Conversational design and topic flows to accelerate incident resolution and deflection.",
+    "progress": "75"
+  },
+  {
+    "name": "Flow Designer",
+    "icon": "fas fa-project-diagram",
+    "details": "No-code/low-code automations orchestrating approvals, notifications, and ticket lifecycles.",
+    "progress": "75"
   }
 ]
