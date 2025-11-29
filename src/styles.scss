@@ -22,6 +22,24 @@ $color-background: #ffffff;
 $color-background-alt: #f1f5f9;
 $color-border: #e2e8f0;
 
+/* Dark Mode Colors */
+$dark-color-primary: #f8fafc;
+$dark-color-primary-light: #e2e8f0;
+$dark-color-secondary: #0f172a;
+$dark-color-accent: #60a5fa;
+$dark-color-accent-dark: #3b82f6;
+$dark-color-accent-light: #93c5fd;
+$dark-color-success: #34d399;
+$dark-color-danger: #f87171;
+$dark-color-warning: #fbbf24;
+$dark-color-text: #f1f5f9;
+$dark-color-text-light: #cbd5e1;
+$dark-color-text-lighter: #94a3b8;
+$dark-color-background: #0f172a;
+$dark-color-background-alt: #1e293b;
+$dark-color-border: #334155;
+
+
 /* ============================================
    RESPONSIVE BREAKPOINTS
    ============================================ */
@@ -2157,3 +2175,464 @@ textarea:focus {
     page-break-inside: avoid;
   }
 }
+
+/* ============================================
+   DARK MODE THEME
+   ============================================ */
+body.dark-theme {
+  background-color: $dark-color-background;
+  color: $dark-color-text;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  /* Header Dark Mode */
+  header {
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom-color: $dark-color-border;
+
+    &.scrolled {
+      background: rgba(15, 23, 42, 0.98);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      h1 {
+        color: $dark-color-text;
+
+        .logo-text {
+          background: linear-gradient(135deg, $dark-color-text, $dark-color-accent);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+      }
+
+      .logo-subtitle {
+        color: $dark-color-text-light;
+      }
+    }
+
+    .main-nav {
+      @include mobile {
+        background: rgba(15, 23, 42, 0.98);
+        border-top-color: $dark-color-border;
+      }
+
+      li a {
+        color: $dark-color-text-light;
+
+        &:hover,
+        &.active {
+          color: $dark-color-accent;
+          background: rgba($dark-color-accent, 0.1);
+        }
+
+        &.active::after {
+          background: $dark-color-accent;
+        }
+      }
+    }
+
+    .theme-toggle {
+      color: $dark-color-text-light;
+
+      &:hover {
+        color: $dark-color-accent;
+        background: rgba($dark-color-accent, 0.1);
+      }
+    }
+
+    .hamburger {
+      .hamburger-line {
+        background: $dark-color-text; // Light color for dark mode
+      }
+    }
+  }
+
+  /* Sections Dark Mode */
+  .section {
+    background-color: $dark-color-background;
+    color: $dark-color-text;
+
+    h2 {
+      color: $dark-color-text;
+    }
+  }
+
+  /* Profile Section */
+  .profile {
+    .profile-content {
+      h2 {
+        color: $dark-color-text;
+        background: linear-gradient(135deg, $dark-color-text, $dark-color-accent);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      h3 {
+        color: $dark-color-accent;
+      }
+
+      p {
+        color: $dark-color-text-light;
+      }
+    }
+
+    .profile-image img {
+      border-color: $dark-color-accent;
+      box-shadow: 0 20px 60px rgba($dark-color-accent, 0.4);
+    }
+  }
+
+  /* Education Section */
+  .education {
+    background-color: $dark-color-background-alt;
+
+    h2 {
+      color: $dark-color-text;
+    }
+
+    .timeline-item {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid $dark-color-border;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        border-color: $dark-color-accent;
+      }
+
+      .timeline-content {
+        h3 {
+          color: $dark-color-text;
+        }
+
+        p {
+          color: $dark-color-text-light;
+
+          strong {
+            color: $dark-color-accent;
+          }
+        }
+
+        .percentage {
+          color: $dark-color-success;
+        }
+      }
+    }
+  }
+
+  /* Skills Section */
+  .skills {
+    background-color: $dark-color-background;
+
+    h2 {
+      color: $dark-color-text;
+    }
+
+    .skill-item {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid $dark-color-border;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        border-color: $dark-color-accent;
+      }
+
+      .skill-icon i {
+        color: $dark-color-accent;
+      }
+
+      .skill-info {
+        h3 {
+          color: $dark-color-text;
+        }
+
+        .skill-progress {
+          background: rgba(51, 65, 85, 0.5);
+
+          .progress-bar {
+            background: linear-gradient(90deg, $dark-color-accent, $dark-color-accent-light);
+          }
+        }
+      }
+    }
+  }
+
+  /* Achievements Section */
+  .achievements {
+    background-color: $dark-color-background-alt;
+
+    h2 {
+      color: $dark-color-text;
+    }
+
+    .achievement-item {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid $dark-color-border;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        border-color: $dark-color-success;
+      }
+
+      h3 {
+        color: $dark-color-text;
+      }
+
+      p {
+        color: $dark-color-text-light;
+      }
+
+      .achievement-rank {
+        color: $dark-color-success;
+      }
+    }
+  }
+
+  /* Experiences Section */
+  .experiences {
+    background-color: $dark-color-background;
+
+    h2 {
+      color: $dark-color-text;
+    }
+
+    .experience-card {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid $dark-color-border;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        border-color: $dark-color-accent;
+      }
+
+      .company-name {
+        color: $dark-color-text;
+      }
+
+      .experience-title {
+        color: $dark-color-accent;
+      }
+
+      .experience-duration {
+        color: $dark-color-text-lighter;
+      }
+
+      .experience-description {
+        color: $dark-color-text-light;
+      }
+
+      .experience-skills .skill {
+        background: rgba($dark-color-accent, 0.2);
+        color: $dark-color-accent-light;
+      }
+
+      .experience-achievement {
+        color: $dark-color-success;
+      }
+    }
+  }
+
+  /* Projects Section */
+  .projects {
+    background-color: $dark-color-background-alt;
+
+    h2 {
+      color: $dark-color-text;
+    }
+
+    .project-card {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid $dark-color-border;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        border-color: $dark-color-accent;
+      }
+
+      .project-title {
+        color: $dark-color-text;
+      }
+
+      .project-duration {
+        color: $dark-color-text-lighter;
+      }
+
+      .project-description {
+        color: $dark-color-text-light;
+      }
+
+      .project-skills .skill {
+        background: rgba($dark-color-accent, 0.2);
+        color: $dark-color-accent-light;
+      }
+
+      .project-achievement {
+        color: $dark-color-warning;
+      }
+    }
+  }
+
+  /* Certificate Badge */
+  .certificate-badge {
+    background: rgba($dark-color-accent, 0.2);
+    border-color: rgba($dark-color-accent, 0.3);
+
+    &:hover {
+      background: rgba($dark-color-accent, 0.3);
+    }
+
+    .badge-text {
+      color: $dark-color-accent-light;
+    }
+  }
+
+  /* Popups */
+  .popup,
+  .skill-popup,
+  .certificate-popup,
+  .contact-popup,
+  .notification-popup {
+    background: rgba(0, 0, 0, 0.85);
+
+    .popup-content {
+      background: $dark-color-background-alt;
+      border: 1px solid $dark-color-border;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+
+      h2,
+      h3 {
+        color: $dark-color-text;
+      }
+
+      p {
+        color: $dark-color-text-light;
+      }
+
+      .close-btn {
+        color: $dark-color-text-light;
+
+        &:hover {
+          color: $dark-color-danger;
+        }
+      }
+
+      button {
+        background: $dark-color-accent;
+
+        &:hover {
+          background: $dark-color-accent-dark;
+        }
+      }
+    }
+  }
+
+  /* Contact Form */
+  .contact-popup .popup-content form {
+    .form-group {
+      label {
+        color: $dark-color-text;
+      }
+
+      input,
+      textarea {
+        background: rgba(51, 65, 85, 0.5);
+        border-color: $dark-color-border;
+        color: $dark-color-text;
+
+        &::placeholder {
+          color: $dark-color-text-lighter;
+        }
+
+        &:focus {
+          border-color: $dark-color-accent;
+          box-shadow: 0 0 0 3px rgba($dark-color-accent, 0.2);
+        }
+      }
+    }
+  }
+
+  /* Certificate Popup */
+  .certificate-popup {
+    background: rgba(0, 0, 0, 0.95);
+
+    .certificate-popup-content {
+      background: $dark-color-background-alt;
+      border: 1px solid $dark-color-border;
+
+      .certificate-header {
+        background: $dark-color-primary-light;
+        border-bottom: 1px solid $dark-color-border;
+      }
+
+      .certificate-body {
+        background: rgba(15, 23, 42, 0.95);
+      }
+    }
+  }
+
+  /* Footer */
+  footer {
+    background: linear-gradient(135deg, #0a0f1a, #0f172a);
+
+    .footer-brand h3 {
+      background: linear-gradient(135deg, $dark-color-text, $dark-color-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-section {
+      h4 {
+        color: $dark-color-accent-light;
+      }
+
+      ul li a {
+        color: $dark-color-text-light;
+
+        &:hover {
+          color: $dark-color-accent-light;
+        }
+      }
+
+      .skill-tag {
+        background: rgba(255, 255, 255, 0.1);
+        color: $dark-color-text-light;
+      }
+    }
+  }
+
+  /* Scroll Indicator */
+  body::after {
+    border-color: $dark-color-accent;
+
+    &::before {
+      background: $dark-color-accent;
+    }
+  }
+
+  /* Focus States */
+  a:focus,
+  button:focus,
+  input:focus,
+  textarea:focus {
+    outline-color: $dark-color-accent;
+  }
+}
+
+/* Theme Toggle Animation */
+.theme-toggle {
+  .theme-icon {
+    transition: transform 0.3s ease;
+  }
+
+  &:active .theme-icon {
+    transform: rotate(180deg);
+  }
+}
+

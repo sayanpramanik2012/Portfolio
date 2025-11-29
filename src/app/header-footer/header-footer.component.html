@@ -60,9 +60,9 @@
     </nav>
 
     <div class="header-actions">
-      <!-- <button class="theme-toggle" (click)="toggleTheme()" title="Toggle Theme">
-        <i class="theme-icon">🌙</i>
-      </button> -->
+      <button class="theme-toggle" (click)="toggleTheme()" [title]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+        <i class="theme-icon" [ngClass]="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
+      </button>
       <button class="cta-button" (click)="downloadResume()">
         <i class="fas fa-download download-icon"></i>
         <span>Resume</span>

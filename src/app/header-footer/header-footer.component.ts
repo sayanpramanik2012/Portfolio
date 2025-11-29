@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header-footer',
@@ -7,12 +7,28 @@ import { Component, HostListener } from '@angular/core';
   templateUrl: './header-footer.component.html',
   styleUrl: './header-footer.component.scss',
 })
-export class HeaderFooterComponent {
+export class HeaderFooterComponent implements OnInit {
   activeTab = 'home';
   isMenuOpen = false;
   isScrolled = false;
   showScrollToTop = false;
   showContactPopup = false;
+  isDarkMode = false;
+
+  ngOnInit() {
+    // Check for saved theme preference or default to dark mode
+    const savedTheme = localStorage.getItem('theme');
+    
+    // Default to dark mode if no preference is saved
+    if (savedTheme === 'light') {
+      this.isDarkMode = false;
+      document.body.classList.remove('dark-theme');
+    } else {
+      // Dark mode is default (savedTheme === 'dark' or no savedTheme)
+      this.isDarkMode = true;
+      document.body.classList.add('dark-theme');
+    }
+  }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -33,8 +49,15 @@ export class HeaderFooterComponent {
   }
 
   toggleTheme() {
-    // Implement theme toggle logic
-    document.body.classList.toggle('dark-theme');
+    this.isDarkMode = !this.isDarkMode;
+    
+    if (this.isDarkMode) {
+      document.body.classList.add('dark-theme');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-theme');
+      localStorage.setItem('theme', 'light');
+    }
   }
 
   downloadResume() {
