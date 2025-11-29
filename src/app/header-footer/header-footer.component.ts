@@ -40,8 +40,8 @@ export class HeaderFooterComponent {
   downloadResume() {
     // Implement resume download
     const link = document.createElement('a');
-    link.href = 'assets/SayanPramanik_2406001.pdf';
-    link.download = 'SayanPramanik_2406001.pdf';
+    link.href = 'assets/Sayan_Pramanik-31Oct2025.pdf';
+    link.download = 'Sayan_Pramanik-31Oct2025.pdf';
     link.click();
   }
 
