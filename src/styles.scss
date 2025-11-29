@@ -1514,8 +1514,14 @@ main {
         max-height: calc(90vh - 80px);
         display: block;
         object-fit: contain;
-        transition: transform 0.2s ease;
-        cursor: move;
+        transition: transform 0.1s ease-out;
+        transform-origin: center center;
+        cursor: grab;
+        touch-action: none; // Prevent default touch actions like scrolling
+
+        &:active {
+          cursor: grabbing;
+        }
       }
 
       .iframe-container {
@@ -2566,8 +2572,32 @@ body.dark-theme {
       border: 1px solid $dark-color-border;
 
       .certificate-header {
-        background: $dark-color-primary-light;
+        background: $dark-color-background-alt;
         border-bottom: 1px solid $dark-color-border;
+
+        h3,
+        h4 {
+          color: $dark-color-text;
+        }
+
+        .certificate-controls {
+          .control-btn {
+            color: $dark-color-text;
+
+            &:hover:not(:disabled) {
+              background: rgba(255, 255, 255, 0.15);
+              color: $dark-color-accent-light;
+            }
+
+            &:disabled {
+              color: $dark-color-text-lighter;
+            }
+          }
+
+          .zoom-level {
+            color: $dark-color-text-light;
+          }
+        }
       }
 
       .certificate-body {

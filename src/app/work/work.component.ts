@@ -238,6 +238,8 @@ export class WorkComponent implements OnInit, OnDestroy {
     // Set zoom levels first
     this.zoomLevel = 1;
     this.iframeZoomLevel = 1;
+    this.panX = 0;
+    this.panY = 0;
 
     // Then reset scroll positions after a brief delay to allow DOM updates
     setTimeout(() => {
@@ -269,45 +271,7 @@ export class WorkComponent implements OnInit, OnDestroy {
   zoomIn() {
     if (this.isImage) {
       if (this.zoomLevel < 3) {
-        // Remember scroll position before zooming
-        const container = document.querySelector(
-          '.certificate-body'
-        ) as HTMLElement;
-        if (!container) return;
-
-        // Store original scroll values and container dimensions
-        const scrollLeft = container.scrollLeft;
-        const scrollTop = container.scrollTop;
-        const containerWidth = container.clientWidth;
-        const containerHeight = container.clientHeight;
-
-        // Store original zoom before changing it
-        const oldZoom = this.zoomLevel;
-
-        // Calculate visible viewport center in content coordinates
-        // This is the point we want to keep centered after zooming
-        const viewportCenterX = scrollLeft + containerWidth / 2;
-        const viewportCenterY = scrollTop + containerHeight / 2;
-
-        // Content coordinates adjusted for current zoom
-        const contentCenterX = viewportCenterX / oldZoom;
-        const contentCenterY = viewportCenterY / oldZoom;
-
-        // Update zoom level
         this.zoomLevel += 0.25;
-
-        // Schedule scroll position update after DOM has updated
-        setTimeout(() => {
-          // Calculate where the content center should be after zoom
-          const newScrollLeft =
-            contentCenterX * this.zoomLevel - containerWidth / 2;
-          const newScrollTop =
-            contentCenterY * this.zoomLevel - containerHeight / 2;
-
-          // Apply the new scroll position
-          container.scrollLeft = Math.max(0, newScrollLeft);
-          container.scrollTop = Math.max(0, newScrollTop);
-        }, 10);
       }
     } else {
       // For iframe zooming
@@ -361,51 +325,13 @@ export class WorkComponent implements OnInit, OnDestroy {
   zoomOut() {
     if (this.isImage) {
       if (this.zoomLevel > 1) {
-        // Remember scroll position before zooming
-        const container = document.querySelector(
-          '.certificate-body'
-        ) as HTMLElement;
-        if (!container) return;
-
-        // Store original scroll values and container dimensions
-        const scrollLeft = container.scrollLeft;
-        const scrollTop = container.scrollTop;
-        const containerWidth = container.clientWidth;
-        const containerHeight = container.clientHeight;
-
-        // Store original zoom before changing it
-        const oldZoom = this.zoomLevel;
-
-        // Calculate visible viewport center in content coordinates
-        // This is the point we want to keep centered after zooming
-        const viewportCenterX = scrollLeft + containerWidth / 2;
-        const viewportCenterY = scrollTop + containerHeight / 2;
-
-        // Content coordinates adjusted for current zoom
-        const contentCenterX = viewportCenterX / oldZoom;
-        const contentCenterY = viewportCenterY / oldZoom;
-
-        // Update zoom level
         this.zoomLevel -= 0.25;
-
-        // Schedule scroll position update after DOM has updated
-        setTimeout(() => {
-          // If we're going back to normal zoom (1.0), reset scroll completely
-          if (this.zoomLevel <= 1) {
-            container.scrollLeft = 0;
-            container.scrollTop = 0;
-          } else {
-            // Calculate where the content center should be after zoom
-            const newScrollLeft =
-              contentCenterX * this.zoomLevel - containerWidth / 2;
-            const newScrollTop =
-              contentCenterY * this.zoomLevel - containerHeight / 2;
-
-            // Apply the new scroll position
-            container.scrollLeft = Math.max(0, newScrollLeft);
-            container.scrollTop = Math.max(0, newScrollTop);
-          }
-        }, 10);
+        
+        // Reset pan if zoomed out completely
+        if (this.zoomLevel <= 1) {
+          this.panX = 0;
+          this.panY = 0;
+        }
       }
     } else {
       // For iframe zooming
@@ -557,6 +483,72 @@ export class WorkComponent implements OnInit, OnDestroy {
         console.warn('Could not adjust iframe container:', e);
       }
     }, 100);
+  }
+
+  // Drag state
+  isDragging = false;
+  startX = 0;
+  startY = 0;
+  panX = 0;
+  panY = 0;
+
+  startDrag(event: MouseEvent | TouchEvent) {
+    // Only allow dragging if zoomed in
+    if ((this.isImage && this.zoomLevel <= 1) || (!this.isImage && this.iframeZoomLevel <= 1)) return;
+    
+    this.isDragging = true;
+    const container = event.currentTarget as HTMLElement;
+    
+    // Get initial position
+    if (window.MouseEvent && event instanceof MouseEvent) {
+      this.startX = event.clientX;
+      this.startY = event.clientY;
+    } else if (window.TouchEvent && event instanceof TouchEvent) {
+      this.startX = event.touches[0].clientX;
+      this.startY = event.touches[0].clientY;
+    }
+    
+    // Change cursor
+    container.style.cursor = 'grabbing';
+    container.style.userSelect = 'none'; // Prevent selection while dragging
+  }
+
+  stopDrag() {
+    this.isDragging = false;
+    const container = document.querySelector('.certificate-body') as HTMLElement;
+    if (container) {
+      container.style.cursor = this.zoomLevel > 1 ? 'grab' : 'default';
+      container.style.removeProperty('user-select');
+    }
+  }
+
+  onDrag(event: MouseEvent | TouchEvent) {
+    if (!this.isDragging) return;
+    
+    event.preventDefault();
+    
+    let x, y;
+    if (window.MouseEvent && event instanceof MouseEvent) {
+      x = event.clientX;
+      y = event.clientY;
+    } else if (window.TouchEvent && event instanceof TouchEvent) {
+      x = event.touches[0].clientX;
+      y = event.touches[0].clientY;
+    } else {
+      return;
+    }
+    
+    // Calculate delta
+    const deltaX = x - this.startX;
+    const deltaY = y - this.startY;
+    
+    // Update pan
+    this.panX += deltaX;
+    this.panY += deltaY;
+    
+    // Update start position for next frame
+    this.startX = x;
+    this.startY = y;
   }
 
   handleImageClick(event: MouseEvent) {

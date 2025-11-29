@@ -10,7 +10,7 @@
           (click)="viewCertificate($event, experience)"
           title="View Experience Letter"
         >
-          <i class="certificate-icon">📄</i>
+          <i class="fas fa-file-alt certificate-icon"></i>
           <span class="badge-text">View Letter</span>
         </div>
       </div>
@@ -23,7 +23,7 @@
         </li>
       </ul>
       <p *ngIf="experience.achievement" class="experience-achievement">
-        🏆 {{ experience.achievement }}
+        <i class="fas fa-trophy"></i> {{ experience.achievement }}
       </p>
     </div>
   </div>
@@ -45,7 +45,7 @@
           (click)="viewCertificate($event, project)"
           title="View Project Certificate"
         >
-          <i class="certificate-icon">🏆</i>
+          <i class="fas fa-award certificate-icon"></i>
           <span class="badge-text">Certificate</span>
         </div>
       </div>
@@ -55,7 +55,7 @@
         <li *ngFor="let skill of project.skills" class="skill">{{ skill }}</li>
       </ul>
       <p *ngIf="project.achievement" class="project-achievement">
-        🏆 {{ project.achievement }}
+        <i class="fas fa-trophy"></i> {{ project.achievement }}
       </p>
     </div>
   </div>
@@ -86,7 +86,7 @@
           title="Download"
           (click)="downloadCertificate()"
         >
-          <i>📥</i>
+          <i class="fas fa-download"></i>
         </button>
         <!-- Zoom controls - available for both images and documents -->
         <button
@@ -97,7 +97,7 @@
           "
           (click)="zoomOut()"
         >
-          <i>➖</i>
+          <i class="fas fa-minus"></i>
         </button>
         <span class="zoom-level"
           >{{
@@ -112,7 +112,7 @@
           "
           (click)="zoomIn()"
         >
-          <i>➕</i>
+          <i class="fas fa-plus"></i>
         </button>
         <!-- Reset button - available when zoomed -->
         <button
@@ -123,7 +123,7 @@
           title="Reset Zoom"
           (click)="resetZoom()"
         >
-          <i>🔄</i>
+          <i class="fas fa-redo"></i>
         </button>
         <!-- Fullscreen button -->
         <button
@@ -131,7 +131,7 @@
           [title]="isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'"
           (click)="toggleFullscreen()"
         >
-          <i>{{ isFullscreen ? "⏹" : "⛶" }}</i>
+          <i [ngClass]="isFullscreen ? 'fas fa-compress' : 'fas fa-expand'"></i>
         </button>
         <!-- Close button -->
         <button
@@ -139,19 +139,29 @@
           title="Close"
           (click)="closeCertificatePopup()"
         >
-          <i>✖</i>
+          <i class="fas fa-times"></i>
         </button>
       </div>
     </div>
 
     <!-- Improved certificate body with better scrolling support -->
-    <div class="certificate-body" [class.image-container]="isImage">
+    <div 
+      class="certificate-body" 
+      [class.image-container]="isImage"
+      (mousedown)="startDrag($event)"
+      (touchstart)="startDrag($event)"
+      (mouseup)="stopDrag()"
+      (touchend)="stopDrag()"
+      (mouseleave)="stopDrag()"
+      (mousemove)="onDrag($event)"
+      (touchmove)="onDrag($event)"
+    >
       <!-- Image content with zoom -->
       <img
         *ngIf="isImage && certificateUrl"
         [src]="certificateUrl"
         class="zoomable-image"
-        [style.transform]="'scale(' + zoomLevel + ')'"
+        [style.transform]="'translate3d(' + panX + 'px, ' + panY + 'px, 0) scale(' + zoomLevel + ')'"
         (click)="handleImageClick($event)"
         alt="Certificate"
       />
