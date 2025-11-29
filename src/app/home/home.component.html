@@ -3,20 +3,32 @@
     <img
       src="assets/profile.png"
       alt="Sayan Pramanik - Web and Software Developer"
+      loading="eager"
     />
   </div>
   <div class="profile-content">
     <h2>Sayan Pramanik</h2>
-    <h3>Full-Stack Developer | Server Management</h3>
+    <h3>ServiceNow Developer | Full-Stack Engineer</h3>
     <p>
-      A passionate and detail-oriented developer with a strong foundation in web
-      development, server management, and software engineering. I specialize in
-      building scalable applications, integrating APIs, and creating seamless user
-      experiences. With hands-on experience in Angular, TypeScript, Python, and
-      Linux, I thrive on solving complex problems and delivering innovative
-      solutions. My journey includes academic excellence, competitive coding
-      achievements, and impactful projects that showcase my technical expertise
-      and creativity.
+      I'm a developer who enjoys building tools that actually solve problems—whether
+      that's automating ServiceNow workflows with Virtual Agents and Flow Designer, 
+      or crafting real-time Angular dashboards that make complex data easy to navigate.
+      My background spans frontend work at NielsenIQ, full-stack builds at Innoart,
+      and ServiceNow platform development at CubeSimple. I've also built side projects
+      ranging from Discord music bots to stock portfolio trackers, mostly because
+      I like seeing ideas turn into working software. My approach is
+      straightforward: write clean code, test thoroughly, and keep improving based
+      on what breaks.
     </p>
+    <div class="profile-cta" style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+      <button (click)="scrollToSection('projects')" style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 0.875rem 1.75rem; border-radius: 0.5rem; font-weight: 600; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); transition: all 0.3s ease; border: none; cursor: pointer; font-family: inherit; font-size: 1rem;">
+        <span>View Projects</span>
+        <i class="fas fa-arrow-right" style="font-size: 0.875rem;"></i>
+      </button>
+      <button (click)="openContactPopup()" style="display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: #3b82f6; padding: 0.875rem 1.75rem; border-radius: 0.5rem; font-weight: 600; border: 2px solid #3b82f6; transition: all 0.3s ease; cursor: pointer; font-family: inherit; font-size: 1rem;">
+        <span>Get In Touch</span>
+        <i class="fas fa-envelope" style="font-size: 0.875rem;"></i>
+      </button>
+    </div>
   </div>
 </section>

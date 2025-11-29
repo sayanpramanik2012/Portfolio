@@ -10,7 +10,7 @@
         <span class="logo-text">Sayan Pramanik</span>
       </h1>
       <span class="logo-subtitle"
-        >Full-Stack Developer | Server Management</span
+        >ServiceNow Developer | Full-Stack Engineer</span
       >
     </div>
 
@@ -22,7 +22,7 @@
             (click)="closeMenu(); setActiveTab('home')"
             [class.active]="activeTab === 'home'"
           >
-            <i class="nav-icon">🏠</i>
+            <i class="fas fa-home nav-icon"></i>
             <span>Home</span>
           </a>
         </li>
@@ -32,7 +32,7 @@
             (click)="closeMenu(); setActiveTab('work')"
             [class.active]="activeTab === 'work'"
           >
-            <i class="nav-icon">💼</i>
+            <i class="fas fa-briefcase nav-icon"></i>
             <span>Work</span>
           </a>
         </li>
@@ -42,7 +42,7 @@
             (click)="closeMenu(); setActiveTab('about')"
             [class.active]="activeTab === 'about'"
           >
-            <i class="nav-icon">👤</i>
+            <i class="fas fa-user nav-icon"></i>
             <span>About</span>
           </a>
         </li>
@@ -52,7 +52,7 @@
             (click)="closeMenu(); setActiveTab('contact'); openContactPopup()"
             [class.active]="activeTab === 'contact'"
           >
-            <i class="nav-icon">📧</i>
+            <i class="fas fa-envelope nav-icon"></i>
             <span>Contact</span>
           </a>
         </li>
@@ -64,7 +64,7 @@
         <i class="theme-icon">🌙</i>
       </button> -->
       <button class="cta-button" (click)="downloadResume()">
-        <i class="download-icon">📄</i>
+        <i class="fas fa-download download-icon"></i>
         <span>Resume</span>
       </button>
     </div>
@@ -80,7 +80,7 @@
 <main>
   <section id="home" class="section">
     <!-- Home Section -->
-    <app-home></app-home>
+    <app-home (openContact)="openContactPopup()"></app-home>
   </section>
 
   <section id="work" class="section">
@@ -142,7 +142,7 @@
               class="social-link linkedin"
               title="LinkedIn"
             >
-              <i class="social-icon">💼</i>
+              <i class="fab fa-linkedin social-icon"></i>
               <span>LinkedIn</span>
             </a>
             <a
@@ -151,7 +151,7 @@
               class="social-link github"
               title="GitHub"
             >
-              <i class="social-icon">📁</i>
+              <i class="fab fa-github social-icon"></i>
               <span>GitHub</span>
             </a>
             <a
@@ -159,7 +159,7 @@
               class="social-link contact"
               title="Contact Me"
             >
-              <i class="social-icon">📧</i>
+              <i class="fas fa-envelope social-icon"></i>
               <span>Contact</span>
             </a>
           </div>
@@ -174,7 +174,7 @@
           <p>&copy; 2025 Sayan Pramanik. All rights reserved.</p>
         </div>
         <div class="footer-meta">
-          <span class="footer-location">📍 Chennai, Tamil Nadu, India</span>
+          <span class="footer-location"><i class="fas fa-map-marker-alt"></i> Chennai, Tamil Nadu, India</span>
           <span class="footer-status">
             <span class="status-indicator"></span>
             Available for opportunities
@@ -191,7 +191,7 @@
     (click)="scrollToTop()"
     title="Back to top"
   >
-    <i class="scroll-icon">↑</i>
+    <i class="fas fa-chevron-up scroll-icon"></i>
   </button>
 </footer>
 
