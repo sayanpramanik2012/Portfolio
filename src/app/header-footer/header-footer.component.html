@@ -92,12 +92,14 @@
     <!-- About Section -->
     <app-about></app-about>
   </section>
-
-  <!-- <section id="contact" class="section"> -->
-  <!-- Contact Section -->
-  <!-- <app-contact></app-contact> -->
-  <!-- </section> -->
 </main>
+
+<!-- Scroll Indicator (proper DOM element, not pseudo-element) -->
+<div class="scroll-indicator" [class.hidden]="isScrolledToBottom">
+  <div class="scroll-mouse">
+    <div class="scroll-dot"></div>
+  </div>
+</div>
 
 <footer>
   <div class="footer-container">

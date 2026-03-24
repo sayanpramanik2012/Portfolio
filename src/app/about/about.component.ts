@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { DatapullerService } from '../service/datapuller.service';
 import { HttpClient } from '@angular/common/http';
 @Component({
@@ -7,11 +8,14 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent implements OnInit, AfterViewInit, OnDestroy {
   skills: any[] = [];
   educations: any[] = [];
   achievements: any[] = [];
   selectedSkill: any = null;
+  skillsVisible = false;
+  private observer: IntersectionObserver | null = null;
+  private isBrowser: boolean;
 
   leetcodeUsername = 'sayanpramanik2012'; // Replace with your LeetCode username
   URLleetcode = 'https://leetcode.projoracle1.duckdns.org'; // || 'https://alfa-leetcode-api.onrender.com'
@@ -37,14 +41,64 @@ export class AboutComponent implements OnInit {
 
   constructor(
     private Datapullerservice: DatapullerService,
-    private http: HttpClient
-  ) {}
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnInit(): void {
     this.skills = this.Datapullerservice.getSkills();
     this.educations = this.Datapullerservice.getEducations();
     this.achievements = this.Datapullerservice.getAchievements();
     this.loadLeetCodeData();
+  }
+
+  ngAfterViewInit(): void {
+    if (this.isBrowser) {
+      this.setupSkillsObserver();
+      this.setupRevealObserver();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+  private setupSkillsObserver(): void {
+    const skillsSection = document.getElementById('skills');
+    if (!skillsSection) return;
+
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            this.skillsVisible = true;
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    this.observer.observe(skillsSection);
+  }
+
+  private setupRevealObserver(): void {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll('.section-reveal').forEach((el) => {
+      revealObserver.observe(el);
+    });
   }
   toggleAccordion(achievement: any) {
     achievement.isOpen = !achievement.isOpen;

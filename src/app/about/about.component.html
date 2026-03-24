@@ -1,25 +1,35 @@
-<section id="education" class="education">
-  <h2 style="margin-bottom: 10px">Education</h2>
+<section id="education" class="education section-reveal">
+  <div class="section-header">
+    <span class="section-tag"><i class="fas fa-graduation-cap"></i> Background</span>
+    <h2>Education</h2>
+    <div class="section-line"></div>
+  </div>
   <div class="timeline">
-    <div *ngFor="let edu of educations" class="timeline-item">
+    <div *ngFor="let edu of educations; let i = index" class="timeline-item" [style.animationDelay]="(i * 0.15) + 's'">
+      <div class="timeline-marker"></div>
       <div class="timeline-content">
         <h3>{{ edu.degree }}</h3>
         <p>
           <strong>{{ edu.institution }}</strong>
         </p>
-        <p>{{ edu.duration }}</p>
-        <p class="percentage">Score: {{ edu.percentage }}</p>
+        <p class="duration-text"><i class="far fa-calendar-alt"></i> {{ edu.duration }}</p>
+        <p class="percentage"><i class="fas fa-chart-line"></i> Score: {{ edu.percentage }}</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="skills" class="skills">
-  <h2 style="margin-bottom: 10px">Skills</h2>
+<section id="skills" class="skills section-reveal">
+  <div class="section-header">
+    <span class="section-tag"><i class="fas fa-code"></i> Expertise</span>
+    <h2>Skills & Technologies</h2>
+    <div class="section-line"></div>
+  </div>
   <div class="skills-grid">
     <div
-      *ngFor="let skill of skills"
+      *ngFor="let skill of skills; let i = index"
       class="skill-item"
+      [style.animationDelay]="(i * 0.05) + 's'"
       (click)="openSkillPopup(skill)"
     >
       <div class="skill-icon">
@@ -28,92 +38,50 @@
       <div class="skill-info">
         <h3>{{ skill.name }}</h3>
         <div class="skill-progress">
-          <div class="progress-bar" [style.width]="skill.progress + '%'"></div>
+          <div class="progress-bar" [class.animated]="skillsVisible" [style.--target-width]="skill.progress + '%'"></div>
         </div>
+        <span class="skill-percent">{{ skill.progress }}%</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Skill Popup -->
-<div class="skill-popup" *ngIf="selectedSkill">
-  <div class="popup-content">
-    <button class="close-btn" (click)="closeSkillPopup()">&times;</button>
+<div class="skill-popup" *ngIf="selectedSkill" (click)="closeSkillPopup()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeSkillPopup()">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="popup-icon">
+      <i [class]="selectedSkill.icon"></i>
+    </div>
     <h3>{{ selectedSkill.name }}</h3>
+    <div class="popup-progress-bar">
+      <div class="popup-progress-fill" [style.width]="selectedSkill.progress + '%'"></div>
+    </div>
     <p>{{ selectedSkill.details }}</p>
   </div>
 </div>
 
-<section id="achievements" class="achievements">
-  <h2 style="margin-bottom: 10px">Achievements</h2>
+<section id="achievements" class="achievements section-reveal">
+  <div class="section-header">
+    <span class="section-tag"><i class="fas fa-trophy"></i> Recognition</span>
+    <h2>Achievements</h2>
+    <div class="section-line"></div>
+  </div>
   <div class="achievements-grid">
-    <div *ngFor="let achievement of achievements" class="achievement-item">
+    <div *ngFor="let achievement of achievements; let i = index" class="achievement-item" [style.animationDelay]="(i * 0.15) + 's'">
+      <div class="achievement-icon">
+        <i class="fas fa-medal"></i>
+      </div>
       <h3>{{ achievement.name }}</h3>
-      <p>{{ achievement.duration }}</p>
+      <p class="duration-text"><i class="far fa-calendar-alt"></i> {{ achievement.duration }}</p>
       <p class="achievement-rank">{{ achievement.details }}</p>
     </div>
   </div>
 </section>
 
+<!-- Commenting out LeetCode section as before -->
 <!-- <section id="leetcode" class="leetcode-section">
-  <div class="leetcode-header">
-    <h2>LeetCode Stats</h2>
-    <button
-      class="refresh-btn"
-      (click)="refreshLeetCodeData()"
-      [disabled]="isLoadingLeetCode"
-    >
-      <span class="icon" [class.spin]="isLoadingLeetCode">&#8635;</span>
-    </button>
-  </div>
-
-  <div
-    class="leetcode-content"
-    *ngIf="!isLoadingLeetCode && leetcodeData; else loading"
-  >
-    <div class="leetcode-cards">
-      <div class="leetcode-card solved">
-        <span class="card-title">Total Solved</span>
-        <span class="card-value">{{ leetcodeData.totalSolved || 0 }}</span>
-      </div>
-      <div class="leetcode-card ranking">
-        <span class="card-title">Global Ranking</span>
-        <span class="card-value">{{ leetcodeData.ranking || "N/A" }}</span>
-      </div>
-    </div>
-    <div class="leetcode-calendar-title">Submission Calendar</div>
-    <div class="leetcode-calendar">
-      <div class="calendar-grid">
-        <div
-          *ngFor="let day of leetcodeCalendar"
-          class="calendar-day"
-          [ngClass]="getActivityLevel(day.count)"
-          [title]="day.date + ': ' + day.count + ' submissions'"
-        ></div>
-      </div>
-      <div class="calendar-legend">
-        <span>Less</span>
-        <div class="legend-bar">
-          <span class="calendar-day level-0"></span>
-          <span class="calendar-day level-1"></span>
-          <span class="calendar-day level-2"></span>
-          <span class="calendar-day level-3"></span>
-          <span class="calendar-day level-4"></span>
-        </div>
-        <span>More</span>
-      </div>
-    </div>
-  </div>
-
-  <ng-template #loading>
-    <div class="leetcode-loading">
-      <span class="icon spin">&#8635;</span>
-      <span>Loading LeetCode data...</span>
-    </div>
-  </ng-template>
-  <div class="leetcode-error" *ngIf="leetcodeError">
-    <span class="icon">&#9888;</span>
-    <span>{{ leetcodeError }}</span>
-    <button class="retry-btn" (click)="refreshLeetCodeData()">Retry</button>
-  </div>
+  ... existing leetcode code ...
 </section> -->

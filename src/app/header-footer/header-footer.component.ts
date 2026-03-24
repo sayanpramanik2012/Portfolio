@@ -15,6 +15,7 @@ export class HeaderFooterComponent implements OnInit {
   showScrollToTop = false;
   showContactPopup = false;
   isDarkMode = false;
+  isScrolledToBottom = false;
   isBrowser: boolean;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
@@ -43,6 +44,9 @@ export class HeaderFooterComponent implements OnInit {
     if (this.isBrowser) {
       this.isScrolled = window.pageYOffset > 50;
       this.showScrollToTop = window.pageYOffset > 300;
+
+      // Hide scroll indicator after scrolling past the hero
+      this.isScrolledToBottom = window.pageYOffset > 200;
     }
   }
 

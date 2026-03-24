@@ -40,28 +40,6 @@ export class AppComponent implements OnInit {
    */
   @HostListener('window:scroll', [])
   checkScrollPosition(): void {
-    // Only execute in browser environment
-    if (!this.isBrowser) {
-      return;
-    }
-
-    // Get document height and current scroll position
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-    const scrollTop =
-      window.scrollY ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
-
-    // Check if user has scrolled to bottom (with a small threshold)
-    const scrolledToBottom = scrollTop + windowHeight >= documentHeight - 50;
-
-    // Use pure DOM API for compatibility to modify the ::after pseudo-element
-    if (scrolledToBottom) {
-      document.body.classList.add('hide-scroll-indicator');
-    } else {
-      document.body.classList.remove('hide-scroll-indicator');
-    }
+    // Scroll indicator is now handled by the header-footer component
   }
 }

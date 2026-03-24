@@ -1,7 +1,11 @@
-<section id="experiences" class="experiences">
-  <h2 style="margin-bottom: 10px">Experiences</h2>
+<section id="experiences" class="experiences section-reveal">
+  <div class="section-header">
+    <span class="section-tag"><i class="fas fa-briefcase"></i> Career</span>
+    <h2>Experience</h2>
+    <div class="section-line"></div>
+  </div>
   <div class="experiences-grid">
-    <div *ngFor="let experience of experiences" class="experience-card">
+    <div *ngFor="let experience of experiences; let i = index" class="experience-card" [style.animationDelay]="(i * 0.15) + 's'">
       <div class="experience-header">
         <h3 class="company-name">{{ experience.company }}</h3>
         <div
@@ -15,7 +19,7 @@
         </div>
       </div>
       <h4 class="experience-title">{{ experience.title }}</h4>
-      <p class="experience-duration">{{ experience.duration }}</p>
+      <p class="experience-duration"><i class="far fa-calendar-alt"></i> {{ experience.duration }}</p>
       <p class="experience-description">{{ experience.description }}</p>
       <ul class="experience-skills">
         <li *ngFor="let skill of experience.skills" class="skill">
@@ -29,12 +33,17 @@
   </div>
 </section>
 
-<section id="projects" class="projects">
-  <h2 style="margin-bottom: 10px">Projects</h2>
+<section id="projects" class="projects section-reveal">
+  <div class="section-header">
+    <span class="section-tag"><i class="fas fa-rocket"></i> Portfolio</span>
+    <h2>Projects</h2>
+    <div class="section-line"></div>
+  </div>
   <div class="projects-grid">
     <div
-      *ngFor="let project of projects"
+      *ngFor="let project of projects; let i = index"
       class="project-card"
+      [style.animationDelay]="(i * 0.1) + 's'"
       (click)="handleProjectClick(project)"
     >
       <div class="project-header">
@@ -49,7 +58,7 @@
           <span class="badge-text">Certificate</span>
         </div>
       </div>
-      <p class="project-duration">{{ project.duration }}</p>
+      <p class="project-duration"><i class="far fa-calendar-alt"></i> {{ project.duration }}</p>
       <p class="project-description">{{ project.description }}</p>
       <ul class="project-skills">
         <li *ngFor="let skill of project.skills" class="skill">{{ skill }}</li>
@@ -57,13 +66,20 @@
       <p *ngIf="project.achievement" class="project-achievement">
         <i class="fas fa-trophy"></i> {{ project.achievement }}
       </p>
+      <div class="project-link-indicator" *ngIf="project.link">
+        <i class="fas fa-external-link-alt"></i>
+        <span>View Project</span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Popup for Empty Link -->
-<div class="popup" *ngIf="showPopup">
-  <div class="popup-content">
+<div class="popup" *ngIf="showPopup" (click)="closePopup()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+    <div class="popup-icon-wrap">
+      <i class="fas fa-link"></i>
+    </div>
     <p>This project does not have a link available.</p>
     <button (click)="closePopup()">Close</button>
   </div>
@@ -88,7 +104,7 @@
         >
           <i class="fas fa-download"></i>
         </button>
-        <!-- Zoom controls - available for both images and documents -->
+        <!-- Zoom controls -->
         <button
           class="control-btn zoom-btn"
           title="Zoom Out"
@@ -114,7 +130,7 @@
         >
           <i class="fas fa-plus"></i>
         </button>
-        <!-- Reset button - available when zoomed -->
+        <!-- Reset button -->
         <button
           *ngIf="
             (isImage && zoomLevel !== 1) || (!isImage && iframeZoomLevel !== 1)
@@ -144,7 +160,6 @@
       </div>
     </div>
 
-    <!-- Improved certificate body with better scrolling support -->
     <div 
       class="certificate-body" 
       [class.image-container]="isImage"
@@ -156,7 +171,6 @@
       (mousemove)="onDrag($event)"
       (touchmove)="onDrag($event)"
     >
-      <!-- Image content with zoom -->
       <img
         *ngIf="isImage && certificateUrl"
         [src]="certificateUrl"
@@ -166,7 +180,6 @@
         alt="Certificate"
       />
 
-      <!-- Iframe content with zoom -->
       <div *ngIf="!isImage && certificateUrl" class="iframe-container">
         <iframe
           [src]="certificateUrl"

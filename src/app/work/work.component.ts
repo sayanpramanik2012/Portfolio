@@ -5,6 +5,7 @@ import {
   HostListener,
   Inject,
   PLATFORM_ID,
+  AfterViewInit,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { DatapullerService } from '../service/datapuller.service';
@@ -16,7 +17,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   templateUrl: './work.component.html',
   styleUrl: './work.component.scss',
 })
-export class WorkComponent implements OnInit, OnDestroy {
+export class WorkComponent implements OnInit, OnDestroy, AfterViewInit {
   projects: any[] = [];
   experiences: any[] = [];
 
@@ -78,6 +79,12 @@ export class WorkComponent implements OnInit, OnDestroy {
     }
   }
 
+  ngAfterViewInit(): void {
+    if (this.isBrowser) {
+      this.setupRevealObserver();
+    }
+  }
+
   ngOnDestroy(): void {
     // Only remove DOM event listeners in browser environment
     if (this.isBrowser) {
@@ -104,6 +111,23 @@ export class WorkComponent implements OnInit, OnDestroy {
         this.exitFullscreen();
       }
     }
+  }
+
+  private setupRevealObserver(): void {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll('.section-reveal').forEach((el) => {
+      revealObserver.observe(el);
+    });
   }
 
   /**
@@ -783,7 +807,7 @@ export class WorkComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:keydown.escape', ['$event'])
-  handleEscapeKey(event: KeyboardEvent) {
+  handleEscapeKey(event: Event) {
     if (this.isBrowser && this.isFullscreen) {
       this.exitFullscreen();
     }

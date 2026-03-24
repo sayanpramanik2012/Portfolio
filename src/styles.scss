@@ -108,53 +108,55 @@ body {
 }
 
 /* ============================================
-   SCROLL INDICATOR
+   SCROLL INDICATOR (DOM element)
    ============================================ */
-body.hide-scroll-indicator::after {
-  display: none;
-}
-
-body::after {
-  content: "";
+.scroll-indicator {
   position: fixed;
   bottom: 30px;
   left: 50%;
-  width: 24px;
-  height: 40px;
-  border: 2px solid $color-accent;
-  border-radius: 20px;
   transform: translateX(-50%);
   z-index: 10;
   pointer-events: none;
-  
+  transition: opacity 0.4s ease;
+
   @include mobile {
     display: none;
   }
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    width: 4px;
-    height: 8px;
-    background: $color-accent;
-    border-radius: 2px;
-    transform: translateX(-50%);
-    animation: scrollIndicator 2s infinite;
+  &.hidden {
+    opacity: 0;
+  }
+
+  .scroll-mouse {
+    width: 24px;
+    height: 40px;
+    border: 2px solid $color-accent;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .scroll-dot {
+      width: 4px;
+      height: 8px;
+      background: $color-accent;
+      border-radius: 2px;
+      margin-top: 6px;
+      animation: scrollIndicator 2s infinite;
+    }
   }
 }
 
 @keyframes scrollIndicator {
   0% {
-    transform: translate(-50%, 0);
+    transform: translateY(0);
     opacity: 0;
   }
-  50% {
+  40% {
     opacity: 1;
   }
   100% {
-    transform: translate(-50%, 12px);
+    transform: translateY(14px);
     opacity: 0;
   }
 }
@@ -447,17 +449,16 @@ main {
 }
 
 .section {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 5rem 2rem;
+  padding: 0;
   text-align: center;
+  width: 100%;
+  overflow-x: hidden;
 
   @include mobile {
-    padding: 3rem 1.25rem;
-    min-height: auto;
+    padding: 0 1rem;
   }
 
   h2 {
@@ -595,7 +596,7 @@ main {
     align-items: center;
     gap: 5rem;
     text-align: left;
-    padding: 5rem 2rem;
+    padding: 4rem 2rem;
 
     .profile-image {
       flex-shrink: 0;
@@ -651,7 +652,7 @@ main {
   // Extra large screens
   @include large-desktop {
     gap: 6rem;
-    padding: 6rem 3rem;
+    padding: 4rem 3rem;
 
     .profile-image img {
       width: 380px;
@@ -748,7 +749,7 @@ main {
    EDUCATION SECTION
    ============================================ */
 .education {
-  padding: 5rem 2rem;
+  padding: 4rem 2rem;
   background-color: $color-background-alt;
   width: 100%;
 
@@ -834,7 +835,7 @@ main {
    SKILLS SECTION
    ============================================ */
 .skills {
-  padding: 5rem 2rem;
+  padding: 4rem 2rem;
   background-color: $color-background;
   width: 100%;
 
@@ -925,7 +926,7 @@ main {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -934,12 +935,12 @@ main {
 
   .popup-content {
     background: white;
-    padding: 2rem;
-    border-radius: 1rem;
+    padding: 2.5rem;
+    border-radius: 1.25rem;
     max-width: 500px;
     width: 90%;
     position: relative;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
     animation: scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     @include mobile {
@@ -949,30 +950,69 @@ main {
 
     .close-btn {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 36px;
+      height: 36px;
+      background: rgba(0, 0, 0, 0.06);
       border: none;
-      font-size: 1.75rem;
+      border-radius: 50%;
       cursor: pointer;
       color: $color-text-light;
-      transition: color 0.2s ease;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
 
       &:hover {
+        background: rgba($color-danger, 0.1);
         color: $color-danger;
+        transform: rotate(90deg);
+      }
+    }
+
+    .popup-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, rgba($color-accent, 0.1), rgba($color-accent, 0.05));
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+
+      i {
+        font-size: 2rem;
+        color: $color-accent;
       }
     }
 
     h3 {
       color: $color-primary;
       font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .popup-progress-bar {
+      height: 6px;
+      background: $color-background-alt;
+      border-radius: 3px;
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+
+      .popup-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, $color-accent, $color-accent-light);
+        border-radius: 3px;
+        transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
     }
 
     p {
       color: $color-text-light;
-      line-height: 1.7;
+      line-height: 1.8;
       font-size: 1rem;
     }
   }
@@ -993,7 +1033,7 @@ main {
    ACHIEVEMENTS SECTION
    ============================================ */
 .achievements {
-  padding: 5rem 2rem;
+  padding: 4rem 2rem;
   background-color: $color-background-alt;
   width: 100%;
 
@@ -1066,7 +1106,7 @@ main {
    EXPERIENCES SECTION
    ============================================ */
 .experiences {
-  padding: 5rem 2rem;
+  padding: 4rem 2rem;
   background-color: $color-background;
   width: 100%;
 
@@ -1182,7 +1222,7 @@ main {
    PROJECTS SECTION
    ============================================ */
 .projects {
-  padding: 5rem 2rem;
+  padding: 4rem 2rem;
   background-color: $color-background-alt;
   width: 100%;
 
@@ -1578,17 +1618,25 @@ main {
 
     .close-btn {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 36px;
+      height: 36px;
+      background: rgba(0, 0, 0, 0.06);
       border: none;
-      font-size: 1.75rem;
+      border-radius: 50%;
       cursor: pointer;
       color: $color-text-light;
-      transition: color 0.2s ease;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
 
       &:hover {
+        background: rgba($color-danger, 0.1);
         color: $color-danger;
+        transform: rotate(90deg);
       }
     }
 
@@ -1601,6 +1649,9 @@ main {
     }
 
     form {
+      text-align: left;
+      width: 100%;
+
       .form-group {
         margin-bottom: 1.25rem;
 
@@ -1615,6 +1666,7 @@ main {
         input,
         textarea {
           width: 100%;
+          box-sizing: border-box;
           padding: 0.875rem;
           border: 1px solid $color-border;
           border-radius: 0.5rem;
@@ -1637,6 +1689,7 @@ main {
 
       .submit-btn {
         width: 100%;
+        box-sizing: border-box;
         background: linear-gradient(135deg, $color-accent, $color-accent-dark);
         color: white;
         border: none;
@@ -2522,8 +2575,10 @@ body.dark-theme {
 
       .close-btn {
         color: $dark-color-text-light;
+        background: rgba(255, 255, 255, 0.05);
 
         &:hover {
+          background: rgba($dark-color-danger, 0.1);
           color: $dark-color-danger;
         }
       }
@@ -2638,10 +2693,10 @@ body.dark-theme {
   }
 
   /* Scroll Indicator */
-  body::after {
+  .scroll-indicator .scroll-mouse {
     border-color: $dark-color-accent;
 
-    &::before {
+    .scroll-dot {
       background: $dark-color-accent;
     }
   }
@@ -2666,3 +2721,422 @@ body.dark-theme {
   }
 }
 
+/* ============================================
+   HERO SECTION ENHANCEMENTS
+   ============================================ */
+.profile {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+
+  .particle {
+    position: absolute;
+    background: $color-accent;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: floatParticle linear infinite;
+  }
+}
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 0.15; }
+  90% { opacity: 0.15; }
+  100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+}
+
+.hero-gradient-mesh {
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 80%;
+  height: 150%;
+  background: radial-gradient(ellipse at center, rgba($color-accent, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.profile > *:not(.hero-particles):not(.hero-gradient-mesh) {
+  position: relative;
+  z-index: 1;
+}
+
+.greeting-line {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+
+  .greeting-dash {
+    width: 32px;
+    height: 2px;
+    background: $color-accent;
+  }
+
+  .greeting-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: $color-accent;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  @include mobile {
+    justify-content: center;
+  }
+}
+
+.typed-cursor {
+  color: $color-accent;
+  animation: blink 1s step-end infinite;
+  font-weight: 300;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.image-ring {
+  position: relative;
+  display: inline-block;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 2px dashed rgba($color-accent, 0.3);
+    border-radius: 50%;
+    animation: spin 20s linear infinite;
+  }
+}
+
+.image-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: $color-success;
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: $color-success;
+    border-radius: 50%;
+    animation: statusPulse 2s infinite;
+  }
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid $color-border;
+
+  @include mobile {
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    .stat-number {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: $color-primary;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .stat-label {
+      font-size: 0.8125rem;
+      color: $color-text-lighter;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: $color-border;
+  }
+}
+
+/* ============================================
+   SECTION HEADERS & REVEAL ANIMATIONS
+   ============================================ */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba($color-accent, 0.08);
+    color: $color-accent;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+
+    i {
+      font-size: 0.75rem;
+    }
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .section-line {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, $color-accent, $color-accent-light);
+    border-radius: 2px;
+    margin: 0 auto;
+  }
+}
+
+.section-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   SKILL PERCENT & ANIMATED PROGRESS
+   ============================================ */
+.skill-percent {
+  font-size: 0.75rem;
+  color: $color-text-lighter;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.skill-progress .progress-bar {
+  width: 0 !important;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.animated {
+    width: var(--target-width) !important;
+  }
+}
+
+/* ============================================
+   PROJECT LINK INDICATOR
+   ============================================ */
+.project-link-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $color-accent;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid $color-border;
+  transition: gap 0.3s ease;
+
+  .project-card:hover & {
+    gap: 0.75rem;
+  }
+}
+
+/* ============================================
+   ACHIEVEMENT ICON
+   ============================================ */
+.achievement-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, rgba($color-success, 0.12), rgba($color-success, 0.04));
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+
+  i {
+    font-size: 1.25rem;
+    color: $color-success;
+  }
+}
+
+/* ============================================
+   TIMELINE MARKER
+   ============================================ */
+.timeline-marker {
+  width: 12px;
+  height: 12px;
+  background: $color-accent;
+  border-radius: 50%;
+  position: absolute;
+  top: 2rem;
+  left: -6px;
+  box-shadow: 0 0 0 4px rgba($color-accent, 0.2);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 2px solid rgba($color-accent, 0.2);
+}
+
+.duration-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  i {
+    color: $color-accent;
+    font-size: 0.8125rem;
+  }
+}
+
+/* ============================================
+   POPUP ICON WRAP
+   ============================================ */
+.popup-icon-wrap {
+  width: 56px;
+  height: 56px;
+  background: rgba($color-accent, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+
+  i {
+    font-size: 1.5rem;
+    color: $color-accent;
+  }
+}
+
+/* ============================================
+   DARK MODE - NEW ELEMENTS
+   ============================================ */
+body.dark-theme {
+  .greeting-line .greeting-text {
+    color: $dark-color-accent;
+  }
+
+  .greeting-line .greeting-dash {
+    background: $dark-color-accent;
+  }
+
+  .typed-cursor {
+    color: $dark-color-accent;
+  }
+
+  .hero-particles .particle {
+    background: $dark-color-accent;
+    opacity: 0.1;
+  }
+
+  .hero-gradient-mesh {
+    background: radial-gradient(ellipse at center, rgba($dark-color-accent, 0.08) 0%, transparent 70%);
+  }
+
+  .image-ring::before {
+    border-color: rgba($dark-color-accent, 0.3);
+  }
+
+  .image-status {
+    color: $dark-color-success;
+    .status-dot { background: $dark-color-success; }
+  }
+
+  .hero-stats {
+    border-top-color: $dark-color-border;
+    .stat-number { color: $dark-color-text; }
+    .stat-label { color: $dark-color-text-lighter; }
+    .stat-divider { background: $dark-color-border; }
+  }
+
+  .section-header {
+    .section-tag {
+      background: rgba($dark-color-accent, 0.12);
+      color: $dark-color-accent;
+    }
+    .section-line {
+      background: linear-gradient(90deg, $dark-color-accent, $dark-color-accent-light);
+    }
+  }
+
+  .skill-percent {
+    color: $dark-color-text-lighter;
+  }
+
+  .project-link-indicator {
+    color: $dark-color-accent;
+    border-top-color: $dark-color-border;
+  }
+
+  .achievement-icon {
+    background: linear-gradient(135deg, rgba($dark-color-success, 0.15), rgba($dark-color-success, 0.05));
+    i { color: $dark-color-success; }
+  }
+
+  .timeline-marker {
+    background: $dark-color-accent;
+    box-shadow: 0 0 0 4px rgba($dark-color-accent, 0.2);
+  }
+
+  .timeline-item {
+    border-left-color: rgba($dark-color-accent, 0.2);
+  }
+
+  .duration-text i {
+    color: $dark-color-accent;
+  }
+
+  .popup-icon-wrap {
+    background: rgba($dark-color-accent, 0.15);
+    i { color: $dark-color-accent; }
+  }
+
+  .popup-icon {
+    background: linear-gradient(135deg, rgba($dark-color-accent, 0.15), rgba($dark-color-accent, 0.05)) !important;
+    i { color: $dark-color-accent !important; }
+  }
+
+  .popup-progress-bar {
+    background: rgba(51, 65, 85, 0.5) !important;
+    .popup-progress-fill {
+      background: linear-gradient(90deg, $dark-color-accent, $dark-color-accent-light) !important;
+    }
+  }
+}

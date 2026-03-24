@@ -1,14 +1,35 @@
 <section id="profile" class="profile">
+  <!-- Animated background particles -->
+  <div class="hero-particles">
+    <div class="particle" *ngFor="let p of particles" [style.left]="p.x + '%'" [style.top]="p.y + '%'" [style.animationDuration]="p.duration + 's'" [style.animationDelay]="p.delay + 's'" [style.width]="p.size + 'px'" [style.height]="p.size + 'px'"></div>
+  </div>
+
+  <!-- Gradient mesh background -->
+  <div class="hero-gradient-mesh"></div>
+
   <div class="profile-image">
-    <img
-      src="assets/profile.png"
-      alt="Sayan Pramanik - Web and Software Developer"
-      loading="eager"
-    />
+    <div class="image-ring">
+      <img
+        src="assets/profile.png"
+        alt="Sayan Pramanik - Web and Software Developer"
+        loading="eager"
+      />
+    </div>
+    <div class="image-status">
+      <span class="status-dot"></span>
+      <span>Available for hire</span>
+    </div>
   </div>
   <div class="profile-content">
+    <div class="greeting-line">
+      <span class="greeting-dash"></span>
+      <span class="greeting-text">Hello, I'm</span>
+    </div>
     <h2>Sayan Pramanik</h2>
-    <h3>ServiceNow Developer | Full-Stack Engineer</h3>
+    <h3>
+      <span class="typed-text">{{ displayedText }}</span>
+      <span class="typed-cursor">|</span>
+    </h3>
     <p>
       I'm a developer who enjoys building tools that actually solve problems—whether
       that's automating ServiceNow workflows with Virtual Agents and Flow Designer, 
@@ -16,19 +37,33 @@
       My background spans frontend work at NielsenIQ, full-stack builds at Innoart,
       and ServiceNow platform development at CubeSimple. I've also built side projects
       ranging from Discord music bots to stock portfolio trackers, mostly because
-      I like seeing ideas turn into working software. My approach is
-      straightforward: write clean code, test thoroughly, and keep improving based
-      on what breaks.
+      I like seeing ideas turn into working software.
     </p>
-    <div class="profile-cta" style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
-      <button (click)="scrollToSection('projects')" style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 0.875rem 1.75rem; border-radius: 0.5rem; font-weight: 600; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); transition: all 0.3s ease; border: none; cursor: pointer; font-family: inherit; font-size: 1rem;">
+    <div class="profile-cta">
+      <button class="btn-primary" (click)="scrollToSection('projects')">
         <span>View Projects</span>
-        <i class="fas fa-arrow-right" style="font-size: 0.875rem;"></i>
+        <i class="fas fa-arrow-right"></i>
       </button>
-      <button (click)="openContactPopup()" style="display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: #3b82f6; padding: 0.875rem 1.75rem; border-radius: 0.5rem; font-weight: 600; border: 2px solid #3b82f6; transition: all 0.3s ease; cursor: pointer; font-family: inherit; font-size: 1rem;">
+      <button class="btn-outline" (click)="openContactPopup()">
         <span>Get In Touch</span>
-        <i class="fas fa-envelope" style="font-size: 0.875rem;"></i>
+        <i class="fas fa-envelope"></i>
       </button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">3+</span>
+        <span class="stat-label">Years Exp.</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">8+</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-number">24+</span>
+        <span class="stat-label">Technologies</span>
+      </div>
     </div>
   </div>
 </section>
