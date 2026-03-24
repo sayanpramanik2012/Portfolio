@@ -78,6 +78,15 @@ $dark-color-border: #334155;
   box-sizing: border-box;
 }
 
+app-home,
+app-work,
+app-about,
+app-contact,
+app-header-footer {
+  display: block;
+  width: 100%;
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 16px;
@@ -455,7 +464,6 @@ main {
   padding: 0;
   text-align: center;
   width: 100%;
-  overflow-x: hidden;
 
   @include mobile {
     padding: 0 1rem;
@@ -2725,7 +2733,6 @@ body.dark-theme {
    HERO SECTION ENHANCEMENTS
    ============================================ */
 .profile {
-  position: relative;
   overflow: hidden;
 }
 
