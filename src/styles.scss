@@ -1868,14 +1868,20 @@ footer {
   }
 }
 
-/* 1440px — common laptop / monitor size */
+/*
+ * 1440px+ — viewport-relative max-width using clamp().
+ * 90vw means content always fills ~90% of the viewport regardless
+ * of browser zoom level (50% zoom doubles the CSS viewport, so
+ * fixed-pixel values would leave huge dead whitespace).
+ * The clamp floor (1296px) prevents it shrinking below 1440px,
+ * the ceiling (3600px) caps ultra-wide / extreme-zoom scenarios.
+ */
 @media (min-width: 1440px) {
-  :root { --max: 1360px; }
-  .timeline { max-width: 820px; }
+  :root { --max: clamp(1296px, 90vw, 3600px); }
+  .timeline { max-width: clamp(720px, 50vw, 1000px); }
 }
 
 @media (min-width: 1600px) {
-  :root { --max: 1520px; }
   .image-ring {
     width: 360px;
     height: 360px;
@@ -1886,12 +1892,10 @@ footer {
   .profile {
     gap: 80px;
   }
-  .timeline { max-width: 920px; }
 }
 
 /* 1920px — 1080p full HD and QHD (2560 × 1440) */
 @media (min-width: 1920px) {
-  :root { --max: 1760px; }
   .image-ring {
     width: 400px;
     height: 400px;
@@ -1912,13 +1916,6 @@ footer {
     margin-top: 48px;
     padding: 24px 40px;
   }
-  .timeline { max-width: 1100px; }
-}
-
-/* 2560px — QHD / 2K */
-@media (min-width: 2560px) {
-  :root { --max: 2100px; }
-  .timeline { max-width: 1400px; }
 }
 
 /* ─── 25. UTILITIES ─── */
