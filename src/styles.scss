@@ -1868,7 +1868,14 @@ footer {
   }
 }
 
+/* 1440px — common laptop / monitor size */
+@media (min-width: 1440px) {
+  :root { --max: 1360px; }
+  .timeline { max-width: 820px; }
+}
+
 @media (min-width: 1600px) {
+  :root { --max: 1520px; }
   .image-ring {
     width: 360px;
     height: 360px;
@@ -1879,10 +1886,12 @@ footer {
   .profile {
     gap: 80px;
   }
+  .timeline { max-width: 920px; }
 }
 
 /* 1920px — 1080p full HD and QHD (2560 × 1440) */
 @media (min-width: 1920px) {
+  :root { --max: 1760px; }
   .image-ring {
     width: 400px;
     height: 400px;
@@ -1903,6 +1912,13 @@ footer {
     margin-top: 48px;
     padding: 24px 40px;
   }
+  .timeline { max-width: 1100px; }
+}
+
+/* 2560px — QHD / 2K */
+@media (min-width: 2560px) {
+  :root { --max: 2100px; }
+  .timeline { max-width: 1400px; }
 }
 
 /* ─── 25. UTILITIES ─── */
