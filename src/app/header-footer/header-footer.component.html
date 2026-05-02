@@ -1,57 +1,44 @@
 <header [class.active]="isMenuOpen" [class.scrolled]="isScrolled">
   <div class="header-container">
+
     <div class="logo">
       <h1>
-        <img
-          class="logo-icon"
-          src="assets/profile.png"
-          alt="Sayan Pramanik - Web and Software Developer"
-        />
+        <img class="logo-icon" src="assets/profile.png" alt="Sayan Pramanik" />
         <span class="logo-text">Sayan Pramanik</span>
       </h1>
-      <span class="logo-subtitle"
-        >ServiceNow Developer | Full-Stack Engineer</span
-      >
+      <span class="logo-subtitle">ServiceNow Developer · Full-Stack Engineer</span>
     </div>
 
     <nav class="main-nav">
       <ul>
         <li>
-          <a
-            href="#home"
+          <a href="#home"
             (click)="closeMenu(); setActiveTab('home')"
-            [class.active]="activeTab === 'home'"
-          >
+            [class.active]="activeTab === 'home'">
             <i class="fas fa-home nav-icon"></i>
             <span>Home</span>
           </a>
         </li>
         <li>
-          <a
-            href="#work"
+          <a href="#work"
             (click)="closeMenu(); setActiveTab('work')"
-            [class.active]="activeTab === 'work'"
-          >
+            [class.active]="activeTab === 'work'">
             <i class="fas fa-briefcase nav-icon"></i>
             <span>Work</span>
           </a>
         </li>
         <li>
-          <a
-            href="#about"
+          <a href="#about"
             (click)="closeMenu(); setActiveTab('about')"
-            [class.active]="activeTab === 'about'"
-          >
+            [class.active]="activeTab === 'about'">
             <i class="fas fa-user nav-icon"></i>
             <span>About</span>
           </a>
         </li>
         <li>
-          <a
-            href="#contact"
+          <a href="#contact"
             (click)="closeMenu(); setActiveTab('contact'); openContactPopup()"
-            [class.active]="activeTab === 'contact'"
-          >
+            [class.active]="activeTab === 'contact'">
             <i class="fas fa-envelope nav-icon"></i>
             <span>Contact</span>
           </a>
@@ -60,8 +47,11 @@
     </nav>
 
     <div class="header-actions">
-      <button class="theme-toggle" (click)="toggleTheme()" [title]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
-        <i class="theme-icon" [ngClass]="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
+      <button class="theme-toggle"
+        (click)="toggleTheme()"
+        [title]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+        <i class="theme-icon"
+          [ngClass]="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
       </button>
       <button class="cta-button" (click)="downloadResume()">
         <i class="fas fa-download download-icon"></i>
@@ -74,27 +64,25 @@
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
     </div>
+
   </div>
 </header>
 
 <main>
   <section id="home" class="section">
-    <!-- Home Section -->
     <app-home (openContact)="openContactPopup()"></app-home>
   </section>
 
   <section id="work" class="section">
-    <!-- Work Section -->
     <app-work></app-work>
   </section>
 
   <section id="about" class="section">
-    <!-- About Section -->
     <app-about></app-about>
   </section>
 </main>
 
-<!-- Scroll Indicator (proper DOM element, not pseudo-element) -->
+<!-- Scroll Indicator -->
 <div class="scroll-indicator" [class.hidden]="isScrolledToBottom">
   <div class="scroll-mouse">
     <div class="scroll-dot"></div>
@@ -104,12 +92,13 @@
 <footer>
   <div class="footer-container">
     <div class="footer-top">
+
       <div class="footer-brand">
         <h3>Sayan Pramanik</h3>
-        <p>Full-Stack Developer & Software Engineer</p>
+        <p>Full-Stack Developer &amp; ServiceNow Engineer</p>
         <p class="footer-description">
-          Passionate about creating innovative solutions and building scalable
-          applications.
+          Building scalable applications and automating complex workflows.
+          Passionate about elegant code and exceptional user experiences.
         </p>
       </div>
 
@@ -117,8 +106,8 @@
         <div class="footer-section">
           <h4>Navigation</h4>
           <ul>
-            <li><a href="#home" (click)="setActiveTab('home')">Home</a></li>
-            <li><a href="#work" (click)="setActiveTab('work')">Work</a></li>
+            <li><a href="#home"  (click)="setActiveTab('home')">Home</a></li>
+            <li><a href="#work"  (click)="setActiveTab('work')">Work</a></li>
             <li><a href="#about" (click)="setActiveTab('about')">About</a></li>
             <li><a href="#contact" (click)="openContactPopup()">Contact</a></li>
           </ul>
@@ -127,46 +116,35 @@
         <div class="footer-section">
           <h4>Skills</h4>
           <ul>
-            <li><span class="skill-tag">MEAN Stack</span></li>
-            <li><span class="skill-tag">Python</span></li>
+            <li><span class="skill-tag">Angular</span></li>
             <li><span class="skill-tag">TypeScript</span></li>
+            <li><span class="skill-tag">ServiceNow</span></li>
+            <li><span class="skill-tag">Python</span></li>
             <li><span class="skill-tag">Docker</span></li>
-            <li><span class="skill-tag">Server Management</span></li>
           </ul>
         </div>
 
         <div class="footer-section">
           <h4>Connect</h4>
           <div class="social-links">
-            <a
-              href="https://www.linkedin.com/in/sayan-pramanik-084358178/"
-              target="_blank"
-              class="social-link linkedin"
-              title="LinkedIn"
-            >
+            <a href="https://www.linkedin.com/in/sayan-pramanik-084358178/"
+              target="_blank" class="social-link linkedin">
               <i class="fab fa-linkedin social-icon"></i>
               <span>LinkedIn</span>
             </a>
-            <a
-              href="https://github.com/sayanpramanik2012"
-              target="_blank"
-              class="social-link github"
-              title="GitHub"
-            >
+            <a href="https://github.com/sayanpramanik2012"
+              target="_blank" class="social-link github">
               <i class="fab fa-github social-icon"></i>
               <span>GitHub</span>
             </a>
-            <a
-              (click)="openContactPopup()"
-              class="social-link contact"
-              title="Contact Me"
-            >
+            <a (click)="openContactPopup()" class="social-link contact">
               <i class="fas fa-envelope social-icon"></i>
-              <span>Contact</span>
+              <span>Email Me</span>
             </a>
           </div>
         </div>
       </div>
+
     </div>
 
     <div class="footer-bottom">
@@ -176,7 +154,10 @@
           <p>&copy; 2026 Sayan Pramanik. All rights reserved.</p>
         </div>
         <div class="footer-meta">
-          <span class="footer-location"><i class="fas fa-map-marker-alt"></i> Chennai, Tamil Nadu, India</span>
+          <span class="footer-location">
+            <i class="fas fa-map-marker-alt"></i>
+            Chennai, Tamil Nadu, India
+          </span>
           <span class="footer-status">
             <span class="status-indicator"></span>
             Available for opportunities
@@ -186,13 +167,10 @@
     </div>
   </div>
 
-  <!-- Scroll to top button -->
-  <button
-    class="scroll-to-top"
+  <button class="scroll-to-top"
     [class.visible]="showScrollToTop"
     (click)="scrollToTop()"
-    title="Back to top"
-  >
+    title="Back to top">
     <i class="fas fa-chevron-up scroll-icon"></i>
   </button>
 </footer>
@@ -200,5 +178,5 @@
 <!-- Contact Popup -->
 <app-contact
   *ngIf="showContactPopup"
-  (close)="closeContactPopup()"
-></app-contact>
+  (close)="closeContactPopup()">
+</app-contact>

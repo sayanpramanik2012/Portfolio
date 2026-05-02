@@ -4,28 +4,38 @@
     <h2>Experience</h2>
     <div class="section-line"></div>
   </div>
+
   <div class="experiences-grid">
-    <div *ngFor="let experience of experiences; let i = index" class="experience-card" [style.animationDelay]="(i * 0.15) + 's'">
+    <div
+      *ngFor="let experience of experiences; let i = index"
+      class="experience-card"
+      [style.animationDelay]="(i * 0.15) + 's'">
+
       <div class="experience-header">
         <h3 class="company-name">{{ experience.company }}</h3>
         <div
           class="certificate-badge"
           *ngIf="experience.hasCertificate"
           (click)="viewCertificate($event, experience)"
-          title="View Experience Letter"
-        >
+          title="View Experience Letter">
           <i class="fas fa-file-alt certificate-icon"></i>
           <span class="badge-text">View Letter</span>
         </div>
       </div>
+
       <h4 class="experience-title">{{ experience.title }}</h4>
-      <p class="experience-duration"><i class="far fa-calendar-alt"></i> {{ experience.duration }}</p>
+
+      <p class="experience-duration">
+        <i class="far fa-calendar-alt"></i>
+        {{ experience.duration }}
+      </p>
+
       <p class="experience-description">{{ experience.description }}</p>
+
       <ul class="experience-skills">
-        <li *ngFor="let skill of experience.skills" class="skill">
-          {{ skill }}
-        </li>
+        <li *ngFor="let skill of experience.skills" class="skill">{{ skill }}</li>
       </ul>
+
       <p *ngIf="experience.achievement" class="experience-achievement">
         <i class="fas fa-trophy"></i> {{ experience.achievement }}
       </p>
@@ -39,33 +49,41 @@
     <h2>Projects</h2>
     <div class="section-line"></div>
   </div>
+
   <div class="projects-grid">
     <div
       *ngFor="let project of projects; let i = index"
       class="project-card"
       [style.animationDelay]="(i * 0.1) + 's'"
-      (click)="handleProjectClick(project)"
-    >
+      (click)="handleProjectClick(project)">
+
       <div class="project-header">
         <h3 class="project-title">{{ project.title }}</h3>
         <div
           class="certificate-badge"
           *ngIf="project.hasCertificate"
           (click)="viewCertificate($event, project)"
-          title="View Project Certificate"
-        >
+          title="View Project Certificate">
           <i class="fas fa-award certificate-icon"></i>
           <span class="badge-text">Certificate</span>
         </div>
       </div>
-      <p class="project-duration"><i class="far fa-calendar-alt"></i> {{ project.duration }}</p>
+
+      <p class="project-duration">
+        <i class="far fa-calendar-alt"></i>
+        {{ project.duration }}
+      </p>
+
       <p class="project-description">{{ project.description }}</p>
+
       <ul class="project-skills">
         <li *ngFor="let skill of project.skills" class="skill">{{ skill }}</li>
       </ul>
+
       <p *ngIf="project.achievement" class="project-achievement">
         <i class="fas fa-trophy"></i> {{ project.achievement }}
       </p>
+
       <div class="project-link-indicator" *ngIf="project.link">
         <i class="fas fa-external-link-alt"></i>
         <span>View Project</span>
@@ -74,94 +92,69 @@
   </div>
 </section>
 
-<!-- Popup for Empty Link -->
+<!-- Popup: no link available -->
 <div class="popup" *ngIf="showPopup" (click)="closePopup()">
   <div class="popup-content" (click)="$event.stopPropagation()">
     <div class="popup-icon-wrap">
       <i class="fas fa-link"></i>
     </div>
-    <p>This project does not have a link available.</p>
+    <p>This project does not have a public link available yet.</p>
     <button (click)="closePopup()">Close</button>
   </div>
 </div>
 
-<!-- Certificate/Experience Letter Popup -->
+<!-- Certificate / Experience Letter Popup -->
 <div
   class="certificate-popup"
   *ngIf="showCertificatePopup"
-  [class.fullscreen-mode]="isFullscreen"
->
+  [class.fullscreen-mode]="isFullscreen">
+
   <div class="certificate-popup-content">
     <div class="certificate-header">
       <h3>{{ certificateTitle }}</h3>
       <h4>{{ certificateType }}</h4>
       <div class="certificate-controls">
-        <!-- Download button -->
-        <button
-          class="control-btn download-btn"
-          title="Download"
-          (click)="downloadCertificate()"
-        >
+        <button class="control-btn download-btn" title="Download" (click)="downloadCertificate()">
           <i class="fas fa-download"></i>
         </button>
-        <!-- Zoom controls -->
         <button
           class="control-btn zoom-btn"
           title="Zoom Out"
-          [disabled]="
-            (isImage && zoomLevel <= 1) || (!isImage && iframeZoomLevel <= 0.5)
-          "
-          (click)="zoomOut()"
-        >
+          [disabled]="(isImage && zoomLevel <= 1) || (!isImage && iframeZoomLevel <= 0.5)"
+          (click)="zoomOut()">
           <i class="fas fa-minus"></i>
         </button>
-        <span class="zoom-level"
-          >{{
-            (isImage ? zoomLevel : iframeZoomLevel) * 100 | number : "1.0-0"
-          }}%</span
-        >
+        <span class="zoom-level">
+          {{ (isImage ? zoomLevel : iframeZoomLevel) * 100 | number:'1.0-0' }}%
+        </span>
         <button
           class="control-btn zoom-btn"
           title="Zoom In"
-          [disabled]="
-            (isImage && zoomLevel >= 3) || (!isImage && iframeZoomLevel >= 3)
-          "
-          (click)="zoomIn()"
-        >
+          [disabled]="(isImage && zoomLevel >= 3) || (!isImage && iframeZoomLevel >= 3)"
+          (click)="zoomIn()">
           <i class="fas fa-plus"></i>
         </button>
-        <!-- Reset button -->
         <button
-          *ngIf="
-            (isImage && zoomLevel !== 1) || (!isImage && iframeZoomLevel !== 1)
-          "
+          *ngIf="(isImage && zoomLevel !== 1) || (!isImage && iframeZoomLevel !== 1)"
           class="control-btn reset-btn"
           title="Reset Zoom"
-          (click)="resetZoom()"
-        >
+          (click)="resetZoom()">
           <i class="fas fa-redo"></i>
         </button>
-        <!-- Fullscreen button -->
         <button
           class="control-btn fullscreen-btn"
-          [title]="isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'"
-          (click)="toggleFullscreen()"
-        >
+          [title]="isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'"
+          (click)="toggleFullscreen()">
           <i [ngClass]="isFullscreen ? 'fas fa-compress' : 'fas fa-expand'"></i>
         </button>
-        <!-- Close button -->
-        <button
-          class="control-btn close-btn"
-          title="Close"
-          (click)="closeCertificatePopup()"
-        >
+        <button class="control-btn close-btn" title="Close" (click)="closeCertificatePopup()">
           <i class="fas fa-times"></i>
         </button>
       </div>
     </div>
 
-    <div 
-      class="certificate-body" 
+    <div
+      class="certificate-body"
       [class.image-container]="isImage"
       (mousedown)="startDrag($event)"
       (touchstart)="startDrag($event)"
@@ -169,24 +162,22 @@
       (touchend)="stopDrag()"
       (mouseleave)="stopDrag()"
       (mousemove)="onDrag($event)"
-      (touchmove)="onDrag($event)"
-    >
+      (touchmove)="onDrag($event)">
+
       <img
         *ngIf="isImage && certificateUrl"
         [src]="certificateUrl"
         class="zoomable-image"
-        [style.transform]="'translate3d(' + panX + 'px, ' + panY + 'px, 0) scale(' + zoomLevel + ')'"
+        [style.transform]="'translate3d(' + panX + 'px,' + panY + 'px,0) scale(' + zoomLevel + ')'"
         (click)="handleImageClick($event)"
-        alt="Certificate"
-      />
+        alt="Certificate" />
 
       <div *ngIf="!isImage && certificateUrl" class="iframe-container">
         <iframe
           [src]="certificateUrl"
           class="zoomable-iframe"
           [style.transform]="'scale(' + iframeZoomLevel + ')'"
-          (load)="onIframeLoad($event)"
-        >
+          (load)="onIframeLoad($event)">
         </iframe>
       </div>
     </div>

@@ -1,99 +1,115 @@
-# Sayan Pramanik - Portfolio
+# Sayan Pramanik — Portfolio
 
-## About Me
+![Angular](https://img.shields.io/badge/Angular-19-red?logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-Design%20System-pink?logo=sass&logoColor=white)
+![Deploy](https://img.shields.io/badge/Deploy-GitHub%20Pages-black?logo=github&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Available%20for%20hire-brightgreen)
 
-A passionate and detail-oriented Full-Stack Developer and Software Engineer with a strong foundation in web development, server management, and software engineering. I specialize in building scalable applications, integrating APIs, and creating seamless user experiences. With hands-on experience in Angular, TypeScript, Python, and Linux, I thrive on solving complex problems and delivering innovative solutions.
+**Live site →** [sayanpramanik2012.github.io/Portfolio](https://sayanpramanik2012.github.io/Portfolio/)
 
-## Skills
+---
 
-- **Frontend**: HTML5, CSS3, TypeScript, Angular
-- **Backend**: Python, C#
-- **DevOps**: Linux, Docker, GitHub
-- **Others**: REST APIs, Swagger, FFmpeg
+## About
 
-## Experience
+Showcase-ready portfolio for **Sayan Pramanik** — ServiceNow Developer, Full-Stack Engineer, and Angular Specialist with 3+ years of professional experience across NielsenIQ, Innoart Technologies, and CubeSimple.
 
-### Software Engineer | Innoart Technologies
+---
 
-_August 2023 - Present_
+## Features
 
-- Drive seamless user experiences by integrating APIs into complex Angular projects
-- Successfully completed 2 full-scale builds
-- Collaborate on API development within a Swagger environment, ensuring robust backend-frontend communication
+| Feature | Details |
+|---|---|
+| **Hero section** | Animated particle background, typing effect, floating profile ring, stats bar |
+| **Experience** | Card grid with gradient accents and certificate/letter viewer |
+| **Projects** | Filterable grid with live links, certificates, and hover glow effects |
+| **Skills** | Icon grid with animated progress bars and detail popup |
+| **Education** | Animated vertical timeline |
+| **Achievements** | Medal cards (Google HashCode, Kickstart, Code Kaze) |
+| **Contact form** | EmailJS-powered with loading states and toast notifications |
+| **Dark / Light mode** | Persisted to `localStorage`, defaults to dark |
+| **Fully responsive** | Mobile (320 px) → Tablet → Desktop (1240 px+) |
+| **Certificate viewer** | Zoom, pan, fullscreen, download |
 
-### Front-End Developer (Internship) | NielsenIQ (NIQ)
+---
 
-_February 2023 - May 2023_
+## Tech Stack
 
-- Worked with TypeScript, HTML, SCSS, and Angular
+- **Framework:** Angular 19 (NgModule, SSR)
+- **Language:** TypeScript 5
+- **Styling:** SCSS with CSS custom properties design system
+- **Icons:** Font Awesome 6
+- **Fonts:** Space Grotesk · Inter · JetBrains Mono
+- **Email:** EmailJS
+- **Deployment:** GitHub Actions → GitHub Pages
 
-## Education
+---
 
-- **B.E. - CSE** | Sathyabama Institute of Science and Technology (84%)
-  _March 2019 - March 2023_
-- **12th CBSE - PCM & Computer Science** | Alwin Memorial Public School (79%)
-  _March 2018 - March 2019_
-- **10th CBSE** | Alwin Memorial Public School (85%)
-  _March 2016 - March 2017_
+## Professional Experience
 
-## Projects
+### ServiceNow Developer · CubeSimple _(09/2025 – Present)_
+Implemented Now Assist AI, Virtual Agent conversations, and Flow Designer automations.
 
-### Buff Discord Music Bot
+### Software Engineer · Innoart Technologies _(08/2023 – 06/2025)_
+Delivered two end-to-end Angular applications with RESTful API integration and Swagger documentation.
 
-_August 2024 - December 2024_
+### Front-End Developer · NielsenIQ (Internship) _(02/2023 – 05/2023)_
+Developed responsive Angular components with TypeScript, HTML, and SCSS.
 
-Developed a feature-rich Discord music bot with advanced playback controls, including play, pause, resume, skip, queue, and loop functionalities. Integrated support for YouTube and Spotify, enabling users to stream music seamlessly.
+---
 
-**Technologies**: Python, Docker, Discord API, FFmpeg, YouTube API
+## Projects Highlights
 
-**GitHub**: [Buff-Discord-MusicPlayer](https://github.com/sayanpramanik2012/Buff-Discord-MusicPlayer)
+| Project | Tech | Link |
+|---|---|---|
+| **Market Data Portfolio** | Angular, RxJS, REST APIs | [Live](https://market.projmain.duckdns.org/) |
+| **Buff Discord Music Bot** | Python, Discord API, FFmpeg, Docker | [GitHub](https://github.com/sayanpramanik2012/Buff-Discord-MusicPlayer) |
+| **Microsoft Rewards Automation** | Python, Selenium | [GitHub](https://github.com/sayanpramanik2012/Microsoft-rewards-Automation) |
+| **Calendar Event Manager** | Python, Google Calendar API | [Demo](https://sayanpramanik2012.github.io/Calendar-Manager/) |
+| **Web Multiplayer Snake Game** | Node.js, Socket.io | [GitHub](https://github.com/sayanpramanik2012/WEB-based-Multiplayer-snake-game) |
 
-### Microsoft Rewards Automation
-
-_January 2024 - February 2024_
-
-Created a Python-based automation script to streamline daily Microsoft Rewards tasks. The script leverages Selenium for web automation, saving time and effort for users.
-
-**Technologies**: Python, Selenium, Web Automation
-
-**GitHub**: [Microsoft-rewards-Automation](https://github.com/sayanpramanik2012/Microsoft-rewards-Automation)
-
-### More Projects
-
-- **RP Server Development** - Comprehensive Roleplay server for GTA V
-- **Calendar Event Manager** - Application to manage Google Calendar events
-- **WEB-based Multiplayer Game** - Multiplayer web game developed during HCL internship
-- **Multiplayer Turtle Game** - Game built with Python's Turtle graphics library
+---
 
 ## Achievements
 
-- **Google Hashcode** - Team Rank 1135th (score-2389404)
-- **Google Kickstart** - Round A: 11942nd, Round B: 5717th
-- **Code Kaze** - National Rank: 1165th, College Rank: 1st, Graduation Year Rank [All India]: 775th
+- **Google HashCode** — Team Rank 1135 (score: 2,389,404)
+- **Google Kickstart** — Round A: 11,942nd · Round B: 5,717th
+- **Code Kaze** — National Rank 1165 · **College Rank 1st** · All-India Year Rank 775
+
+---
+
+## Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server (HTTPS)
+npm start
+# → https://localhost:4200/
+
+# Production build
+npm run build
+```
+
+> **Note:** The dev server uses self-signed SSL (`ssl/` directory). You may need to trust the cert or use `--ssl false`.
+
+---
+
+## Deployment
+
+Pushes to `main` automatically trigger a GitHub Actions pipeline that builds and deploys to **GitHub Pages** at the URL above.
+
+---
 
 ## Contact
 
-- **LinkedIn**: [Sayan Pramanik](https://www.linkedin.com/in/sayan-pramanik-084358178/)
-- **GitHub**: [sayanpramanik2012](https://github.com/sayanpramanik2012)
+| | |
+|---|---|
+| **LinkedIn** | [sayan-pramanik-084358178](https://www.linkedin.com/in/sayan-pramanik-084358178/) |
+| **GitHub** | [@sayanpramanik2012](https://github.com/sayanpramanik2012) |
+| **Location** | Chennai, Tamil Nadu, India |
 
-## Technical Information
+---
 
-This portfolio is built with Angular CLI version 19.1.2
-
-### Development Server
-
-```bash
-ng serve
-```
-
-Navigate to `http://localhost:4200/`. The application will automatically reload with changes.
-
-### Building for Production
-
-```bash
-ng build
-```
-
-Build artifacts will be stored in the `dist/` directory.
-
-&copy; 2025 Sayan Pramanik. All rights reserved.
+&copy; 2026 Sayan Pramanik · Built with Angular
