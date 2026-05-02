@@ -86,6 +86,7 @@ body:not(.dark-theme) {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--hh);
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
 }
@@ -412,8 +413,6 @@ header.active .hamburger {
 }
 
 /* ─── 10. MAIN WRAPPER ─── */
-main { padding-top: var(--hh); }
-
 main .section {
   /* Semantic wrappers — child components control layout */
 }
@@ -1855,5 +1854,56 @@ footer {
   .footer-meta          { justify-content:center; }
 }
 
-/* ─── 24. UTILITIES ─── */
+/* ─── 24. RESPONSIVE — LARGE DESKTOP (1280px +) ─── */
+@media (min-width: 1280px) {
+  .image-ring {
+    width: 320px;
+    height: 320px;
+  }
+  .profile-content {
+    max-width: 620px;
+  }
+  .profile {
+    gap: 72px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .image-ring {
+    width: 360px;
+    height: 360px;
+  }
+  .profile-content {
+    max-width: 680px;
+  }
+  .profile {
+    gap: 80px;
+  }
+}
+
+/* 1920px — 1080p full HD and QHD (2560 × 1440) */
+@media (min-width: 1920px) {
+  .image-ring {
+    width: 400px;
+    height: 400px;
+  }
+  .profile-content {
+    max-width: 740px;
+
+    h2 { font-size: clamp(56px, 4.2vw, 84px); }
+    h3 { font-size: clamp(22px, 1.8vw, 32px); }
+    p  { font-size: 1.125rem; }
+  }
+  .profile {
+    gap: 96px;
+    padding: calc(var(--hh) + 80px) var(--pad) 120px;
+  }
+  .hero-stats {
+    gap: 48px;
+    margin-top: 48px;
+    padding: 24px 40px;
+  }
+}
+
+/* ─── 25. UTILITIES ─── */
 .hide-scroll-indicator .scroll-indicator { display:none !important; }
