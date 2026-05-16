@@ -1,4 +1,5 @@
 <header [class.active]="isMenuOpen" [class.scrolled]="isScrolled">
+  <div class="scroll-progress" [style.width]="scrollProgress + '%'"></div>
   <div class="header-container">
 
     <div class="logo">
@@ -88,6 +89,19 @@
     <div class="scroll-dot"></div>
   </div>
 </div>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <span class="cta-label">Open to opportunities</span>
+    <h2 class="cta-heading">Let's build something<br><span class="cta-accent">great together.</span></h2>
+    <p class="cta-sub">Have a project in mind or just want to say hi? My inbox is always open.</p>
+    <button class="cta-btn" (click)="openContactPopup()">
+      <i class="fas fa-paper-plane"></i>
+      <span>Send me a message</span>
+    </button>
+  </div>
+</section>
 
 <footer>
   <div class="footer-container">

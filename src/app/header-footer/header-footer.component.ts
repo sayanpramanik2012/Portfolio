@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, HostListener, OnInit, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './header-footer.component.html',
   styleUrl: './header-footer.component.scss',
 })
-export class HeaderFooterComponent implements OnInit {
+export class HeaderFooterComponent implements OnInit, AfterViewInit, OnDestroy {
   activeTab = 'home';
   isMenuOpen = false;
   isScrolled = false;
@@ -16,7 +16,10 @@ export class HeaderFooterComponent implements OnInit {
   showContactPopup = false;
   isDarkMode = false;
   isScrolledToBottom = false;
+  scrollProgress = 0;
   isBrowser: boolean;
+
+  private sectionObserver: IntersectionObserver | null = null;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -39,14 +42,50 @@ export class HeaderFooterComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit(): void {
+    if (this.isBrowser) {
+      this.setupSectionObserver();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.sectionObserver) {
+      this.sectionObserver.disconnect();
+    }
+  }
+
+  private setupSectionObserver(): void {
+    const sections = [
+      { id: 'home',  tab: 'home' },
+      { id: 'work',  tab: 'work' },
+      { id: 'about', tab: 'about' },
+    ];
+
+    this.sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const matched = sections.find(s => s.id === entry.target.id);
+          if (matched) this.activeTab = matched.tab;
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-10% 0px -60% 0px' });
+
+    sections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el) this.sectionObserver!.observe(el);
+    });
+  }
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
     if (this.isBrowser) {
       this.isScrolled = window.pageYOffset > 50;
       this.showScrollToTop = window.pageYOffset > 300;
-
-      // Hide scroll indicator after scrolling past the hero
       this.isScrolledToBottom = window.pageYOffset > 200;
+
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      this.scrollProgress = total > 0 ? (scrolled / total) * 100 : 0;
     }
   }
 

@@ -488,6 +488,8 @@ main .section {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientShift 5s ease infinite;
   }
 
   h3 {
@@ -1933,3 +1935,181 @@ footer {
 
 /* ─── 25. UTILITIES ─── */
 .hide-scroll-indicator .scroll-indicator { display:none !important; }
+
+/* ─── 26. ENHANCED UI — SCROLL PROGRESS BAR ─── */
+.scroll-progress {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px;
+  background: var(--grad);
+  z-index: 1;
+  transition: width .08s linear;
+  border-radius: 0 var(--r-full) var(--r-full) 0;
+}
+
+/* ─── 27. HERO NOISE TEXTURE ─── */
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px;
+}
+
+/* ─── 28. ANIMATED GRADIENT TEXT (hero name) ─── */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── 29. CARD SPOTLIGHT GLOW ─── */
+.experience-card::after,
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    400px circle at var(--mx, -400px) var(--my, -400px),
+    rgba(var(--a-rgb), .1),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity var(--tn);
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.experience-card:hover::after,
+.project-card:hover::after { opacity: 1; }
+
+/* ─── 30. STAGGERED CARD REVEALS ─── */
+@keyframes cardReveal {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-reveal.revealed .experience-card,
+.section-reveal.revealed .project-card,
+.section-reveal.revealed .skill-item,
+.section-reveal.revealed .achievement-item,
+.section-reveal.revealed .timeline-item {
+  animation: cardReveal .45s ease backwards;
+}
+
+/* ─── 31. SECTION EDITORIAL NUMBERING ─── */
+main { counter-reset: sec; }
+
+.section-header {
+  counter-increment: sec;
+
+  .section-tag::before {
+    content: "0" counter(sec) " — ";
+    opacity: .45;
+    font-size: .8em;
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+}
+
+/* ─── 32. CTA SECTION ─── */
+.cta-section {
+  position: relative;
+  padding: clamp(80px, 10vw, 140px) var(--pad);
+  text-align: center;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 50%, rgba(var(--a-rgb), .08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(var(--a2-rgb), .06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+}
+
+.cta-inner {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.cta-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 16px;
+  border-radius: var(--r-full);
+  background: rgba(var(--a-rgb), .1);
+  border: 1px solid rgba(var(--a-rgb), .2);
+  color: var(--accent);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+
+  &::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+}
+
+.cta-heading {
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  color: var(--t1);
+  margin-bottom: 20px;
+}
+
+.cta-accent {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradientShift 5s ease infinite;
+}
+
+.cta-sub {
+  font-size: 1rem;
+  color: var(--t2);
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 36px;
+  border-radius: var(--r-full);
+  background: var(--grad);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: var(--sh-a);
+  transition: transform var(--tf), box-shadow var(--tf);
+  letter-spacing: .02em;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 48px rgba(var(--a-rgb), .5);
+  }
+  &:active { transform: translateY(0); }
+
+  i { font-size: .95rem; }
+}
