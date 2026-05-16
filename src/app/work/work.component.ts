@@ -225,6 +225,17 @@ export class WorkComponent implements OnInit, OnDestroy, AfterViewInit {
     document.body.style.overflow = '';
   }
 
+  onGridMouseMove(event: MouseEvent): void {
+    if (!this.isBrowser) return;
+    const grid = event.currentTarget as HTMLElement;
+    const cards = grid.querySelectorAll<HTMLElement>('.experience-card, .project-card');
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+      card.style.setProperty('--my', `${event.clientY - rect.top}px`);
+    });
+  }
+
   handleProjectClick(project: any) {
     if (!this.isBrowser) return;
 
