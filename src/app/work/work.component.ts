@@ -240,7 +240,7 @@ export class WorkComponent implements OnInit, OnDestroy, AfterViewInit {
     if (!this.isBrowser) return;
 
     if (project.link) {
-      window.open(project.link, '_blank'); // Open link in new tab
+      window.open(project.link, '_blank', 'noopener,noreferrer'); // Open link safely in a new tab
     } else {
       this.showPopup = true; // Show popup if link is empty
     }
