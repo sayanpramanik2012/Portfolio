@@ -58,7 +58,7 @@
       [style.animationDelay]="(i * 0.1) + 's'"
       [attr.role]="project.link ? 'link' : null"
       [attr.tabindex]="project.link ? 0 : null"
-      [attr.aria-label]="project.link ? (project.isLive ? 'Visit live project: ' : 'View project: ') + project.title : null"
+      [attr.aria-label]="project.link ? (project.linkLabel || (project.isLive ? 'Visit live project' : 'View project')) + ': ' + project.title : null"
       (keydown.enter)="handleProjectClick(project)"
       (keydown.space)="handleProjectClick(project); $event.preventDefault()"
       (click)="handleProjectClick(project)">
@@ -96,8 +96,8 @@
       </p>
 
       <div class="project-link-indicator" [class.live-link]="project.isLive" *ngIf="project.link">
-        <i [class]="project.isLive ? 'fas fa-globe' : 'fas fa-external-link-alt'"></i>
-        <span>{{ project.isLive ? 'Visit Live Site' : 'View Project' }}</span>
+        <i [class]="project.linkIcon || (project.isLive ? 'fas fa-globe' : 'fas fa-external-link-alt')"></i>
+        <span>{{ project.linkLabel || (project.isLive ? 'Visit Live Site' : 'View Project') }}</span>
         <i class="fas fa-arrow-right link-arrow" aria-hidden="true"></i>
       </div>
     </div>
