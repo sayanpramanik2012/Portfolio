@@ -1,5 +1,16 @@
 [
   {
+    "title": "FormatLens — JSON & Technical Text Inspector",
+    "duration": "Aug 2026 - Present",
+    "description": "Built a privacy-first Microsoft Edge and Google Chrome extension that turns dense JSON, logs, API responses, and technical text into a readable side-panel workspace without leaving the source page. Designed for real troubleshooting scenarios—including ServiceNow request payloads—with selection, focused-field, and Pick Element extraction; escaped and nested JSON detection; syntax-highlighted Pretty, collapsible Tree, and Raw views; search across keys, values, text, and JSON paths; and precise value or path copying. All content is processed locally with no backend, analytics, or data transmission.",
+    "skills": ["JavaScript", "Manifest V3", "Edge Extensions", "Chrome Extensions", "Browser Side Panel", "DOM Extraction", "JSON", "ServiceNow", "Privacy by Design"],
+    "isLive": true,
+    "show_project": true,
+    "link": "https://sayanpramanik2012.github.io/FormatLens-Extension/",
+    "hasCertificate": false,
+    "certificateLink": ""
+  },
+  {
     "title": "Transcript Capture for Teams",
     "duration": "Aug 2026 - Present",
     "description": "Built a privacy-first Microsoft Edge extension to solve a recurring workplace problem: reliably saving completed Microsoft Teams meeting transcripts for follow-up, documentation, and knowledge sharing. The extension is started explicitly by the user, navigates Teams' virtualized transcript list in both directions to capture every available row, verifies coverage and flags missing rows, then exports ordered speaker names, timestamps, transcript text, and transcription events as a local plain-text file. All processing stays in the selected browser tab—no accounts, analytics, remote services, or third-party data transfer.",
