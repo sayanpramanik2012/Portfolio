@@ -82,15 +82,5 @@
     "link": "https://sayanpramanik2012.github.io/Calendar-Manager/",
     "hasCertificate": false,
     "certificateLink": ""
-  },
-  {
-    "title": "Medicine Reminder",
-    "duration": "Nov 2021 - Dec 2021",
-    "description": "Developed a Windows desktop application to manage medication schedules with configurable reminders. Added medicine catalogs, scheduling workflows, and system notifications to support timely adherence. Focused on a clean, accessible UI to minimize user friction.",
-    "skills": ["Python", "Tkinter", "Scheduling", "Notifications", "Desktop App"],
-    "show_project": true,
-    "link": "https://github.com/sayanpramanik2012/Medicine-Reminder",
-    "hasCertificate": false,
-    "certificateLink": "/certificates/medicine-reminder-certificate.pdf"
   }
 ]
