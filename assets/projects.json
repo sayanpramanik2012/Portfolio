@@ -37,8 +37,11 @@
     "duration": "Jul 2026 - Present",
     "description": "Designed and built a standalone Windows desktop application that keeps music controls, live now-playing details, and compatible video Picture-in-Picture visible above games and everyday apps—reducing the need to Alt+Tab. Implemented a lockable click-through overlay so mouse input passes safely to the game, configurable hotkeys, layout and opacity controls, system-tray operation, and clock, countdown, and alarm utilities. Added clear compatibility boundaries for windowed and borderless games, exclusive fullscreen, media-session support, and protected video capture.",
     "skills": ["Electron", "JavaScript", "Windows Media Sessions", "Desktop Capture", "Picture-in-Picture", "Global Hotkeys", "Desktop UX", "Windows"],
+    "isLive": true,
+    "linkLabel": "Download for Windows",
+    "linkIcon": "fas fa-download",
     "show_project": true,
-    "link": "https://github.com/sayanpramanik2012/NowLayer",
+    "link": "https://github.com/sayanpramanik2012/NowLayer/releases",
     "hasCertificate": false,
     "certificateLink": ""
   },
