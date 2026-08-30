@@ -1,5 +1,15 @@
 [
   {
+    "title": "Transcript Capture for Teams",
+    "duration": "Aug 2026 - Present",
+    "description": "Built a privacy-first Microsoft Edge extension to solve a recurring workplace problem: reliably saving completed Microsoft Teams meeting transcripts for follow-up, documentation, and knowledge sharing. The extension is started explicitly by the user, navigates Teams' virtualized transcript list in both directions to capture every available row, verifies coverage and flags missing rows, then exports ordered speaker names, timestamps, transcript text, and transcription events as a local plain-text file. All processing stays in the selected browser tab—no accounts, analytics, remote services, or third-party data transfer.",
+    "skills": ["JavaScript", "Microsoft Edge Extension", "Browser APIs", "DOM Automation", "Data Validation", "Privacy by Design", "UX", "Microsoft Teams"],
+    "show_project": true,
+    "link": "https://github.com/sayanpramanik2012/Microsoft-Meeting-Transcript-Downloader",
+    "hasCertificate": false,
+    "certificateLink": ""
+  },
+  {
     "title": "Market Data Portfolio",
     "duration": "July 2025 - Present",
     "description": "Built a production-grade stock portfolio web application with real-time market data, dynamic holdings tracking, and transaction journaling. Implemented a balance calculator, customizable data grids with sorting and filtering, and automated refresh to keep views current. Delivered a responsive Angular UI with sticky headers, modal workflows, and mobile-first layouts.",
