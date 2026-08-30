@@ -1,5 +1,16 @@
 [
   {
+    "title": "Market Data Portfolio",
+    "duration": "July 2025 - Present",
+    "description": "Built a production-grade stock portfolio web application with real-time market data, dynamic holdings tracking, and transaction journaling. Implemented a balance calculator, customizable data grids with sorting and filtering, and automated refresh to keep views current. Delivered a responsive Angular UI with sticky headers, modal workflows, and mobile-first layouts.",
+    "skills": ["Angular", "TypeScript", "RxJS", "SCSS", "HTML5", "REST APIs", "Responsive Design", "UI/UX", "State Management", "Web Animations"],
+    "isLive": true,
+    "show_project": true,
+    "link": "https://market.projmain.duckdns.org/",
+    "hasCertificate": false,
+    "certificateLink": ""
+  },
+  {
     "title": "FormatLens — JSON & Technical Text Inspector",
     "duration": "Aug 2026 - Present",
     "description": "Built a privacy-first Microsoft Edge and Google Chrome extension that turns dense JSON, logs, API responses, and technical text into a readable side-panel workspace without leaving the source page. Designed for real troubleshooting scenarios—including ServiceNow request payloads—with selection, focused-field, and Pick Element extraction; escaped and nested JSON detection; syntax-highlighted Pretty, collapsible Tree, and Raw views; search across keys, values, text, and JSON paths; and precise value or path copying. All content is processed locally with no backend, analytics, or data transmission.",
@@ -28,17 +39,6 @@
     "skills": ["Electron", "JavaScript", "Windows Media Sessions", "Desktop Capture", "Picture-in-Picture", "Global Hotkeys", "Desktop UX", "Windows"],
     "show_project": true,
     "link": "https://github.com/sayanpramanik2012/NowLayer",
-    "hasCertificate": false,
-    "certificateLink": ""
-  },
-  {
-    "title": "Market Data Portfolio",
-    "duration": "July 2025 - Present",
-    "description": "Built a production-grade stock portfolio web application with real-time market data, dynamic holdings tracking, and transaction journaling. Implemented a balance calculator, customizable data grids with sorting and filtering, and automated refresh to keep views current. Delivered a responsive Angular UI with sticky headers, modal workflows, and mobile-first layouts.",
-    "skills": ["Angular", "TypeScript", "RxJS", "SCSS", "HTML5", "REST APIs", "Responsive Design", "UI/UX", "State Management", "Web Animations"],
-    "isLive": true,
-    "show_project": true,
-    "link": "https://market.projmain.duckdns.org/",
     "hasCertificate": false,
     "certificateLink": ""
   },
