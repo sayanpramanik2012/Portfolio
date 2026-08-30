@@ -10,22 +10,22 @@
     "certificateLink": ""
   },
   {
+    "title": "NowLayer — Game-Safe Media Overlay",
+    "duration": "Jul 2026 - Present",
+    "description": "Designed and built a standalone Windows desktop application that keeps music controls, live now-playing details, and compatible video Picture-in-Picture visible above games and everyday apps—reducing the need to Alt+Tab. Implemented a lockable click-through overlay so mouse input passes safely to the game, configurable hotkeys, layout and opacity controls, system-tray operation, and clock, countdown, and alarm utilities. Added clear compatibility boundaries for windowed and borderless games, exclusive fullscreen, media-session support, and protected video capture.",
+    "skills": ["Electron", "JavaScript", "Windows Media Sessions", "Desktop Capture", "Picture-in-Picture", "Global Hotkeys", "Desktop UX", "Windows"],
+    "show_project": true,
+    "link": "https://github.com/sayanpramanik2012/NowLayer",
+    "hasCertificate": false,
+    "certificateLink": ""
+  },
+  {
     "title": "Market Data Portfolio",
     "duration": "July 2025 - Present",
     "description": "Built a production-grade stock portfolio web application with real-time market data, dynamic holdings tracking, and transaction journaling. Implemented a balance calculator, customizable data grids with sorting and filtering, and automated refresh to keep views current. Delivered a responsive Angular UI with sticky headers, modal workflows, and mobile-first layouts.",
     "skills": ["Angular", "TypeScript", "RxJS", "SCSS", "HTML5", "REST APIs", "Responsive Design", "UI/UX", "State Management", "Web Animations"],
     "show_project": true,
     "link": "https://market.projmain.duckdns.org/",
-    "hasCertificate": false,
-    "certificateLink": ""
-  },
-  {
-    "title": "Transcript Capture for Teams",
-    "duration": "Aug 2026 - Present",
-    "description": "Built a privacy-first Microsoft Edge extension to solve a recurring workplace problem: reliably saving completed Microsoft Teams meeting transcripts for follow-up, documentation, and knowledge sharing. The extension is started explicitly by the user, navigates Teams' virtualized transcript list in both directions to capture every available row, verifies coverage and flags missing rows, then exports ordered speaker names, timestamps, transcript text, and transcription events as a local plain-text file. All processing stays in the selected browser tab—no accounts, analytics, remote services, or third-party data transfer.",
-    "skills": ["JavaScript", "Microsoft Edge Extension", "Browser APIs", "DOM Automation", "Data Validation", "Privacy by Design", "UX", "Microsoft Teams"],
-    "show_project": true,
-    "link": "https://github.com/sayanpramanik2012/Microsoft-Meeting-Transcript-Downloader",
     "hasCertificate": false,
     "certificateLink": ""
   },
