@@ -10,6 +10,16 @@
     "certificateLink": ""
   },
   {
+    "title": "Transcript Capture for Teams",
+    "duration": "Aug 2026 - Present",
+    "description": "Built a privacy-first Microsoft Edge extension to solve a recurring workplace problem: reliably saving completed Microsoft Teams meeting transcripts for follow-up, documentation, and knowledge sharing. The extension is started explicitly by the user, navigates Teams' virtualized transcript list in both directions to capture every available row, verifies coverage and flags missing rows, then exports ordered speaker names, timestamps, transcript text, and transcription events as a local plain-text file. All processing stays in the selected browser tab—no accounts, analytics, remote services, or third-party data transfer.",
+    "skills": ["JavaScript", "Microsoft Edge Extension", "Browser APIs", "DOM Automation", "Data Validation", "Privacy by Design", "UX", "Microsoft Teams"],
+    "show_project": true,
+    "link": "https://github.com/sayanpramanik2012/Microsoft-Meeting-Transcript-Downloader",
+    "hasCertificate": false,
+    "certificateLink": ""
+  },
+  {
     "title": "Buff Discord Music Bot",
     "duration": "Aug 2024 - Dec 2024",
     "description": "Developed a feature-rich Discord music bot with queue management, loop modes, and granular playback controls. Integrated YouTube and Spotify sources with FFmpeg-based streaming to enable stable, low-latency playback. Containerized with Docker for reproducible deployments and simplified operations.",
@@ -47,26 +57,6 @@
     "skills": ["Python", "Tkinter", "Google Calendar API", "OAuth 2.0", "Desktop UI"],
     "show_project": true,
     "link": "https://sayanpramanik2012.github.io/Calendar-Manager/",
-    "hasCertificate": false,
-    "certificateLink": ""
-  },
-  {
-    "title": "WEB-based Multiplayer Game",
-    "duration": "Mar 2022 - Apr 2022",
-    "description": "Developed a real-time multiplayer browser game during an HCL internship using modern web technologies and networking concepts. Implemented server–client messaging, session handling, and responsive inputs to maintain smooth gameplay. Focused on lightweight assets and efficient update loops for consistent performance.",
-    "skills": ["JavaScript", "Node.js", "WebSockets", "Socket.io", "HTML", "CSS", "Real-time Systems"],
-    "show_project": true,
-    "link": "https://github.com/sayanpramanik2012/WEB-based-Multiplayer-snake-game",
-    "hasCertificate": false,
-    "certificateLink": "/certificates/web-multiplayer-game-certificate.pdf"
-  },
-  {
-    "title": "Multiplayer Turtle Game",
-    "duration": "Feb 2022 - Feb 2022",
-    "description": "Created a local multiplayer game using Python’s Turtle graphics to enable multiple players on a single system. Implemented collision detection, turn logic, and scorekeeping to provide a complete gameplay loop. Structured the codebase for readability and easy experimentation.",
-    "skills": ["Python", "Turtle", "Game Loop", "Collision Detection"],
-    "show_project": true,
-    "link": "https://github.com/sayanpramanik2012/Turtle-Multiplayer-game",
     "hasCertificate": false,
     "certificateLink": ""
   },
