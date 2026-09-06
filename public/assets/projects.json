@@ -7,7 +7,8 @@
     "show_project": true,
     "link": "https://market.projmain.duckdns.org/",
     "hasCertificate": false,
-    "certificateLink": ""
+    "certificateLink": "",
+    "category": "featured"
   },
   {
     "title": "NowLayer",
@@ -15,9 +16,10 @@
     "description": "A standalone Windows media overlay that keeps music controls and video Picture-in-Picture visible above borderless-windowed games and applications—with game-safe click-through input safety. Features live track/artist/artwork metadata from Windows media sessions, 16:9 video mirroring, and zero background bloat.",
     "skills": ["Windows OS", "Media Session API", "PiP Video", "Click-Through Safety", "Desktop Utility", "System Overlay"],
     "show_project": true,
-    "link": "https://github.com/sayanpramanik2012/NowLayer",
+    "link": "https://github.com/sayanpramanik2012/NowLayer/releases",
     "hasCertificate": false,
-    "certificateLink": ""
+    "certificateLink": "",
+    "category": "featured"
   },
   {
     "title": "FormatLens",
@@ -27,7 +29,8 @@
     "show_project": true,
     "link": "https://sayanpramanik2012.github.io/FormatLens-Extension/",
     "hasCertificate": false,
-    "certificateLink": ""
+    "certificateLink": "",
+    "category": "featured"
   },
   {
     "title": "Transcript Capture for Teams",
