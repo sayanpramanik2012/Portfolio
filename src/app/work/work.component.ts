@@ -21,6 +21,50 @@ export class WorkComponent implements OnInit, OnDestroy, AfterViewInit {
   projects: any[] = [];
   experiences: any[] = [];
 
+  // MPortfolio view toggle state ('dashboard' | 'reports')
+  activeMportfolioView: 'dashboard' | 'reports' = 'dashboard';
+
+  // Catalog category filter state
+  activeProjectCategory: string = 'all';
+  projectCategories = [
+    { id: 'all', label: 'All Systems', icon: 'fas fa-layer-group' },
+    { id: 'automation', label: 'Automation & RPA', icon: 'fas fa-robot' },
+    { id: 'gaming', label: 'Game Architecture & Sockets', icon: 'fas fa-gamepad' },
+    { id: 'desktop', label: 'Desktop & Utilities', icon: 'fas fa-desktop' }
+  ];
+
+  setProjectCategory(category: string): void {
+    this.activeProjectCategory = category;
+  }
+
+  get secondaryProjects(): any[] {
+    const featuredTitles = [
+      'mportfolio',
+      'nowlayer',
+      'formatlens',
+      'transcript capture for teams'
+    ];
+
+    return this.projects.filter(p => {
+      const isFeatured = featuredTitles.includes((p.title || '').trim().toLowerCase());
+      if (isFeatured) return false;
+      if (this.activeProjectCategory === 'all') return true;
+      return p.category === this.activeProjectCategory;
+    });
+  }
+
+  getProjectCount(categoryId: string): number {
+    const featuredTitles = [
+      'mportfolio',
+      'nowlayer',
+      'formatlens',
+      'transcript capture for teams'
+    ];
+    const nonFeatured = this.projects.filter(p => !featuredTitles.includes((p.title || '').trim().toLowerCase()));
+    if (categoryId === 'all') return nonFeatured.length;
+    return nonFeatured.filter(p => p.category === categoryId).length;
+  }
+
   // Popup states
   showPopup: boolean = false;
   showCertificatePopup: boolean = false;
@@ -241,6 +285,8 @@ export class WorkComponent implements OnInit, OnDestroy, AfterViewInit {
 
     if (project.link) {
       window.open(project.link, '_blank'); // Open link in new tab
+    } else if (project.hasCertificate) {
+      this.viewCertificate(new MouseEvent('click'), project);
     } else {
       this.showPopup = true; // Show popup if link is empty
     }

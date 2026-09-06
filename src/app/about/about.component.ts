@@ -39,6 +39,16 @@ export class AboutComponent implements OnInit, AfterViewInit, OnDestroy {
     { month: 'Jul', weekIndex: 48 },
   ];
 
+  activeSkillCategory: string = 'all';
+
+  categories = [
+    { id: 'all', label: 'All Capabilities', icon: 'fas fa-border-all' },
+    { id: 'frontend', label: 'Frontend Architecture', icon: 'fab fa-angular' },
+    { id: 'servicenow', label: 'Enterprise ServiceNow', icon: 'fas fa-bolt' },
+    { id: 'backend', label: 'Backend & APIs', icon: 'fas fa-server' },
+    { id: 'devops', label: 'DevOps & Systems', icon: 'fab fa-docker' },
+  ];
+
   constructor(
     private Datapullerservice: DatapullerService,
     private http: HttpClient,
@@ -48,10 +58,63 @@ export class AboutComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.skills = this.Datapullerservice.getSkills();
-    this.educations = this.Datapullerservice.getEducations();
+    const rawSkills = this.Datapullerservice.getSkills();
+    this.skills = rawSkills.map(skill => {
+      let category = 'devops';
+      let proficiency = 'Advanced';
+
+      const name = (skill.name || '').toLowerCase();
+      if (name.includes('angular') || name.includes('typescript') || name.includes('html') || name.includes('css') || name.includes('rxjs') || name.includes('ui/ux') || name.includes('responsive')) {
+        category = 'frontend';
+        proficiency = (name.includes('angular') || name.includes('typescript')) ? 'Production Core' : 'Advanced';
+      } else if (name.includes('servicenow') || name.includes('virtual agent') || name.includes('flow designer')) {
+        category = 'servicenow';
+        proficiency = 'Enterprise Deployed';
+      } else if (name.includes('python') || name.includes('node') || name.includes('rest') || name.includes('mongo') || name.includes('sql') || name.includes('websocket') || name.includes('c#')) {
+        category = 'backend';
+        proficiency = (name.includes('python') || name.includes('rest')) ? 'Production Core' : 'Proficient';
+      } else {
+        category = 'devops';
+        proficiency = (name.includes('docker') || name.includes('git')) ? 'Daily Driver' : 'Operational';
+      }
+
+      return {
+        ...skill,
+        category,
+        proficiency,
+      };
+    });
+
+    const rawEducations = this.Datapullerservice.getEducations();
+    this.educations = rawEducations.map((edu, idx) => {
+      let coursework: string[] = [];
+      let icon = 'fas fa-graduation-cap';
+      if (idx === 0) {
+        coursework = ['Data Structures & Algorithms', 'Operating Systems', 'Database Management', 'Object-Oriented Architecture', 'Distributed Systems', 'Computer Networks'];
+        icon = 'fas fa-graduation-cap';
+      } else if (idx === 1) {
+        coursework = ['Physics', 'Chemistry', 'Mathematics', 'Computer Science & C++'];
+        icon = 'fas fa-school';
+      } else {
+        coursework = ['Foundational Mathematics', 'Sciences', 'Computer Applications'];
+        icon = 'fas fa-book-open';
+      }
+      return { ...edu, coursework, icon };
+    });
+
     this.achievements = this.Datapullerservice.getAchievements();
     this.loadLeetCodeData();
+  }
+
+  setSkillCategory(category: string): void {
+    this.activeSkillCategory = category;
+  }
+
+  get filteredSkills(): any[] {
+    if (this.activeSkillCategory === 'all') {
+      return this.skills;
+    }
+    return this.skills.filter(s => s.category === this.activeSkillCategory);
   }
 
   ngAfterViewInit(): void {

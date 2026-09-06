@@ -1,78 +1,675 @@
-<section id="profile" class="profile">
-  <!-- Animated particles -->
-  <div class="hero-particles">
-    <div class="particle"
-      *ngFor="let p of particles"
-      [style.left]="p.x + '%'"
-      [style.top]="p.y + '%'"
-      [style.animationDuration]="p.duration + 's'"
-      [style.animationDelay]="p.delay + 's'"
-      [style.width]="p.size + 'px'"
-      [style.height]="p.size + 'px'">
-    </div>
-  </div>
+<section id="profile" class="hero-section">
+  <!-- Subtle ambient background aura (no generic grid) -->
+  <div class="hero-ambient-glow" aria-hidden="true"></div>
+  <div class="hero-crosshair crosshair-tl" aria-hidden="true">+</div>
+  <div class="hero-crosshair crosshair-tr" aria-hidden="true">+</div>
 
-  <!-- Gradient mesh -->
-  <div class="hero-gradient-mesh"></div>
-
-  <!-- Noise texture overlay -->
-  <div class="hero-noise"></div>
-
-  <!-- Profile image -->
-  <div class="profile-image">
-    <div class="image-ring">
-      <img
-        src="assets/profile.png"
-        alt="Sayan Pramanik — Full-Stack Developer &amp; ServiceNow Engineer"
-        loading="eager"
-      />
-    </div>
-    <div class="image-status">
-      <span class="status-dot"></span>
-      <span>Available for hire</span>
-    </div>
-  </div>
-
-  <!-- Content -->
-  <div class="profile-content">
-    <div class="greeting-line">
-      <span class="greeting-dash"></span>
-      <span class="greeting-text">Hello, I'm</span>
-    </div>
-
-    <h2>Sayan Pramanik</h2>
-
-    <h3>
-      <span class="typed-text">{{ displayedText }}</span>
-      <span class="typed-cursor">|</span>
-    </h3>
-
-    <p>
-      I build tools that solve real problems — automating ServiceNow workflows with
-      Virtual Agents and Flow Designer, crafting real-time Angular dashboards, and
-      shipping everything from Discord bots to stock portfolio trackers.
-      Experienced across NielsenIQ, Innoart Technologies, and CubeSimple.
-    </p>
-
-    <div class="profile-cta">
-      <button class="btn-primary" (click)="scrollToSection('projects')">
-        <i class="fas fa-rocket"></i>
-        <span>View Projects</span>
-      </button>
-      <button class="btn-outline" (click)="openContactPopup()">
-        <i class="fas fa-paper-plane"></i>
-        <span>Get In Touch</span>
-      </button>
-    </div>
-
-    <div class="hero-stats" #heroStats>
-      <ng-container *ngFor="let s of stats; let last = last">
-        <div class="stat-item">
-          <span class="stat-number">{{ s.displayed }}</span>
-          <span class="stat-label">{{ s.label }}</span>
+  <div class="hero-container">
+    <div class="hero-cockpit-layout">
+      <!-- Left: Narrative Column -->
+      <div class="hero-cockpit-text">
+        
+        <!-- Status & Engineering Role Eyebrow -->
+        <div class="hero-station-eyebrow" (click)="openContactPopup()">
+          <span class="radar-ping">
+            <span class="radar-circle"></span>
+            <span class="radar-core"></span>
+          </span>
+          <span class="eyebrow-code">SYSTEM ONLINE // SAYAN PRAMANIK · SOFTWARE &amp; SERVICENOW ENGINEER</span>
         </div>
-        <div class="stat-divider" *ngIf="!last"></div>
-      </ng-container>
+
+        <!-- Distinct Hero Headline -->
+        <h1 class="hero-cockpit-title">
+          Engineering <span class="text-gradient">high-velocity</span> web platforms &amp; autonomous enterprise systems.
+        </h1>
+
+        <!-- Technical Narrative -->
+        <p class="hero-cockpit-desc">
+          Full-Stack &amp; ServiceNow Developer with 3+ years delivering production software across <strong>CubeSimple</strong>, <strong>Innoart</strong>, and <strong>NielsenIQ</strong>.
+          Specialized in reactive Angular SPAs, native Windows tools with click-through safety, and Now Assist AI workflows that eliminate operational overhead.
+        </p>
+
+        <!-- Engineering Vectors Deck -->
+        <div class="hero-vectors-deck">
+          <div class="vector-chip">
+            <div class="v-icon-wrap"><i class="fas fa-bolt"></i></div>
+            <div class="v-meta">
+              <span class="v-name">Enterprise Automation</span>
+              <span class="v-sub">ServiceNow · Now Assist AI · Flow Designer</span>
+            </div>
+          </div>
+          <div class="vector-chip">
+            <div class="v-icon-wrap"><i class="fab fa-angular"></i></div>
+            <div class="v-meta">
+              <span class="v-name">Reactive Frontends</span>
+              <span class="v-sub">Angular 19 · RxJS Pipelines · TypeScript</span>
+            </div>
+          </div>
+          <div class="vector-chip">
+            <div class="v-icon-wrap"><i class="fab fa-windows"></i></div>
+            <div class="v-meta">
+              <span class="v-name">Native Desktop &amp; Tools</span>
+              <span class="v-sub">Win32 C# Overlays · Manifest V3 Extensions</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Controls & Social Nodes -->
+        <div class="hero-cockpit-actions">
+          <div class="cockpit-buttons-group">
+            <button class="btn-cockpit-primary" (click)="scrollToSection('work')">
+              <i class="fas fa-layer-group"></i>
+              <span>Explore Flagship Systems</span>
+              <i class="fas fa-arrow-right arrow-icon"></i>
+            </button>
+            <button class="btn-cockpit-secondary" (click)="openContactPopup()">
+              <i class="fas fa-paper-plane"></i>
+              <span>Initiate Contact</span>
+            </button>
+          </div>
+
+          <div class="cockpit-socials-group">
+            <a href="https://github.com/sayanpramanik2012" target="_blank" rel="noopener noreferrer" class="social-node-btn" aria-label="GitHub" title="GitHub Profile">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/sayan-pramanik-084358178/" target="_blank" rel="noopener noreferrer" class="social-node-btn" aria-label="LinkedIn" title="LinkedIn Profile">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <button (click)="openContactPopup()" class="social-node-btn" aria-label="Email" title="Direct Transmission">
+              <i class="fas fa-envelope"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Live Engineering Station Card -->
+      <div class="hero-cockpit-media">
+        <div class="station-terminal-card">
+          <div class="terminal-topbar">
+            <div class="terminal-lights">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="terminal-title">DEV_STATION // SAYAN.DEV</span>
+            <div class="terminal-ping">
+              <span class="ping-dot"></span>
+              <span>LIVE</span>
+            </div>
+          </div>
+
+          <div class="station-media-wrap">
+            <img
+              src="assets/profile.png"
+              alt="Sayan Pramanik — Full-Stack &amp; ServiceNow Engineer"
+              loading="eager"
+              class="station-portrait-img"
+            />
+            <div class="station-badge-overlay">
+              <span class="badge-role-tag">
+                <i class="fas fa-shield-halved"></i>
+                <span>Enterprise Verified</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="station-telemetry-grid">
+            <div class="telemetry-stat-row">
+              <span class="t-label">CURRENT ORG</span>
+              <span class="t-value highlight">CubeSimple // ServiceNow AI</span>
+            </div>
+            <div class="telemetry-stat-row">
+              <span class="t-label">PRIMARY STACK</span>
+              <span class="t-value">Angular 19 · TypeScript · ServiceNow</span>
+            </div>
+            <div class="telemetry-stat-row">
+              <span class="t-label">VERIFIED CREDS</span>
+              <div class="t-badge-cluster">
+                <span class="telemetry-pill">CIS Certified</span>
+                <span class="telemetry-pill">NIQ Alum</span>
+                <span class="telemetry-pill">AIR 775</span>
+              </div>
+            </div>
+            <div class="telemetry-stat-row">
+              <span class="t-label">ENG STATUS</span>
+              <span class="t-value green"><i class="fas fa-circle-check"></i> Open for Core &amp; Senior Roles</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Global Telemetry Ribbon (Replaced 4-box Hariharan strip) -->
+    <div class="global-telemetry-ribbon" #heroStats>
+      <div class="telemetry-metric-node">
+        <span class="node-num">{{ stats[0].displayed }}</span>
+        <span class="node-meta">Yrs Enterprise Engineering</span>
+      </div>
+      <div class="ribbon-sep" aria-hidden="true"></div>
+      <div class="telemetry-metric-node">
+        <span class="node-num">4 Core</span>
+        <span class="node-meta">Flagship Systems Shipped</span>
+      </div>
+      <div class="ribbon-sep" aria-hidden="true"></div>
+      <div class="telemetry-metric-node">
+        <span class="node-num">85%</span>
+        <span class="node-meta">AI Resolution Velocity</span>
+      </div>
+      <div class="ribbon-sep" aria-hidden="true"></div>
+      <div class="telemetry-metric-node">
+        <span class="node-num">1135th</span>
+        <span class="node-meta">Google Hashcode Global</span>
+      </div>
+      <div class="ribbon-sep" aria-hidden="true"></div>
+      <div class="telemetry-metric-node">
+        <span class="node-num">1st Rank</span>
+        <span class="node-meta">Code Kaze College Winner</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INTERACTIVE ARCHITECTURE LAB (Sayan's Signature Feature)
+     Inspired by live interactive engineering demonstrations
+     ============================================================ -->
+<section id="dev-lab" class="lab-section">
+  <div class="lab-container">
+    <div class="lab-header">
+      <div class="lab-eyebrow">
+        <span class="eyebrow-bullet"></span>
+        <span>INTERACTIVE ENGINEERING LAB</span>
+      </div>
+      <h2 class="lab-title">Test-drive real systems I've engineered.</h2>
+      <p class="lab-subtitle">
+        Click between live interactive architectures below to simulate enterprise workflows, real-time data streaming, and media pipelines.
+      </p>
+    </div>
+
+    <!-- Interactive Console Shell -->
+    <div class="lab-console">
+      <!-- Console Topbar -->
+      <div class="console-topbar">
+        <div class="console-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="console-tabs">
+          <button
+            class="console-tab"
+            [class.active]="activeLabTab === 'mportfolio'"
+            (click)="setLabTab('mportfolio')">
+            <i class="fas fa-chart-line"></i>
+            <span>MPortfolio Ticker</span>
+          </button>
+          <button
+            class="console-tab"
+            [class.active]="activeLabTab === 'nowlayer'"
+            (click)="setLabTab('nowlayer')">
+            <i class="fab fa-windows"></i>
+            <span>NowLayer Overlay</span>
+          </button>
+          <button
+            class="console-tab"
+            [class.active]="activeLabTab === 'formatlens'"
+            (click)="setLabTab('formatlens')">
+            <i class="fas fa-code"></i>
+            <span>FormatLens Parser</span>
+          </button>
+          <button
+            class="console-tab"
+            [class.active]="activeLabTab === 'servicenow'"
+            (click)="setLabTab('servicenow')">
+            <i class="fas fa-bolt"></i>
+            <span>ServiceNow Triage</span>
+          </button>
+        </div>
+        <div class="console-status">
+          <span class="status-indicator-dot"></span>
+          <span class="status-label">SANDBOX LIVE</span>
+        </div>
+      </div>
+
+      <!-- Console Body 1: MPortfolio Simulation -->
+      <div class="console-body" *ngIf="activeLabTab === 'mportfolio'">
+        <div class="market-stage-wrapper">
+          <div class="ticker-stat-bar">
+            <div class="ticker-symbol-block">
+              <span class="symbol-name">{{ marketData.symbol }}</span>
+              <span class="symbol-desc">Eternal Limited · NSE India (Live Ingestion)</span>
+            </div>
+            <div class="ticker-price-block">
+              <span class="live-price">₹{{ marketData.price | number:'1.2-2' }}</span>
+              <span class="live-change" [class.positive]="marketData.changePercent >= 0">
+                {{ marketData.changePercent >= 0 ? '+' : '' }}{{ marketData.changePercent }}%
+              </span>
+            </div>
+            <div class="ticker-telemetry">
+              <div class="telemetry-item">
+                <span class="t-label">UI LATENCY</span>
+                <span class="t-val">{{ marketData.latency }}ms</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="t-label">UNREALIZED P&amp;L</span>
+                <span class="t-val" [class.text-live]="marketData.changePercent >= 0">₹{{ marketData.pnl }}</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="t-label">TICK STREAMS</span>
+                <span class="t-val">{{ marketData.trades }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="market-visual-grid">
+            <div class="allocation-bar-wrap">
+              <div class="alloc-header-row">
+                <span class="bar-title">PORTFOLIO EXPOSURE (AUTO-BALANCED LEDGER)</span>
+                <a href="https://market.projmain.duckdns.org" target="_blank" rel="noopener noreferrer" class="mportfolio-direct-link">
+                  <span>Open Full MPortfolio App</span>
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+              <div class="multi-progress-bar">
+                <div class="bar-segment tech" style="width: 45%" title="HDFC Bank 45%">HDFC Bank (45%)</div>
+                <div class="bar-segment growth" style="width: 35%" title="Hero MotoCorp 35%">Hero MotoCorp (35%)</div>
+                <div class="bar-segment cash" style="width: 20%" title="Eternal Ltd 20%">Eternal Ltd (20%)</div>
+              </div>
+            </div>
+            <p class="market-footnote">
+              <i class="fas fa-info-circle"></i> Production Angular architecture with RxJS market pipes, sorting, filtering, and transaction history.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Console Body 2: NowLayer Simulation -->
+      <div class="console-body" *ngIf="activeLabTab === 'nowlayer'">
+        <div class="nowlayer-lab-wrapper">
+          <div class="nowlayer-lab-controls-bar">
+            <div class="nl-mode-indicator">
+              <span class="nl-status-pill" [class.locked]="nowlayerLocked">
+                <i [class]="nowlayerLocked ? 'fas fa-lock' : 'fas fa-lock-open'"></i>
+                <span>{{ nowlayerLocked ? 'CLICK-THROUGH MODE (GAME INPUT PASS)' : 'INTERACTIVE EDIT MODE' }}</span>
+              </span>
+            </div>
+            <div class="nl-action-toggles">
+              <button class="nl-toggle-btn" (click)="toggleNowlayerLock()">
+                <i [class]="nowlayerLocked ? 'fas fa-unlock' : 'fas fa-lock'"></i>
+                <span>{{ nowlayerLocked ? 'Unlock Overlay' : 'Lock (Click-Through)' }}</span>
+              </button>
+              <button class="nl-toggle-btn" (click)="toggleNowlayerPip()">
+                <i class="fas fa-tv"></i>
+                <span>{{ nowlayerPipEnabled ? 'Close PiP' : 'Enable 16:9 PiP' }}</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Screen Stage -->
+          <div class="nowlayer-screen-stage">
+            <div class="fake-game-screen">
+              <div class="game-hud">
+                <span class="hud-fps"><i class="fas fa-gauge-high"></i> 144 FPS</span>
+                <span class="hud-game">Cyberpunk 2077 // Borderless Mode</span>
+                <span class="hud-input" *ngIf="nowlayerLocked">
+                  <i class="fas fa-crosshairs"></i> Game receives 100% of mouse inputs
+                </span>
+                <span class="hud-input warning" *ngIf="!nowlayerLocked">
+                  <i class="fas fa-hand-pointer"></i> Overlay is intercepting input
+                </span>
+              </div>
+
+              <!-- Draggable / Floating Overlay Widget -->
+              <div class="lab-nowlayer-float" [class.pip-active]="nowlayerPipEnabled">
+                <!-- Video PiP layer if enabled -->
+                <div class="lab-pip-frame" *ngIf="nowlayerPipEnabled">
+                  <div class="pip-video-mock">
+                    <i class="fab fa-youtube"></i>
+                    <span>16:9 Mirror Stream (YouTube)</span>
+                  </div>
+                </div>
+
+                <div class="lab-nl-media-bar">
+                  <div class="nl-thumb"><i class="fas fa-compact-disc fa-spin"></i></div>
+                  <div class="nl-meta">
+                    <span class="nl-song-title">Midnight City</span>
+                    <span class="nl-artist-sub">M83 · Windows Media Session</span>
+                  </div>
+                  <div class="nl-button-cluster">
+                    <button class="nl-icon-btn"><i class="fas fa-backward-step"></i></button>
+                    <button class="nl-icon-btn play-pause" (click)="toggleNowlayerPlay()">
+                      <i [class]="nowlayerPlaying ? 'fas fa-pause' : 'fas fa-play'"></i>
+                    </button>
+                    <button class="nl-icon-btn"><i class="fas fa-forward-step"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Console Body 3: FormatLens Simulation -->
+      <div class="console-body" *ngIf="activeLabTab === 'formatlens'">
+        <div class="formatlens-lab-wrapper">
+          <div class="formatlens-top-actions">
+            <div class="view-mode-tabs">
+              <button
+                class="fl-mode-tab"
+                [class.active]="formatlensMode === 'tree'"
+                (click)="formatlensMode = 'tree'">
+                <i class="fas fa-sitemap"></i> Tree View
+              </button>
+              <button
+                class="fl-mode-tab"
+                [class.active]="formatlensMode === 'pretty'"
+                (click)="formatlensMode = 'pretty'">
+                <i class="fas fa-align-left"></i> Pretty JSON
+              </button>
+              <button
+                class="fl-mode-tab"
+                [class.active]="formatlensMode === 'raw'"
+                (click)="formatlensMode = 'raw'">
+                <i class="fas fa-terminal"></i> Raw
+              </button>
+            </div>
+            <div class="fl-privacy-pill">
+              <i class="fas fa-shield-halved"></i>
+              <span>100% On-Device Parsing · Manifest V3</span>
+            </div>
+          </div>
+
+          <div class="formatlens-viewer-pane">
+            <!-- Tree View -->
+            <div class="fl-tree-canvas" *ngIf="formatlensMode === 'tree'">
+              <div class="tree-line"><span class="t-folder">▼</span> <span class="t-key">portfolio_api_response</span> <span class="t-meta">&#123; 4 keys &#125;</span></div>
+              <div class="tree-line pl-1"><span class="t-key">status:</span> <span class="t-val-num">200</span></div>
+              <div class="tree-line pl-1"><span class="t-folder">▼</span> <span class="t-key">data</span> <span class="t-meta">&#123; holding_count: 8 &#125;</span></div>
+              <div class="tree-line pl-2"><span class="t-key">total_valuation:</span> <span class="t-val-str">"₹2,586.40"</span></div>
+              <div class="tree-line pl-2"><span class="t-key">total_pnl:</span> <span class="t-val-pos">"₹576.40 (+0.17%)"</span></div>
+              <div class="tree-line pl-2"><span class="t-folder">▶</span> <span class="t-key">holdings:</span> <span class="t-val-arr">Array(8)</span></div>
+              <div class="tree-line pl-1"><span class="t-key">cached_locally:</span> <span class="t-val-bool">true</span></div>
+            </div>
+
+            <!-- Pretty JSON View -->
+            <pre class="fl-code-canvas" *ngIf="formatlensMode === 'pretty'"><code>&#123;
+  <span class="code-key">"status"</span>: <span class="code-num">200</span>,
+  <span class="code-key">"data"</span>: &#123;
+    <span class="code-key">"holding_count"</span>: <span class="code-num">8</span>,
+    <span class="code-key">"total_valuation"</span>: <span class="code-str">"₹2,586.40"</span>,
+    <span class="code-key">"total_pnl"</span>: <span class="code-str">"₹576.40"</span>,
+    <span class="code-key">"cached_locally"</span>: <span class="code-bool">true</span>
+  &#125;
+&#125;</code></pre>
+
+            <!-- Raw View -->
+            <pre class="fl-code-canvas raw" *ngIf="formatlensMode === 'raw'"><code>{{"{\"status\":200,\"data\":{\"holding_count\":8,\"total_valuation\":\"₹2,586.40\",\"total_pnl\":\"₹576.40\",\"cached_locally\":true}}"}}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Console Body 4: ServiceNow Simulation -->
+      <div class="console-body" *ngIf="activeLabTab === 'servicenow'">
+        <div class="flow-stage-header">
+          <div class="flow-meta">
+            <span class="flow-badge"><i class="fas fa-ticket"></i> INCIDENT INC-9042</span>
+            <span class="flow-channel"><i class="fab fa-microsoft"></i> MS Teams / Service Portal Webhook</span>
+          </div>
+          <button class="run-sim-btn" (click)="runServiceNowSimulation()" [disabled]="isSimulating">
+            <i class="fas fa-play" *ngIf="!isSimulating"></i>
+            <i class="fas fa-circle-notch fa-spin" *ngIf="isSimulating"></i>
+            <span>{{ isSimulating ? 'Executing Orchestration...' : 'Trigger Automated Triage' }}</span>
+          </button>
+        </div>
+
+        <div class="flow-pipeline-track">
+          <!-- Step 1 -->
+          <div class="pipeline-step" [class.completed]="simStep >= 1" [class.current]="simStep === 0">
+            <div class="step-num-pill">01</div>
+            <div class="step-content">
+              <span class="step-title">Incident Ingestion</span>
+              <p class="step-desc">VPN latency spike reported via Teams Virtual Agent</p>
+            </div>
+            <div class="step-status-tag" *ngIf="simStep >= 1"><i class="fas fa-check"></i> Queued</div>
+          </div>
+
+          <div class="pipeline-connector-bar" [class.filled]="simStep >= 1"></div>
+
+          <!-- Step 2 -->
+          <div class="pipeline-step" [class.completed]="simStep >= 2" [class.current]="simStep === 1">
+            <div class="step-num-pill">02</div>
+            <div class="step-content">
+              <span class="step-title">Now Assist AI</span>
+              <p class="step-desc">Classifies priority P2 &amp; auto-extracts diagnostics</p>
+            </div>
+            <div class="step-status-tag" *ngIf="simStep >= 2"><i class="fas fa-check"></i> Classified</div>
+          </div>
+
+          <div class="pipeline-connector-bar" [class.filled]="simStep >= 2"></div>
+
+          <!-- Step 3 -->
+          <div class="pipeline-step" [class.completed]="simStep >= 3" [class.current]="simStep === 2">
+            <div class="step-num-pill">03</div>
+            <div class="step-content">
+              <span class="step-title">Flow Designer</span>
+              <p class="step-desc">Triggers automated script include &amp; recovery rule</p>
+            </div>
+            <div class="step-status-tag" *ngIf="simStep >= 3"><i class="fas fa-check"></i> Dispatched</div>
+          </div>
+
+          <div class="pipeline-connector-bar" [class.filled]="simStep >= 3"></div>
+
+          <!-- Step 4 -->
+          <div class="pipeline-step" [class.completed]="simStep >= 4" [class.current]="simStep === 3">
+            <div class="step-num-pill">04</div>
+            <div class="step-content">
+              <span class="step-title">Resolved in 42s</span>
+              <p class="step-desc">Session flushed, SLA verified, user notified</p>
+            </div>
+            <div class="step-status-tag final" *ngIf="simStep >= 4"><i class="fas fa-bolt"></i> Verified</div>
+          </div>
+        </div>
+
+        <!-- Live Simulation Telemetry Console -->
+        <div class="sim-telemetry-console">
+          <div class="telemetry-top-strip">
+            <div class="terminal-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="terminal-label">EXECUTION LOGS // NOW_ASSIST_ORCHESTRATOR</span>
+            <span class="terminal-status-badge" [class.active]="isSimulating">
+              <span class="pulse-mini"></span>
+              {{ isSimulating ? 'STREAMING REAL-TIME EVENTS' : (simStep >= 4 ? 'PIPELINE COMPLETE (42s SLA)' : 'READY') }}
+            </span>
+          </div>
+          <div class="telemetry-stream-body">
+            <div
+              *ngFor="let log of simLogs; let idx = index"
+              class="telemetry-log-item"
+              [class.visible]="simStep >= (idx + 1)">
+              <span class="log-stamp">[{{ log.time }}]</span>
+              <span class="log-pill" [attr.data-tag]="log.tag">{{ log.tag }}</span>
+              <span class="log-msg">{{ log.text }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHAT I BUILD (Bento Grid)
+     ============================================================ -->
+<section id="what-i-build" class="focus-section">
+  <div class="focus-container">
+    <div class="focus-header">
+      <div class="focus-eyebrow">
+        <span class="eyebrow-bullet"></span>
+        <span>WHAT I BUILD</span>
+      </div>
+      <h2 class="focus-title">Engineering solutions with substance &amp; scale.</h2>
+      <p class="focus-subtitle">
+        Turning complex, manual processes into dependable, elegant digital systems.
+      </p>
+    </div>
+
+    <div class="bento-grid">
+      <!-- Bento Card 1 -->
+      <article class="bento-card">
+        <span class="bento-number">01</span>
+        <div class="bento-icon-wrapper">
+          <i class="fas fa-layer-group"></i>
+        </div>
+        <h3 class="bento-card-title">Product Interfaces</h3>
+        <p class="bento-card-desc">
+          High-performance Angular SPAs, dashboards, and enterprise tools crafted for daily operations where responsiveness and clarity matter most.
+        </p>
+        <div class="bento-tags">
+          <span>Angular</span>
+          <span>TypeScript</span>
+          <span>RxJS</span>
+          <span>Responsive UI</span>
+        </div>
+      </article>
+
+      <!-- Bento Card 2 -->
+      <article class="bento-card">
+        <span class="bento-number">02</span>
+        <div class="bento-icon-wrapper">
+          <i class="fas fa-robot"></i>
+        </div>
+        <h3 class="bento-card-title">ServiceNow &amp; Automation</h3>
+        <p class="bento-card-desc">
+          Automating enterprise workflows through Flow Designer, Virtual Agents, Script Includes, and REST integrations to eliminate manual overhead.
+        </p>
+        <div class="bento-tags">
+          <span>Flow Designer</span>
+          <span>Virtual Agent</span>
+          <span>ITSM</span>
+          <span>Script Includes</span>
+        </div>
+      </article>
+
+      <!-- Bento Card 3 -->
+      <article class="bento-card">
+        <span class="bento-number">03</span>
+        <div class="bento-icon-wrapper">
+          <i class="fas fa-server"></i>
+        </div>
+        <h3 class="bento-card-title">APIs &amp; Backend Systems</h3>
+        <p class="bento-card-desc">
+          Robust RESTful microservices, Python automation scripts, and database integrations built with stability, security, and scalability in mind.
+        </p>
+        <div class="bento-tags">
+          <span>Python</span>
+          <span>Node.js</span>
+          <span>REST APIs</span>
+          <span>MongoDB / SQL</span>
+        </div>
+      </article>
+
+      <!-- Bento Card 4 -->
+      <article class="bento-card">
+        <span class="bento-number">04</span>
+        <div class="bento-icon-wrapper">
+          <i class="fas fa-cubes"></i>
+        </div>
+        <h3 class="bento-card-title">Full-Stack Tools &amp; DevOps</h3>
+        <p class="bento-card-desc">
+          From custom Discord bots and portfolio management tools to containerized Docker workflows and CI/CD pipelines for modern deployment.
+        </p>
+        <div class="bento-tags">
+          <span>Docker</span>
+          <span>CI/CD</span>
+          <span>Discord APIs</span>
+          <span>Git Automation</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MEASURED IMPACT / BENCHMARKS & QUANTIFIABLE OUTCOMES
+     ============================================================ -->
+<section id="impact" class="impact-section">
+  <div class="impact-container">
+    <div class="impact-header">
+      <div class="impact-eyebrow">
+        <span class="eyebrow-bullet"></span>
+        <span>MEASURED OUTCOMES</span>
+      </div>
+      <h2 class="impact-title">Numbers I can actually point at.</h2>
+      <p class="impact-subtitle">
+        Concrete outcomes and quantifiable achievements from real projects and enterprise roles.
+      </p>
+    </div>
+
+    <div class="outcomes-ribbon-grid">
+      <!-- Metric 1 -->
+      <div class="outcome-tile">
+        <div class="outcome-top-row">
+          <span class="outcome-stat">85%</span>
+          <span class="outcome-trend positive"><i class="fas fa-arrow-trend-up"></i> Velocity</span>
+        </div>
+        <h3 class="outcome-heading">Faster Ticket Resolution</h3>
+        <p class="outcome-text">Now Assist AI &amp; Virtual Agent conversational automations deployed at CubeSimple.</p>
+        <div class="outcome-footer-tag">ServiceNow · Flow Designer</div>
+      </div>
+
+      <!-- Metric 2 -->
+      <div class="outcome-tile">
+        <div class="outcome-top-row">
+          <span class="outcome-stat">&lt;150ms</span>
+          <span class="outcome-trend neutral"><i class="fas fa-gauge-high"></i> Low Latency</span>
+        </div>
+        <h3 class="outcome-heading">Reactive State Latency</h3>
+        <p class="outcome-text">Optimized Angular &amp; RxJS streaming architecture for live market data and analytics.</p>
+        <div class="outcome-footer-tag">Angular · RxJS Observables</div>
+      </div>
+
+      <!-- Metric 3 -->
+      <div class="outcome-tile">
+        <div class="outcome-top-row">
+          <span class="outcome-stat">100%</span>
+          <span class="outcome-trend positive"><i class="fas fa-robot"></i> Automated</span>
+        </div>
+        <h3 class="outcome-heading">Zero-Touch Automation</h3>
+        <p class="outcome-text">Zero manual intervention achieved through resilient Python &amp; Selenium RPA workflows.</p>
+        <div class="outcome-footer-tag">Python · Selenium RPA</div>
+      </div>
+
+      <!-- Metric 4 -->
+      <div class="outcome-tile">
+        <div class="outcome-top-row">
+          <span class="outcome-stat">1135th</span>
+          <span class="outcome-trend highlight"><i class="fas fa-globe"></i> Global Rank</span>
+        </div>
+        <h3 class="outcome-heading">Google Hashcode Competition</h3>
+        <p class="outcome-text">Ranked among the top algorithmic engineering teams worldwide with 2.38M score.</p>
+        <div class="outcome-footer-tag">Algorithmic Optimization</div>
+      </div>
+
+      <!-- Metric 5 -->
+      <div class="outcome-tile">
+        <div class="outcome-top-row">
+          <span class="outcome-stat">1st</span>
+          <span class="outcome-trend highlight"><i class="fas fa-trophy"></i> AIR 775</span>
+        </div>
+        <h3 class="outcome-heading">College Rank in Code Kaze</h3>
+        <p class="outcome-text">Top coder in college and 775th All-India Rank across thousands of competitive engineers.</p>
+        <div class="outcome-footer-tag">Data Structures &amp; Algorithms</div>
+      </div>
+
+      <!-- Metric 6 -->
+      <div class="outcome-tile">
+        <div class="outcome-top-row">
+          <span class="outcome-stat">3+</span>
+          <span class="outcome-trend neutral"><i class="fas fa-building"></i> Industry</span>
+        </div>
+        <h3 class="outcome-heading">Enterprise Organizations</h3>
+        <p class="outcome-text">Shipped production code and automated workflows across NielsenIQ, Innoart, and CubeSimple.</p>
+        <div class="outcome-footer-tag">Professional Engineering</div>
+      </div>
     </div>
   </div>
 </section>

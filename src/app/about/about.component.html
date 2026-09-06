@@ -1,56 +1,110 @@
-<section id="education" class="education section-reveal">
-  <div class="section-header">
-    <span class="section-tag"><i class="fas fa-graduation-cap"></i> Background</span>
-    <h2>Education</h2>
-    <div class="section-line"></div>
-  </div>
+<!-- ============================================================
+     EDUCATION & ACADEMIC FOUNDATION
+     ============================================================ -->
+<section id="education" class="education-section section-reveal">
+  <div class="about-section-container">
+    <div class="about-section-header">
+      <div class="about-eyebrow">
+        <span class="eyebrow-bullet"></span>
+        <span>ACADEMIC FOUNDATION</span>
+      </div>
+      <h2 class="about-title">Education &amp; Credentials.</h2>
+      <p class="about-subtitle">
+        Rigorous engineering foundation in computer science, algorithmic complexity, and distributed software systems.
+      </p>
+    </div>
 
-  <div class="timeline">
-    <div
-      *ngFor="let edu of educations; let i = index"
-      class="timeline-item"
-      [style.animationDelay]="(i * 0.15) + 's'">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <h3>{{ edu.degree }}</h3>
-        <p><strong>{{ edu.institution }}</strong></p>
-        <p class="duration-text">
-          <i class="far fa-calendar-alt"></i> {{ edu.duration }}
-        </p>
-        <span class="percentage">
-          <i class="fas fa-chart-line"></i> Score: {{ edu.percentage }}
-        </span>
+    <div class="academic-credentials-grid">
+      <div
+        *ngFor="let edu of educations; let i = index"
+        class="academic-card"
+        [class.featured-degree]="i === 0"
+        [style.animationDelay]="(i * 0.12) + 's'">
+
+        <div class="academic-card-top">
+          <div class="academic-icon-frame">
+            <i [class]="edu.icon"></i>
+          </div>
+          <div class="academic-meta-block">
+            <span class="academic-duration">
+              <i class="far fa-calendar-alt"></i> {{ edu.duration }}
+            </span>
+            <span class="academic-score-pill">
+              <i class="fas fa-award"></i> {{ edu.percentage }} Score
+            </span>
+          </div>
+        </div>
+
+        <h3 class="academic-degree-name">{{ edu.degree }}</h3>
+        <h4 class="academic-institution-name">{{ edu.institution }}</h4>
+
+        <div class="coursework-block" *ngIf="edu.coursework && edu.coursework.length">
+          <span class="coursework-label">Core Specialization:</span>
+          <div class="coursework-chips">
+            <span *ngFor="let course of edu.coursework" class="coursework-chip">{{ course }}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="skills" class="skills section-reveal">
-  <div class="section-header">
-    <span class="section-tag"><i class="fas fa-code"></i> Expertise</span>
-    <h2>Skills &amp; Technologies</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="skills-grid">
-    <div
-      *ngFor="let skill of skills; let i = index"
-      class="skill-item"
-      [style.animationDelay]="(i * 0.04) + 's'"
-      (click)="openSkillPopup(skill)">
-      <div class="skill-icon">
-        <i [class]="skill.icon" *ngIf="skill.icon"></i>
+<!-- ============================================================
+     TECHNICAL CAPABILITIES MATRIX (No Arbitrary % Bars)
+     ============================================================ -->
+<section id="skills" class="capabilities-section section-reveal">
+  <div class="about-section-container">
+    <div class="about-section-header">
+      <div class="about-eyebrow">
+        <span class="eyebrow-bullet"></span>
+        <span>TECHNICAL CAPABILITIES MATRIX</span>
       </div>
-      <div class="skill-info">
-        <h3>{{ skill.name }}</h3>
-        <div class="skill-progress">
-          <div
-            class="progress-bar"
-            [class.animated]="skillsVisible"
-            [style.--target-width]="skill.progress + '%'">
+      <h2 class="about-title">Skills, tools &amp; architectures.</h2>
+      <p class="about-subtitle">
+        Production-tested technical competencies across frontend, enterprise automation, backend APIs, and systems engineering.
+      </p>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="capabilities-tabs-bar">
+      <button
+        *ngFor="let cat of categories"
+        class="capability-filter-tab"
+        [class.active]="activeSkillCategory === cat.id"
+        (click)="setSkillCategory(cat.id)">
+        <i [class]="cat.icon"></i>
+        <span>{{ cat.label }}</span>
+      </button>
+    </div>
+
+    <!-- Capabilities Grid -->
+    <div class="capabilities-grid">
+      <div
+        *ngFor="let skill of filteredSkills; let i = index"
+        class="capability-card"
+        [style.animationDelay]="(i * 0.03) + 's'"
+        (click)="openSkillPopup(skill)">
+        
+        <div class="capability-card-header">
+          <div class="capability-icon-box">
+            <i [class]="skill.icon"></i>
           </div>
+          <span class="proficiency-tag" [attr.data-prof]="skill.proficiency">
+            {{ skill.proficiency }}
+          </span>
         </div>
-        <span class="skill-percent">{{ skill.progress }}%</span>
+
+        <div class="capability-card-body">
+          <h3 class="capability-name">{{ skill.name }}</h3>
+          <p class="capability-desc">{{ skill.details }}</p>
+        </div>
+
+        <div class="capability-card-footer">
+          <span class="inspect-action">
+            <span>Inspect detail</span>
+            <i class="fas fa-chevron-right"></i>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -59,40 +113,119 @@
 <!-- Skill detail popup -->
 <div class="skill-popup" *ngIf="selectedSkill" (click)="closeSkillPopup()">
   <div class="popup-content" (click)="$event.stopPropagation()">
-    <button class="close-btn" (click)="closeSkillPopup()">
+    <button class="close-btn" (click)="closeSkillPopup()" aria-label="Close modal">
       <i class="fas fa-times"></i>
     </button>
     <div class="popup-icon">
       <i [class]="selectedSkill.icon"></i>
     </div>
-    <h3>{{ selectedSkill.name }}</h3>
-    <div class="popup-progress-bar">
-      <div class="popup-progress-fill" [style.width]="selectedSkill.progress + '%'"></div>
+    <div class="popup-title-wrap">
+      <h3>{{ selectedSkill.name }}</h3>
+      <span class="popup-proficiency-badge">{{ selectedSkill.proficiency }}</span>
     </div>
-    <p>{{ selectedSkill.details }}</p>
+    <p class="popup-details-text">{{ selectedSkill.details }}</p>
+    <div class="popup-modal-footer">
+      <button class="popup-done-btn" (click)="closeSkillPopup()">Done</button>
+    </div>
   </div>
 </div>
 
-<section id="achievements" class="achievements section-reveal">
-  <div class="section-header">
-    <span class="section-tag"><i class="fas fa-trophy"></i> Recognition</span>
-    <h2>Achievements</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="achievements-grid">
-    <div
-      *ngFor="let achievement of achievements; let i = index"
-      class="achievement-item"
-      [style.animationDelay]="(i * 0.15) + 's'">
-      <div class="achievement-icon">
-        <i class="fas fa-medal"></i>
+<!-- ============================================================
+     COMPETITIVE ACHIEVEMENTS & ALGORITHMIC HONORS
+     ============================================================ -->
+<section id="achievements" class="achievements-section section-reveal">
+  <div class="about-section-container">
+    <div class="about-section-header">
+      <div class="about-eyebrow">
+        <span class="eyebrow-bullet"></span>
+        <span>COMPETITIVE HONORS &amp; RECOGNITION</span>
       </div>
-      <h3>{{ achievement.name }}</h3>
-      <p class="duration-text">
-        <i class="far fa-calendar-alt"></i> {{ achievement.duration }}
+      <h2 class="about-title">Algorithmic milestones &amp; honors.</h2>
+      <p class="about-subtitle">
+        Verified contest rankings, national competitive programming standings, and verified problem-solving track record.
       </p>
-      <p class="achievement-rank">{{ achievement.details }}</p>
+    </div>
+
+    <div class="achievements-showcase-grid">
+      <!-- Achievement 1: Code Kaze (Gold) -->
+      <div class="honor-card gold-tier">
+        <div class="honor-medal-wrap gold">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <div class="honor-header-row">
+          <span class="honor-badge gold">1ST RANK COLLEGE</span>
+          <span class="honor-year">2022</span>
+        </div>
+        <h3 class="honor-title">Code Kaze '22</h3>
+        <p class="honor-detail">
+          Top coder in college and <strong>775th All-India Rank (Graduation Year)</strong> / 1165th National Rank across thousands of competitive engineers.
+        </p>
+        <div class="honor-tag-footer">National Competitive Coding · Algorithmic Speed</div>
+      </div>
+
+      <!-- Achievement 2: Google Hashcode -->
+      <div class="honor-card global-tier">
+        <div class="honor-medal-wrap blue">
+          <i class="fas fa-globe"></i>
+        </div>
+        <div class="honor-header-row">
+          <span class="honor-badge blue">1135TH GLOBAL</span>
+          <span class="honor-year">2022</span>
+        </div>
+        <h3 class="honor-title">Google Hashcode</h3>
+        <p class="honor-detail">
+          Ranked among top engineering teams worldwide with a final score of <strong>2,389,404</strong> in Google's flagship heuristic optimization competition.
+        </p>
+        <div class="honor-tag-footer">Heuristic Optimization · Team Engineering</div>
+      </div>
+
+      <!-- Achievement 3: Google Kickstart -->
+      <div class="honor-card algorithmic-tier">
+        <div class="honor-medal-wrap purple">
+          <i class="fas fa-code-branch"></i>
+        </div>
+        <div class="honor-header-row">
+          <span class="honor-badge purple">GLOBAL CONTESTANT</span>
+          <span class="honor-year">2022</span>
+        </div>
+        <h3 class="honor-title">Google Kickstart</h3>
+        <p class="honor-detail">
+          Successfully solved algorithmic challenges across international competition rounds: <strong>Round A (11942nd)</strong> &amp; <strong>Round B (5717th)</strong>.
+        </p>
+        <div class="honor-tag-footer">Data Structures · Graph Algorithms</div>
+      </div>
+
+      <!-- Achievement 4: LeetCode Algorithmic Problem Solving Card -->
+      <div class="honor-card leetcode-tier">
+        <div class="honor-medal-wrap orange">
+          <i class="fas fa-code"></i>
+        </div>
+        <div class="honor-header-row">
+          <span class="honor-badge orange">LEETCODE ENGINEER</span>
+          <span class="honor-year">&#64;{{ leetcodeUsername }}</span>
+        </div>
+        <h3 class="honor-title">Algorithmic Problem Solving</h3>
+        <div class="leetcode-stats-row">
+          <div class="lc-stat">
+            <span class="lc-num">{{ leetcodeData?.totalSolved || '250+' }}</span>
+            <span class="lc-lbl">Problems Solved</span>
+          </div>
+          <div class="lc-stat">
+            <span class="lc-num">{{ leetcodeData?.ranking || 'Top 15%' }}</span>
+            <span class="lc-lbl">Global Ranking</span>
+          </div>
+          <div class="lc-stat">
+            <span class="lc-num">{{ leetcodeData?.acceptanceRate ? leetcodeData.acceptanceRate + '%' : '60%+' }}</span>
+            <span class="lc-lbl">Acceptance</span>
+          </div>
+        </div>
+        <div class="honor-tag-footer">
+          <a href="https://leetcode.com/u/sayanpramanik2012/" target="_blank" rel="noopener noreferrer" class="lc-profile-link">
+            <span>View LeetCode Profile</span>
+            <i class="fas fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>

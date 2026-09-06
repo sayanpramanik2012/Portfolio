@@ -2,13 +2,16 @@
   <div class="scroll-progress" [style.width]="scrollProgress + '%'"></div>
   <div class="header-container">
 
-    <div class="logo">
-      <h1>
-        <img class="logo-icon" src="assets/profile.png" alt="Sayan Pramanik" />
-        <span class="logo-text">Sayan Pramanik</span>
-      </h1>
-      <span class="logo-subtitle">ServiceNow Developer · Full-Stack Engineer</span>
-    </div>
+    <a href="#home" class="brand-logo" (click)="closeMenu(); setActiveTab('home')">
+      <div class="brand-monogram">SP</div>
+      <div class="brand-meta">
+        <span class="brand-name">Sayan Pramanik</span>
+        <span class="brand-status-line">
+          <span class="live-pulse-dot"></span>
+          <span>Full-Stack &amp; ServiceNow</span>
+        </span>
+      </div>
+    </a>
 
     <nav class="main-nav">
       <ul>
@@ -16,60 +19,67 @@
           <a href="#home"
             (click)="closeMenu(); setActiveTab('home')"
             [class.active]="activeTab === 'home'">
-            <i class="fas fa-home nav-icon"></i>
-            <span>Home</span>
+            <span class="nav-num">01.</span>
+            <span>Cockpit</span>
           </a>
         </li>
         <li>
           <a href="#work"
             (click)="closeMenu(); setActiveTab('work')"
             [class.active]="activeTab === 'work'">
-            <i class="fas fa-briefcase nav-icon"></i>
-            <span>Work</span>
+            <span class="nav-num">02.</span>
+            <span>Systems &amp; Work</span>
           </a>
         </li>
         <li>
           <a href="#about"
             (click)="closeMenu(); setActiveTab('about')"
             [class.active]="activeTab === 'about'">
-            <i class="fas fa-user nav-icon"></i>
-            <span>About</span>
+            <span class="nav-num">03.</span>
+            <span>Capabilities</span>
           </a>
         </li>
         <li>
           <a href="#contact"
             (click)="closeMenu(); setActiveTab('contact'); openContactPopup()"
             [class.active]="activeTab === 'contact'">
-            <i class="fas fa-envelope nav-icon"></i>
-            <span>Contact</span>
+            <span class="nav-num">04.</span>
+            <span>Transmission</span>
           </a>
         </li>
       </ul>
     </nav>
 
     <div class="header-actions">
+      <button class="header-btn-subtle" (click)="openContactPopup()" aria-label="Contact">
+        <span>Connect</span>
+        <i class="fas fa-arrow-up-right-from-square"></i>
+      </button>
+
+      <button class="header-resume-btn" (click)="downloadResume()" title="Download Resume" aria-label="Resume">
+        <i class="fas fa-file-lines"></i>
+        <span class="resume-label">Resume</span>
+      </button>
+
       <button class="theme-toggle"
         (click)="toggleTheme()"
-        [title]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+        [title]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+        aria-label="Toggle Color Theme">
         <i class="theme-icon"
           [ngClass]="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
       </button>
-      <button class="cta-button" (click)="downloadResume()">
-        <i class="fas fa-download download-icon"></i>
-        <span>Resume</span>
-      </button>
     </div>
 
-    <div class="hamburger" (click)="toggleMenu()">
+    <button class="hamburger" (click)="toggleMenu()" aria-label="Open Navigation Menu">
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
-    </div>
+    </button>
 
   </div>
 </header>
 
-<main>
+<main id="main-content">
   <section id="home" class="section">
     <app-home (openContact)="openContactPopup()"></app-home>
   </section>
@@ -83,100 +93,90 @@
   </section>
 </main>
 
-<!-- Scroll Indicator -->
-<div class="scroll-indicator" [class.hidden]="isScrolledToBottom">
-  <div class="scroll-mouse">
-    <div class="scroll-dot"></div>
-  </div>
-</div>
-
-<!-- CTA Section -->
+<!-- Modern Minimal CTA Section -->
 <section class="cta-section">
-  <div class="cta-inner">
-    <span class="cta-label">Open to opportunities</span>
-    <h2 class="cta-heading">Let's build something<br><span class="cta-accent">great together.</span></h2>
-    <p class="cta-sub">Have a project in mind or just want to say hi? My inbox is always open.</p>
-    <button class="cta-btn" (click)="openContactPopup()">
-      <i class="fas fa-paper-plane"></i>
-      <span>Send me a message</span>
-    </button>
+  <div class="cta-container">
+    <div class="cta-card">
+      <div class="cta-eyebrow">
+        <span class="eyebrow-bullet"></span>
+        <span>GET IN TOUCH</span>
+      </div>
+      <h2 class="cta-title">Let's build something extraordinary together.</h2>
+      <p class="cta-desc">
+        Whether you have an enterprise automation project, a web application to build, or simply want to connect — I'm always open to discussing new opportunities.
+      </p>
+      <div class="cta-actions">
+        <button class="btn-solid" (click)="openContactPopup()">
+          <i class="fas fa-envelope"></i>
+          <span>Send a message</span>
+        </button>
+        <button class="btn-subtle" (click)="downloadResume()">
+          <i class="fas fa-download"></i>
+          <span>Download Resume</span>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
-<footer>
+<!-- Streamlined Minimal Footer -->
+<footer class="site-footer">
   <div class="footer-container">
-    <div class="footer-top">
+    <div class="footer-grid">
 
-      <div class="footer-brand">
-        <h3>Sayan Pramanik</h3>
-        <p>Full-Stack Developer &amp; ServiceNow Engineer</p>
-        <p class="footer-description">
-          Building scalable applications and automating complex workflows.
-          Passionate about elegant code and exceptional user experiences.
+      <div class="footer-brand-col">
+        <div class="footer-logo">
+          <span class="logo-title">Sayan Pramanik</span>
+          <span class="logo-tag">Software Engineer</span>
+        </div>
+        <p class="footer-bio">
+          Building high-impact software, automated workflows, and robust developer tools. Focused on craft, scalability, and exceptional engineering.
         </p>
+        <div class="footer-social-row">
+          <a href="https://github.com/sayanpramanik2012" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/sayan-pramanik-084358178/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <button (click)="openContactPopup()" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </button>
+        </div>
       </div>
 
-      <div class="footer-links">
-        <div class="footer-section">
-          <h4>Navigation</h4>
-          <ul>
-            <li><a href="#home"  (click)="setActiveTab('home')">Home</a></li>
-            <li><a href="#work"  (click)="setActiveTab('work')">Work</a></li>
-            <li><a href="#about" (click)="setActiveTab('about')">About</a></li>
-            <li><a href="#contact" (click)="openContactPopup()">Contact</a></li>
-          </ul>
-        </div>
+      <div class="footer-nav-col">
+        <span class="footer-col-header">NAVIGATION</span>
+        <ul>
+          <li><a href="#home" (click)="setActiveTab('home')">Home</a></li>
+          <li><a href="#work" (click)="setActiveTab('work')">Work</a></li>
+          <li><a href="#about" (click)="setActiveTab('about')">About</a></li>
+          <li><a href="#contact" (click)="openContactPopup()">Contact</a></li>
+        </ul>
+      </div>
 
-        <div class="footer-section">
-          <h4>Skills</h4>
-          <ul>
-            <li><span class="skill-tag">Angular</span></li>
-            <li><span class="skill-tag">TypeScript</span></li>
-            <li><span class="skill-tag">ServiceNow</span></li>
-            <li><span class="skill-tag">Python</span></li>
-            <li><span class="skill-tag">Docker</span></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h4>Connect</h4>
-          <div class="social-links">
-            <a href="https://www.linkedin.com/in/sayan-pramanik-084358178/"
-              target="_blank" class="social-link linkedin">
-              <i class="fab fa-linkedin social-icon"></i>
-              <span>LinkedIn</span>
-            </a>
-            <a href="https://github.com/sayanpramanik2012"
-              target="_blank" class="social-link github">
-              <i class="fab fa-github social-icon"></i>
-              <span>GitHub</span>
-            </a>
-            <a (click)="openContactPopup()" class="social-link contact">
-              <i class="fas fa-envelope social-icon"></i>
-              <span>Email Me</span>
-            </a>
-          </div>
-        </div>
+      <div class="footer-stack-col">
+        <span class="footer-col-header">CORE STACK</span>
+        <ul class="footer-tech-list">
+          <li>ServiceNow / Flow Designer</li>
+          <li>Angular &amp; TypeScript</li>
+          <li>Python &amp; Node.js</li>
+          <li>Docker &amp; Cloud Tools</li>
+          <li>RESTful API Design</li>
+        </ul>
       </div>
 
     </div>
 
-    <div class="footer-bottom">
-      <div class="footer-divider"></div>
-      <div class="footer-bottom-content">
-        <div class="footer-copyright">
-          <p>&copy; 2026 Sayan Pramanik. All rights reserved.</p>
-        </div>
-        <div class="footer-meta">
-          <span class="footer-location">
-            <i class="fas fa-map-marker-alt"></i>
-            Chennai, Tamil Nadu, India
-          </span>
-          <span class="footer-status">
-            <span class="status-indicator"></span>
-            Available for opportunities
-          </span>
-        </div>
+    <div class="footer-bottom-bar">
+      <div class="footer-copy">
+        &copy; 2026 Sayan Pramanik. Crafted with care &amp; precision.
+      </div>
+      <div class="footer-meta-info">
+        <span class="location-tag">
+          <i class="fas fa-location-dot"></i>
+          Chennai, India · Open to Remote
+        </span>
       </div>
     </div>
   </div>
@@ -184,12 +184,13 @@
   <button class="scroll-to-top"
     [class.visible]="showScrollToTop"
     (click)="scrollToTop()"
-    title="Back to top">
-    <i class="fas fa-chevron-up scroll-icon"></i>
+    title="Back to top"
+    aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
   </button>
 </footer>
 
-<!-- Contact Popup -->
+<!-- Contact Popup Modal -->
 <app-contact
   *ngIf="showContactPopup"
   (close)="closeContactPopup()">
