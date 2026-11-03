@@ -6,7 +6,7 @@
 ![Deploy](https://img.shields.io/badge/Deploy-GitHub%20Pages-black?logo=github&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Available%20for%20hire-brightgreen)
 
-**Live site →** [sayanpramanik2012.github.io/Portfolio](https://sayanpramanik2012.github.io/Portfolio/)
+**Live site →** [sayanpk.in](https://sayanpk.in/)
 
 ---
 
