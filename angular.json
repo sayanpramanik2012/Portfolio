@@ -111,7 +111,8 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "https://sayanpramanik2012.github.io/Portfolio/",
+            "baseHref": "/",
+            "cname": "sayanpk.in",
             "repo": "https://github.com/sayanpramanik2012/Portfolio.git",
             "name": "sayanpramanik2012",
             "email": "sayanpramanik2012@gmail.com"
